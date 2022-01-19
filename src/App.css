@@ -1,0 +1,36 @@
+*{
+  border: 0;
+  box-sizing: border-box;
+}
+button{
+  cursor: pointer;
+}
+.primaryBtn{
+  font-size: 15px;
+  font-weight: 500;
+  min-width: 95px;
+  text-align: center;
+  padding: 10px 19px;
+  border-radius: 50px;
+  color: #fff;
+  letter-spacing: 1px;
+  border: 2px solid #362682;
+  margin: 0 0 0 5px;
+  background-color: #362682;
+  transition: .5s all;
+}
+.title{
+  width: fit-content;
+  margin: 3rem auto;
+  color: #362682;
+}
+.titleBar::before{
+  content: '';
+    display: block;
+    position: relative;
+    width: 120px;
+    top: 55px;
+    border-radius: 2rem;
+    height: 6px;
+    background-color: #4747F3;
+}

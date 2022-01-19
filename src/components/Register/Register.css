@@ -1,0 +1,37 @@
+.register{
+    margin-bottom: 6rem;
+}
+.register form input{
+    background: none;
+    box-shadow: none;
+    border: 2px solid #362682;
+    height: 55px;
+    font-size: 14px;
+    padding-left: 60px;
+    border-radius: 50px;
+    width: 100%;
+}
+.register .formIcon{
+    position: relative;
+    background: #4747F3;
+    display: flex;
+    width: 46px;
+    height: 46px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    color: #ffffff;
+    left: 5px;
+    top: 50px;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.register .registrationBtn{
+    width: 100%;
+    margin: 3rem 0 1rem 0;
+    background-color: #4747F3;
+    padding: 25px 0;
+    border-radius: 8px;
+    border:none;
+}

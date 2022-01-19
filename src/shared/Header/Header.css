@@ -15,7 +15,7 @@
     justify-content: space-between;
     align-items: center;
 }
-.header .nav-bar .nav-right a{
+.header .nav-bar .nav-right .navItem{
     text-decoration: none;
     font-weight: 500;
     color: #362682;
@@ -24,29 +24,13 @@
     border-radius: 4px;
     transition: .3s all;
 }
-.header .nav-bar .nav-right a:hover{
-    color:#362682;
-}
 .header .toggleBtn{
     display: none;
     position: absolute;
     top: .5rem;
     right: 1rem;
 }
-.header .nav-bar .nav-right .registerBtn{
-    font-size: 15px;
-    min-width: 95px;
-    text-align: center;
-    padding: 10px 19px;
-    border-radius: 50px;
-    background-color: #362682;
-    color: #fff;
-    letter-spacing: 1px;
-    border: 2px solid #362682;
-    margin: 0 0 0 5px;
-    transition: .5s all;
-}
-.header .nav-bar .nav-right .registerBtn:hover{
+.header .nav-bar .nav-right .primaryBtn:hover{
 background-color: transparent;
 color: #362682;
 }

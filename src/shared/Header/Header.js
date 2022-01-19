@@ -3,15 +3,17 @@ import { NavLink } from 'react-router-dom';
 import './Header.css';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import Button from '@mui/material/Button';
+import logo from '../../media/logo2.png';
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
     return (
         <div className='header'>
             <div className="nav-bar">
-                <p className="logo">My Subject</p>
+                <img style={{ width: '5%' }} src={logo} alt="logo" />
                 <div className={`nav-right ${toggle ? 'toggleBtnActive' : ""}`}>
                     <NavLink
+                        className='navItem'
                         style={({ isActive }) => {
                             return {
                                 backgroundColor: isActive ? "#362682" : "",
@@ -23,6 +25,7 @@ const Header = () => {
                         Home
                     </NavLink>
                     <NavLink
+                        className='navItem'
                         style={({ isActive }) => {
                             return {
                                 backgroundColor: isActive ? "#362682" : "",
@@ -34,6 +37,7 @@ const Header = () => {
                         Add Subject
                     </NavLink>
                     <NavLink
+                        className='navItem'
                         style={({ isActive }) => {
                             return {
                                 backgroundColor: isActive ? "#362682" : "",
@@ -45,6 +49,7 @@ const Header = () => {
                         About
                     </NavLink>
                     <NavLink
+                        className='navItem'
                         style={({ isActive }) => {
                             return {
                                 backgroundColor: isActive ? "#362682" : "",
@@ -55,8 +60,8 @@ const Header = () => {
                     >
                         Contact Us
                     </NavLink>
-                    <NavLink className='registerBtn' to='/register'>
-                        Register
+                    <NavLink to='/register'>
+                        <button className='primaryBtn'>Register</button>
                     </NavLink>
                 </div>
                 <div className="toggleBtn">
