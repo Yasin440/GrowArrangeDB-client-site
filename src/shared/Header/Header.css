@@ -1,0 +1,71 @@
+.header{
+    background-color: beige;
+    width:100%
+}
+.header .logo{
+    color: #362682;
+    font-weight: bold;
+    font-size: larger;
+    letter-spacing: 2px;
+}
+.header .nav-bar{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header .nav-bar .nav-right a{
+    text-decoration: none;
+    font-weight: 500;
+    color: #362682;
+    margin: 0 5px;
+    padding: 4px 10px 7px 10px;
+    border-radius: 4px;
+    transition: .3s all;
+}
+.header .nav-bar .nav-right a:hover{
+    color:#362682;
+}
+.header .toggleBtn{
+    display: none;
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+}
+.header .nav-bar .nav-right .registerBtn{
+    font-size: 15px;
+    min-width: 95px;
+    text-align: center;
+    padding: 10px 19px;
+    border-radius: 50px;
+    background-color: #362682;
+    color: #fff;
+    letter-spacing: 1px;
+    border: 2px solid #362682;
+    margin: 0 0 0 5px;
+    transition: .5s all;
+}
+.header .nav-bar .nav-right .registerBtn:hover{
+background-color: transparent;
+color: #362682;
+}
+@media only screen and (max-width: 600px) {
+    .header .toggleBtnActive{
+        display: none;
+    }
+    .header .nav-right{
+        width:100%;
+    }
+    .header .toggleBtn{
+        display: block;
+    }
+    .header .nav-bar{
+        flex-direction: column;
+        align-items:flex-start;
+    }
+    .header .nav-right a{
+        display: block;
+        text-align: center;
+    }
+}
