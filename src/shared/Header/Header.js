@@ -61,6 +61,7 @@ const Header = () => {
                         Contact Us
                     </NavLink>
                     <NavLink to='/register'>
+                        <button className='secondaryBtn'>Log In</button>
                         <button className='primaryBtn'>Register</button>
                     </NavLink>
                 </div>

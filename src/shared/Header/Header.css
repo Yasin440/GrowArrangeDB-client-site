@@ -1,5 +1,5 @@
 .header{
-    background-color: beige;
+    background-color: #f5f5dc54;
     width:100%
 }
 .header .logo{
@@ -31,8 +31,12 @@
     right: 1rem;
 }
 .header .nav-bar .nav-right .primaryBtn:hover{
-background-color: transparent;
-color: #362682;
+    background-color: transparent;
+    color: #362682;
+}
+.header .nav-bar .nav-right .secondaryBtn:hover{
+    background-color: transparent;
+    color: #362682;
 }
 @media only screen and (max-width: 600px) {
     .header .toggleBtnActive{
