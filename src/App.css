@@ -2,7 +2,7 @@
   border: 0;
   box-sizing: border-box;
 }
-button{
+button,svg{
   cursor: pointer;
 }
 .primaryBtn{
@@ -47,4 +47,18 @@ button{
     border-radius: 2rem;
     height: 6px;
     background-color: #4747F3;
+}
+.icon svg{
+  font-size: 2.5rem;
+  color: #fff;
+  background-color: black;
+  margin: 0 8px;
+  padding: 7px;
+  border: 2px solid red;
+  border-radius: 2rem;
+  transition: .5s all;
+}
+.icon svg:hover{
+  color: #4747F3;
+  background-color: #fff;
 }

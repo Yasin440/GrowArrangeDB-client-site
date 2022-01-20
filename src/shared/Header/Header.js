@@ -22,7 +22,7 @@ const Header = () => {
                         className='navItem'
                         style={({ isActive }) => {
                             return {
-                                backgroundColor: isActive ? "#362682" : "",
+                                backgroundColor: isActive ? "#4747F3" : "",
                                 color: isActive ? "white" : ""
                             };
                         }}
@@ -34,31 +34,31 @@ const Header = () => {
                         className='navItem'
                         style={({ isActive }) => {
                             return {
-                                backgroundColor: isActive ? "#362682" : "",
+                                backgroundColor: isActive ? "#4747F3" : "",
                                 color: isActive ? "white" : ""
                             };
                         }}
-                        to='/addSubject'
+                        to='/services'
                     >
-                        Add Subject
+                        Services
                     </NavLink>
                     <NavLink
                         className='navItem'
                         style={({ isActive }) => {
                             return {
-                                backgroundColor: isActive ? "#362682" : "",
+                                backgroundColor: isActive ? "#4747F3" : "",
                                 color: isActive ? "white" : ""
                             };
                         }}
                         to='/about'
                     >
-                        About
+                        About Us
                     </NavLink>
                     <NavLink
                         className='navItem'
                         style={({ isActive }) => {
                             return {
-                                backgroundColor: isActive ? "#362682" : "",
+                                backgroundColor: isActive ? "#4747F3" : "",
                                 color: isActive ? "white" : ""
                             };
                         }}

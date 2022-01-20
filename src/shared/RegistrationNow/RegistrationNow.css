@@ -1,0 +1,19 @@
+.registrationNow{
+    text-align: center;
+    color: #fff;
+    background-color: #4747f399;
+    padding-bottom: 4rem;
+    margin-top: 8rem;
+}
+.registrationNow img{
+    width: 180px;
+    position: relative;
+    top: -90px;
+}
+.registrationNow .content{
+    margin-top: -100px;
+    display: block;
+}
+.registrationNow .content .primaryBtn{
+    padding: 10px 90px;
+}

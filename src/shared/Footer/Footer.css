@@ -28,16 +28,6 @@
         cursor: pointer;
         color: #4747F3;
     }
-    .footer .socialIcon svg{
-        font-size: 2rem;
-        margin: 4px 12px;
-        transition: .3s all;
-        cursor: pointer;
-    }
-    .footer .socialIcon svg:hover{
-        transform:scale(1.1);
-        color:#4747F3
-    }
     .footer .bottomFooter{
         display: flex;
         justify-content: space-between;

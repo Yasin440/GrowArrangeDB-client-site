@@ -16,7 +16,7 @@ const Footer = () => {
                     <Grid md={3} style={{ textAlign: 'center' }}>
                         <img style={{ width: "150px", cursor: 'pointer' }} src={`${logo}`} alt="logo" />
                         <p style={{ marginTop: '0' }}>Lorem ipsum dolor sit amet, consectet adipiscing elit, sed do eiusmod</p>
-                        <div className="socialIcon">
+                        <div className="icon">
                             <FacebookIcon />
                             <InstagramIcon />
                             <YouTubeIcon />

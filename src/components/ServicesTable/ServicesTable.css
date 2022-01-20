@@ -1,0 +1,14 @@
+.table .tableBody span{
+    color: #fff;
+    font-weight: bold;
+    border-radius: 1rem;
+    padding: 1px 10px;
+}
+.table .tableBody .detailsBtn{
+    background-color: #4747f3;
+    padding: 1px 12px;
+    display: flex;
+    align-items: center;
+    border-radius: 1rem;
+    color: #fff;
+}

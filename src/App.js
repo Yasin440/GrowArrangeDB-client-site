@@ -7,6 +7,7 @@ import Footer from './shared/Footer/Footer';
 import Home from './components/Home/Home';
 import Register from './components/Register/Register';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
+import Services from './components/Services/Services';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/register" element={<Register />} />
         </Routes>
         <Footer />
