@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import initializeFirebase from "../Components/Pages/Login/Firebase/firebase.init";
 import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile, getIdToken } from "firebase/auth";
+import initializeFirebase from "../components/Register/Firebase/firebase.init";
 
 //initialize firebase app
 initializeFirebase();
@@ -8,7 +8,7 @@ initializeFirebase();
 const useFirebase = () => {
     const auth = getAuth();
     //login and register toggler
-    const [isLogin, setIsLogin] = useState()
+    const [isLogin, setIsLogin] = useState(false)
     const [user, setUser] = useState({});
     const [cars, setCars] = useState();
     const [error, setError] = useState();

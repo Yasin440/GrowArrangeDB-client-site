@@ -11,10 +11,6 @@ const Header = () => {
     const [toggle, setToggle] = useState(false);
     //toggle registration and login form
     const { setIsLogin } = useAuth();
-    const toggleLoginAndOut = e => {
-        setIsLogin(e.target.checked);
-        console.log('hi')
-    }
     return (
         <div className='header'>
             <div className="nav-bar">
@@ -69,8 +65,8 @@ const Header = () => {
                         Contact Us
                     </NavLink>
                     <NavLink to='/register'>
-                        <button onClick={() => toggleLoginAndOut} className='secondaryBtn'>Log In</button>
-                        <button className='primaryBtn'>Register</button>
+                        <button onClick={() => setIsLogin(true)} className='secondaryBtn'>Log In</button>
+                        <button onClick={() => setIsLogin(false)} className='primaryBtn'>Register</button>
                     </NavLink>
                 </div>
                 <div className="toggleBtn">

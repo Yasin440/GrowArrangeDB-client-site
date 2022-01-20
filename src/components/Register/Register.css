@@ -35,3 +35,14 @@
     border-radius: 8px;
     border:none;
 }
+.register .haveAccount{
+    cursor: pointer;
+    color: #362682;
+    font-weight: 500;
+    transition: .5s all;
+}
+.register .haveAccount:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    color: #4747F3;
+}
