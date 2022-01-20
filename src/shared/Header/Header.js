@@ -4,9 +4,17 @@ import './Header.css';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import Button from '@mui/material/Button';
 import logo from '../../media/logo2.png';
+import useAuth from '../../Hooks/useAuth';
 
 const Header = () => {
+    //state fot burger toggle for mobile nav
     const [toggle, setToggle] = useState(false);
+    //toggle registration and login form
+    const { setIsLogin } = useAuth();
+    const toggleLoginAndOut = e => {
+        setIsLogin(e.target.checked);
+        console.log('hi')
+    }
     return (
         <div className='header'>
             <div className="nav-bar">
@@ -61,7 +69,7 @@ const Header = () => {
                         Contact Us
                     </NavLink>
                     <NavLink to='/register'>
-                        <button className='secondaryBtn'>Log In</button>
+                        <button onClick={() => toggleLoginAndOut} className='secondaryBtn'>Log In</button>
                         <button className='primaryBtn'>Register</button>
                     </NavLink>
                 </div>

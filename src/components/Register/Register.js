@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Register.css';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { Grid, Container } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import useAuth from '../../Hooks/useAuth';
 
 const Register = () => {
-    const [isLogin, setIsLogin] = useState()
     //toggle registration and login form
+    const { isLogin, setIsLogin } = useAuth();
+    console.log(isLogin);
     const toggleLoginAndOut = e => {
         setIsLogin(e.target.checked);
     }
