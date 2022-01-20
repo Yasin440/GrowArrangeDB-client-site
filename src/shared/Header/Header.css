@@ -3,10 +3,7 @@
     width:100%
 }
 .header .logo{
-    color: #362682;
-    font-weight: bold;
-    font-size: larger;
-    letter-spacing: 2px;
+    width: 70px;
 }
 .header .nav-bar{
     width: 90%;

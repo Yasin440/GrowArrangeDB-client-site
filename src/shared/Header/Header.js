@@ -14,7 +14,9 @@ const Header = () => {
     return (
         <div className='header'>
             <div className="nav-bar">
-                <img style={{ width: '5%' }} src={logo} alt="logo" />
+                <div className="logo">
+                    <img style={{ width: '100%' }} src={logo} alt="logo" />
+                </div>
                 <div className={`nav-right ${toggle ? 'toggleBtnActive' : ""}`}>
                     <NavLink
                         className='navItem'

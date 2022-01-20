@@ -21,6 +21,9 @@
         line-height: 2.3rem;
         font-weight: 500;
     }
+    .footer .list li{
+        width: fit-content;
+    }
     .footer .list li:hover{
         cursor: pointer;
         color: #4747F3;

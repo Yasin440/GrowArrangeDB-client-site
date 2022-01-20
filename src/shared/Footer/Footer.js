@@ -12,8 +12,8 @@ const Footer = () => {
     return (
         <div className='footer'>
             <Container style={{ padding: '60px 0' }}>
-                <Grid container>
-                    <Grid md={3} style={{ textAlign: 'left' }}>
+                <Grid container sx={{ justifyContent: 'space-around' }}>
+                    <Grid md={3} style={{ textAlign: 'center' }}>
                         <img style={{ width: "150px", cursor: 'pointer' }} src={`${logo}`} alt="logo" />
                         <p style={{ marginTop: '0' }}>Lorem ipsum dolor sit amet, consectet adipiscing elit, sed do eiusmod</p>
                         <div className="socialIcon">
