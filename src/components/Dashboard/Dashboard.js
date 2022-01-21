@@ -1,22 +1,21 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import './Dashboard.css';
+import logo from '../../media/logo2.png';
+import logo1 from '../../media/logo1.png';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import CampaignIcon from '@mui/icons-material/Campaign';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const drawerWidth = 240;
 
@@ -66,6 +65,17 @@ const AppBar = styled(MuiAppBar, {
             duration: theme.transitions.duration.enteringScreen,
         }),
     }),
+    ...(!open && {
+        marginLeft: drawerWidth,
+        width: `calc(100% - ${theme.spacing(7)})`,
+        [theme.breakpoints.up('sm')]: {
+            width: `calc(100% - ${theme.spacing(9)})`,
+        },
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    }),
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -86,7 +96,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function Dashboard() {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -99,7 +109,7 @@ export default function Dashboard() {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar position="fixed" open={open}>
+            <AppBar sx={{ backgroundColor: 'black' }} position="fixed" open={open}>
                 <Toolbar>
                     {!open ? <IconButton
                         color="inherit"
@@ -124,41 +134,51 @@ export default function Dashboard() {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Drawer variant="permanent" open={open}>
+            <Drawer className='dashboardDrawer' variant="permanent" open={open}>
                 <div className="sideBarProfile">
-                    <div className="sideBarHeader">
-                    </div>
-                    <div className="sideBarUser">
-                        <div className='profileImg'>
-                            <img width='100%' src="https://cdn.mypanel.link/770smr/jsq3r7guazj336du.png" alt="profile" />
+                    {open &&
+                        <div className="sideBarHeader">
+                            <img width='60%' src={logo1} alt="logo" />
                         </div>
-                        <div className="welcome">Welcome</div>
-                        <div className="name">Growth Arrange</div>
-                        <div className="balance">balance: $1.433</div>
+                    }
+                    <div className="sideBarUser">
+                        {open ?
+                            <div className='profile'>
+                                <div className='profileImg'>
+                                    <Link to='/home'>
+                                        <img width='100%' src="https://cdn.mypanel.link/770smr/jsq3r7guazj336du.png" alt="profile" />
+                                    </Link>
+                                </div>
+                                <div className="welcome">Welcome</div>
+                                <div className="name">Growth Arrange</div>
+                                <div className="balance">balance: $1.433</div>
+                            </div>
+                            :
+                            <div className='profileImg'>
+                                <Link to='/home'>
+                                    <img width='100%' src={logo} alt="logo" />
+                                </Link>
+                            </div>
+
+                        }
+
                     </div>
                 </div>
                 <Divider />
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
+                <ul>
+                    <li>
+                        <Link to=''>
+                            <CampaignIcon />
+                            <span>News & updates</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to=''>
+                            <AddShoppingCartIcon />
+                            <span>New order</span>
+                        </Link>
+                    </li>
+                </ul>
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />

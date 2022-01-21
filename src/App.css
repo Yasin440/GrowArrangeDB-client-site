@@ -5,6 +5,12 @@
 button,svg{
   cursor: pointer;
 }
+a{
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
 .primaryBtn{
   font-size: 15px;
   font-weight: 500;
