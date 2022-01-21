@@ -10,8 +10,9 @@ import Dashboard from './components/Dashboard/Dashboard';
 import NewOrder from './components/Dashboard/NewOrder/NewOrder';
 import AddServices from './components/Dashboard/AddServices/AddServices';
 import AllServices from './components/Dashboard/AllServices/AllServices';
-import Orders from './components/Dashboard/Orders/Orders';
+import MyOrders from './components/Dashboard/MyOrders/MyOrders';
 import Tickets from './components/Dashboard/Tickets/Tickets';
+import ManageOrder from './components/Dashboard/ManageOrder/ManageOrder';
 
 function App() {
   return (
@@ -24,9 +25,10 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="/dashboard/addServices" element={<AddServices />} />
+            <Route path="/dashboard/manageOrder" element={<ManageOrder />} />
             <Route path="/dashboard/newOrder" element={<NewOrder />} />
             <Route path="/dashboard/allServices" element={<AllServices />} />
-            <Route path="/dashboard/orders" element={<Orders />} />
+            <Route path="/dashboard/myOrders" element={<MyOrders />} />
             <Route path="/dashboard/tickets" element={<Tickets />} />
           </Route>
           <Route path="/register" element={<Register />} />

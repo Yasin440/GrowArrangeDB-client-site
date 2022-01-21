@@ -17,6 +17,9 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import EditOffIcon from '@mui/icons-material/EditOff';
 
 const drawerWidth = 240;
 
@@ -174,17 +177,17 @@ export default function Dashboard() {
                 <Divider />
                 <ul>
                     <li>
-                        <NavLink to='' style={active}>
+                        <NavLink to=''>
                             <CampaignIcon />
-                            <span>News & updates</span>
+                            {open && <span>News & updates</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
                             style={active}
-                            to='/dashboard/newOrder'>
-                            <AddShoppingCartIcon />
-                            <span>New order</span>
+                            to='/dashboard/manageOrder'>
+                            <EditOffIcon />
+                            {open && <span>Manage order</span>}
                         </NavLink>
                     </li>
                     <li>
@@ -192,7 +195,15 @@ export default function Dashboard() {
                             style={active}
                             to='/dashboard/addServices'>
                             <AddBoxIcon />
-                            <span>Add Services</span>
+                            {open && <span>Add Services</span>}
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            style={active}
+                            to='/dashboard/newOrder'>
+                            <AddShoppingCartIcon />
+                            {open && <span>New order</span>}
                         </NavLink>
                     </li>
                     <li>
@@ -200,23 +211,23 @@ export default function Dashboard() {
                             style={active}
                             to='/dashboard/allServices'>
                             <AddShoppingCartIcon />
-                            <span>Services</span>
+                            {open && <span>Services</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
                             style={active}
-                            to='/dashboard/newOrder'>
-                            <AddShoppingCartIcon />
-                            <span>New order</span>
+                            to='/dashboard/myOrders'>
+                            <AssignmentIcon />
+                            {open && <span>My orders</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
                             style={active}
-                            to='/dashboard/newOrder'>
-                            <AddShoppingCartIcon />
-                            <span>New order</span>
+                            to='/dashboard/tickets'>
+                            <ConfirmationNumberIcon />
+                            {open && <span>Tickets</span>}
                         </NavLink>
                     </li>
                 </ul>
@@ -225,6 +236,6 @@ export default function Dashboard() {
                 <DrawerHeader />
                 <Outlet />
             </Box>
-        </Box>
+        </Box >
     );
 }
