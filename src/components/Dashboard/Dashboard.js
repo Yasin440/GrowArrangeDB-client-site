@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link, Outlet } from 'react-router-dom';
 import './Dashboard.css';
 import logo from '../../media/logo2.png';
 import logo1 from '../../media/logo1.png';
@@ -16,6 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const drawerWidth = 240;
 
@@ -94,6 +95,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         }),
     }),
 );
+const active = ({ isActive }) => {
+    return {
+        backgroundColor: isActive ? "#362682" : "",
+        borderLeft: isActive ? "5px solid red" : ""
+    };
+};
 
 export default function Dashboard() {
     const [open, setOpen] = React.useState(true);
@@ -167,48 +174,56 @@ export default function Dashboard() {
                 <Divider />
                 <ul>
                     <li>
-                        <Link to=''>
+                        <NavLink to='' style={active}>
                             <CampaignIcon />
                             <span>News & updates</span>
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to=''>
+                        <NavLink
+                            style={active}
+                            to='/dashboard/newOrder'>
                             <AddShoppingCartIcon />
                             <span>New order</span>
-                        </Link>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            style={active}
+                            to='/dashboard/addServices'>
+                            <AddBoxIcon />
+                            <span>Add Services</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            style={active}
+                            to='/dashboard/allServices'>
+                            <AddShoppingCartIcon />
+                            <span>Services</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            style={active}
+                            to='/dashboard/newOrder'>
+                            <AddShoppingCartIcon />
+                            <span>New order</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            style={active}
+                            to='/dashboard/newOrder'>
+                            <AddShoppingCartIcon />
+                            <span>New order</span>
+                        </NavLink>
                     </li>
                 </ul>
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-                    enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-                    imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-                    Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-                    Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-                    nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-                    leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-                    feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-                    consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                    sapien faucibus et molestie ac.
-                </Typography>
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-                    eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-                    neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-                    tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-                    sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                    tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-                    gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-                    et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-                    tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                    eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-                    posuere sollicitudin aliquam ultrices sagittis orci a.
-                </Typography>
+                <Outlet />
             </Box>
         </Box>
     );

@@ -48,25 +48,26 @@
 }
 .dashboardDrawer ul li{
     text-indent: 20px;
+    
+}
+.dashboardDrawer ul li a{
+    box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, #00000085 0px 3px 6px;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
     border-radius: 12.56px;
     background: #4747F3;
     margin: 10px 0;
     padding: 7px 10px;
-    box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, #00000085 0px 3px 6px;
-    transition: .3s all;
-    border-left:5px solid transparent;
-    border-right:5px solid transparent;
-}
-.dashboardDrawer ul li:hover{
-    border-left: 5px solid red;
-}
-.dashboardDrawer ul li a{
     display: flex;
     align-items: center;
     color: #fff;
     text-decoration: none;
     font-weight: 500;
     width: 100%;
+    transition: .3s all;
+}
+.dashboardDrawer ul li a:hover{
+    border-left: 5px solid red;
 }
 .dashboardDrawer ul li a span{
     font-size: 16px;
