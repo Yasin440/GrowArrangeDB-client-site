@@ -1,0 +1,29 @@
+.sideBarProfile{
+    text-align: center;
+}
+.sideBarProfile .profileImg{
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+}
+.sideBarProfile .balance{
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(2, 184, 2);
+    border: 3px solid #202020;
+    border-radius: 25px;
+    padding: 3px 15px;
+    width: max-content;
+    margin: 10px auto;
+}
+.sideBarProfile .welcome{
+    font-size: 14px;
+    color: #202020;
+    margin-top: 20px;
+    font-weight: 600;
+}
+.sideBarProfile .name{
+    font-size: 14px;
+    color: #202020;
+}

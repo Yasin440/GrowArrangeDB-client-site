@@ -8,6 +8,7 @@ import Home from './components/Home/Home';
 import Register from './components/Register/Register';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import Services from './components/Services/Services';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/register" element={<Register />} />
         </Routes>
         <Footer />

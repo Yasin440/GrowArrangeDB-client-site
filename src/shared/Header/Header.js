@@ -66,6 +66,18 @@ const Header = () => {
                     >
                         Contact Us
                     </NavLink>
+                    <NavLink
+                        className='navItem'
+                        style={({ isActive }) => {
+                            return {
+                                backgroundColor: isActive ? "#4747F3" : "",
+                                color: isActive ? "white" : ""
+                            };
+                        }}
+                        to='/dashboard'
+                    >
+                        Dashboard
+                    </NavLink>
                     <NavLink to='/register'>
                         <button onClick={() => setIsLogin(true)} className='secondaryBtn'>Log In</button>
                         <button onClick={() => setIsLogin(false)} className='primaryBtn'>Register</button>
