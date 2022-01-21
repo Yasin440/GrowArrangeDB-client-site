@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import DehazeIcon from '@mui/icons-material/Dehaze';
+import ServiceDetailsModal from '../../shared/ServiceDetailsModal/ServiceDetailsModal';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -42,6 +43,8 @@ const rows = [
     createData(5, 'Gingerbread', 356, 16.0, 49, 3.9),
 ];
 const ServicesTable = () => {
+    const [openModal, setOpenModal] = React.useState(false);
+    const handleOpen = () => setOpenModal(true);
     return (
         <div>
             <h1 className='title titleBar'>🙆‍♂️ Suicide Services - Cheap</h1>
@@ -82,10 +85,11 @@ const ServicesTable = () => {
                                 </StyledTableCell>
                                 <StyledTableCell align="left">{row.protein}</StyledTableCell>
                                 <StyledTableCell align="left">
-                                    <button className='detailsBtn'>
+                                    <button onClick={handleOpen} className='detailsBtn'>
                                         <DehazeIcon />
                                     </button>
                                 </StyledTableCell>
+                                <ServiceDetailsModal openModal={openModal} setOpenModal={setOpenModal} />
                             </StyledTableRow>
                         ))}
                     </TableBody>

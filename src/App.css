@@ -11,6 +11,19 @@ a{
 li{
   list-style: none;
 }
+form input,form select,form textarea{
+  background: none;
+  box-shadow: none;
+  border: 2px solid #362682;
+  height: 55px;
+  font-size: 14px;
+  padding-left: 60px;
+  resize: vertical;
+  width: 100%;
+}
+.mt-2{
+  margin-top: 2rem;
+}
 .primaryBtn{
   font-size: 15px;
   font-weight: 500;
@@ -49,7 +62,7 @@ li{
     display: block;
     position: relative;
     width: 120px;
-    top: 55px;
+    top: 50px;
     border-radius: 2rem;
     height: 6px;
     background-color: #4747F3;
@@ -67,4 +80,8 @@ li{
 .icon svg:hover{
   color: #4747F3;
   background-color: #fff;
+}
+/* detailsModal out side color */
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop{
+background-color: #00000025 !important;
 }

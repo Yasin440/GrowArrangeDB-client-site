@@ -20,6 +20,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import EditOffIcon from '@mui/icons-material/EditOff';
+import AddTaskIcon from '@mui/icons-material/AddTask';
 
 const drawerWidth = 240;
 
@@ -210,7 +211,7 @@ export default function Dashboard() {
                         <NavLink
                             style={active}
                             to='/dashboard/allServices'>
-                            <AddShoppingCartIcon />
+                            <AddTaskIcon />
                             {open && <span>Services</span>}
                         </NavLink>
                     </li>

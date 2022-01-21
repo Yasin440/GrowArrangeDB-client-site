@@ -31,13 +31,13 @@ const Register = () => {
                                         <span className="formIcon">
                                             <PermIdentityIcon />
                                         </span>
-                                        <input placeholder='Name' type="text" />
+                                        <input required placeholder='Name' name='name' type="text" />
                                     </div>
                                     <div className="email">
                                         <span className="formIcon">
                                             <EmailIcon />
                                         </span>
-                                        <input placeholder='Email' type="email" />
+                                        <input required placeholder='Email' name='email' type="email" />
                                     </div>
                                     <Grid container columnSpacing={2}>
                                         <Grid item md={6} xs={12}>
@@ -45,7 +45,7 @@ const Register = () => {
                                                 <span className="formIcon">
                                                     <LockIcon />
                                                 </span>
-                                                <input placeholder='Password' type="email" />
+                                                <input required placeholder='Password' type="email" />
                                             </div>
                                         </Grid>
                                         <Grid item md={6} xs={12}>
@@ -53,7 +53,7 @@ const Register = () => {
                                                 <span className="formIcon">
                                                     <VpnKeyIcon />
                                                 </span>
-                                                <input placeholder='Confirm Password' type="email" />
+                                                <input required placeholder='Confirm Password' type="email" />
                                             </div>
                                         </Grid>
                                     </Grid>
@@ -71,13 +71,13 @@ const Register = () => {
                                         <span className="formIcon">
                                             <EmailIcon />
                                         </span>
-                                        <input placeholder='Email' type="email" />
+                                        <input required placeholder='Email' type="email" />
                                     </div>
                                     <div className="password">
                                         <span className="formIcon">
                                             <LockIcon />
                                         </span>
-                                        <input placeholder='Password' type="email" />
+                                        <input required placeholder='Password' type="email" />
                                     </div>
                                     <button className='primaryBtn registrationBtn'>Log In</button>
                                 </form>
