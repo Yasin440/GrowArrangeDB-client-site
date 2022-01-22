@@ -48,7 +48,7 @@ const ServicesTable = () => {
     return (
         <div>
             <h1 className='title titleBar'>🙆‍♂️ Suicide Services - Cheap</h1>
-            <TableContainer sx={{ width: '96%', margin: 'auto' }} component={Paper}>
+            <TableContainer component={Paper}>
                 <Table className='table' sx={{ minWidth: 1253 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>

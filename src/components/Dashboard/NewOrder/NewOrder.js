@@ -9,7 +9,7 @@ const NewOrder = () => {
             <Grid container columnSpacing={4}>
                 <Grid item md={8}>
                     <form action="" className="newOrderForm">
-                        <h1 className="title titleBar">Add New Services...</h1>
+                        <h1 className="title titleBar">Order New Services...</h1>
                         <div className="mt-2">
                             <span>Category</span>
                             <select name="category" id='category'>

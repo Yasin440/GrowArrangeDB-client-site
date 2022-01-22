@@ -5,15 +5,15 @@ import Footer from '../../shared/Footer/Footer';
 
 const Services = () => {
     return (
-        <>
+        <div>
             <Header />
-            <div style={{ padding: '3rem 0' }}>
+            <div style={{ padding: '3rem 0', width: '96%', margin: 'auto' }}>
                 <ServicesTable />
                 <ServicesTable />
                 <ServicesTable />
             </div>
             <Footer />
-        </>
+        </div>
     );
 };
 
