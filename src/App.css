@@ -21,6 +21,12 @@ form input,form select,form textarea{
   resize: vertical;
   width: 100%;
 }
+select{
+  cursor: pointer;
+}
+form select option{
+  font-size: 15px;
+}
 .mt-2{
   margin-top: 2rem;
 }
