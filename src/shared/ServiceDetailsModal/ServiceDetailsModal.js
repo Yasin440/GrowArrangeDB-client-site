@@ -16,7 +16,7 @@ const style = {
     p: 2,
 };
 
-const ServiceDetailsModal = ({ openModal, setOpenModal }) => {
+const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
     const handleClose = () => setOpenModal(false);
     return (
         <div>
@@ -27,13 +27,28 @@ const ServiceDetailsModal = ({ openModal, setOpenModal }) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <CloseIcon onClick={handleClose} sx={{ position: 'absolute', top: '3px', right: '3px', fontSize: '18px', color: 'red', fontWeight: 'bold' }} />
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Text in a modal
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </Typography>
+                    {addServices ? <span>
+                        <CloseIcon onClick={handleClose} sx={{ position: 'absolute', top: '3px', right: '3px', fontSize: '15px', color: 'red', fontWeight: '900' }} />
+                        <form action="">
+                            <h3 className="title">Add new category</h3>
+                            <div className="mt-2">
+                                <input style={{ borderRadius: "1rem" }} name="title" required placeholder='Add new category' type="text" />
+                            </div>
+                            <div className="mt-2" style={{ textItems: 'center' }}>
+                                <button className='primaryBtn '>Add category</button>
+                            </div>
+                        </form>
+                    </span> :
+                        <>
+                            <CloseIcon onClick={handleClose} sx={{ position: 'absolute', top: '3px', right: '3px', fontSize: '18px', color: 'red', fontWeight: 'bold' }} />
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                Text in a modal
+                            </Typography>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                            </Typography>
+                        </>
+                    }
                 </Box>
             </Modal>
         </div>

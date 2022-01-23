@@ -6,6 +6,8 @@ import Home from './components/Home/Home';
 import Register from './components/Register/Register';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import Services from './components/Services/Services';
+import AboutUs from './components/AboutUs/AboutUs';
+import ContactUs from './components/ContactUs/ContactUs';
 import Dashboard from './components/Dashboard/Dashboard';
 import NewOrder from './components/Dashboard/NewOrder/NewOrder';
 import AddServices from './components/Dashboard/AddServices/AddServices';
@@ -23,6 +25,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
+          <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="/dashboard/addServices" element={<AddServices />} />
             <Route path="/dashboard/manageOrder" element={<ManageOrder />} />

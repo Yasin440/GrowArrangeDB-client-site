@@ -1,12 +1,26 @@
 import { Container, Grid } from '@mui/material';
 import './AddServices.css';
 import React from 'react';
+import ServiceDetailsModal from '../../../shared/ServiceDetailsModal/ServiceDetailsModal';
 
 const AddServices = () => {
+    const [openModal, setOpenModal] = React.useState(false);
+    const [addServices, setAddServices] = React.useState(false);
+    const handleOpen = () => {
+        setOpenModal(true);
+        setAddServices(true);
+    }
     return (
         <div>
             <div className="addService">
                 <Container>
+                    {/* service category added modal */}
+                    <ServiceDetailsModal
+                        openModal={openModal}
+                        setOpenModal={setOpenModal}
+                        addServices={addServices}
+                    />
+
                     <Grid md={6} sx={{ margin: 'auto' }}>
                         <form action="" className="addServicesForm">
                             <h1 className="title titleBar">Add New Services...</h1>
@@ -14,7 +28,7 @@ const AddServices = () => {
                                 <input name="title" required placeholder='Services Title' type="text" />
                             </div>
                             <div className="mt-2">
-                                <span style={{ marginLeft: '1.5rem' }}>Select services category</span>
+                                <span style={{ marginLeft: '1rem' }}>Select services category</span>
                                 <select name="category" id='category' placeholder='Services Category'>
                                     <option value="facebook">Facebook Like</option>
                                     <option value="facebook">Instagram follows</option>
@@ -22,6 +36,7 @@ const AddServices = () => {
                                     <option value="facebook">Twitter twits</option>
                                     <option value="facebook">LinkedIn connect</option>
                                 </select>
+                                <span className='addCategory' onClick={handleOpen}>+ New Category.!</span>
                             </div>
                             <Grid container columnSpacing={2}>
                                 <Grid item md={6} xs={12}>
@@ -48,7 +63,7 @@ const AddServices = () => {
                                 </Grid>
                             </Grid>
                             <div className="mt-2">
-                                <textarea required placeholder='Full services Details*' type="text" />
+                                <textarea required placeholder='Full services Details*(use <br/> for line break)' type="text" />
                             </div>
                             <div className="mt-2" style={{ textItems: 'center' }}>
                                 <button className='primaryBtn '>Add service</button>

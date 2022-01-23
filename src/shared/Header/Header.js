@@ -50,7 +50,7 @@ const Header = () => {
                                 color: isActive ? "white" : ""
                             };
                         }}
-                        to='/about'
+                        to='/aboutUs'
                     >
                         About Us
                     </NavLink>

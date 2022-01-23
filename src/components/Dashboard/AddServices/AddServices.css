@@ -12,3 +12,14 @@
     background-color: #4747f3;
     border-color: #4747f3;
 }
+.addService .addServicesForm .addCategory{
+    margin-left: 1rem;
+    color: #362682;
+    font-size: 12px; 
+    font-weight: bold; 
+    cursor: pointer;
+}
+.addService .addServicesForm .addCategory:hover{
+    text-decoration: underline;
+    color:red;
+}
