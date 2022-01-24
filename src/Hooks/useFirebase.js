@@ -7,8 +7,8 @@ initializeFirebase();
 
 const useFirebase = () => {
     const auth = getAuth();
-    //login and register toggler
-    const [isLogin, setIsLogin] = useState(false)
+    //toggle registration and login form
+    const [isLogin, setIsLogin] = useState(false);
     const [user, setUser] = useState({});
     const [cars, setCars] = useState();
     const [error, setError] = useState();
@@ -21,7 +21,7 @@ const useFirebase = () => {
 
 
     //registerWithEmailPassword
-    const registerWithEmailPassword = (email, password, name, history) => {
+    const registerWithEmailPassword = (email, password, name, navigate) => {
         setError('');
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
@@ -40,7 +40,7 @@ const useFirebase = () => {
                     .catch((error) => {
                         setError(error.message);
                     });
-                history.replace('/');
+                navigate('/home');
             })
             ;
     }
@@ -110,7 +110,7 @@ const useFirebase = () => {
     //***/== save user info to database ==/***//
     const saveUserDB = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch('https://nameless-river-31605.herokuapp.com/clients', {
+        fetch('http://localhost:4000/clients', {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -151,10 +151,10 @@ const useFirebase = () => {
     }, [user.email])
 
     return {
-        setIsLogin,
-        isLogin,
         user,
         cars,
+        isLogin,
+        setIsLogin,
         setCars,
         admin,
         error,

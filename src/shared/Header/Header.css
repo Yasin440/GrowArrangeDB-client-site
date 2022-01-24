@@ -35,6 +35,10 @@
     background-color: transparent;
     color: #362682;
 }
+.header .nav-bar .nav-right .logOut:hover{
+    color: rgb(223, 0, 0);
+    border-color: rgb(223, 0, 0);
+}
 @media only screen and (max-width: 600px) {
     .header .toggleBtnActive{
         display: none;

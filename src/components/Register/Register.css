@@ -27,6 +27,10 @@
     padding: 25px 0;
     border-radius: 8px;
     border:none;
+    transition: all .5s ease;
+}
+.register .registrationBtn:hover{
+    background-color: #362682;
 }
 .register .haveAccount{
     cursor: pointer;

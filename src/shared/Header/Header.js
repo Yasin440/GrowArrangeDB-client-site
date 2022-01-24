@@ -5,12 +5,18 @@ import DehazeIcon from '@mui/icons-material/Dehaze';
 import Button from '@mui/material/Button';
 import logo from '../../media/logo2.png';
 import useAuth from '../../Hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const Header = () => {
-    //state fot burger toggle for mobile nav
     const [toggle, setToggle] = useState(false);
-    //toggle registration and login form
-    const { setIsLogin } = useAuth();
+    const { setIsLogin, user, logOut } = useAuth();
+
+    const handleLogOut = () => {
+        logOut();
+        toast.success("Log Out Successful..!", {
+            theme: "colored"
+        });
+    }
     return (
         <div className='header'>
             <div className="nav-bar">
@@ -78,10 +84,18 @@ const Header = () => {
                     >
                         Dashboard
                     </NavLink>
-                    <NavLink to='/register'>
-                        <button onClick={() => setIsLogin(true)} className='secondaryBtn'>Log In</button>
-                        <button onClick={() => setIsLogin(false)} className='primaryBtn'>Register</button>
-                    </NavLink>
+
+                    {user?.email ?
+                        <NavLink to='/home'>
+                            <button onClick={handleLogOut} className='primaryBtn logOut'>Log Out</button>
+                        </NavLink>
+                        :
+                        <NavLink to='/register'>
+                            <button onClick={() => setIsLogin(true)} className='secondaryBtn'>Log In</button>
+                            <button onClick={() => setIsLogin(false)} className='primaryBtn'>Register</button>
+                        </NavLink>
+                    }
+
                 </div>
                 <div className="toggleBtn">
                     <Button onClick={() => setToggle(!toggle)} className="toggleBtn" sx={{ color: 'brown', cursor: 'pointer' }}><DehazeIcon /></Button>

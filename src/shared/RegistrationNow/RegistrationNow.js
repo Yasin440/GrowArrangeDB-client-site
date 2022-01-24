@@ -9,7 +9,7 @@ const RegistrationNow = () => {
     return (
         <div className='registrationNow'>
             <img src={logo} alt="logo" />
-            <dic className="content">
+            <div className="content">
                 <h1>❤️ Over 77265+ ❤️</h1>
                 <h2>Happy User being with us Still thay Love our Panel</h2>
                 {
@@ -19,7 +19,7 @@ const RegistrationNow = () => {
                         </Link>
                         : ''
                 }
-            </dic>
+            </div>
         </div>
     );
 };
