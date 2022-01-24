@@ -72,23 +72,20 @@ const Header = () => {
                     >
                         Contact Us
                     </NavLink>
-                    <NavLink
-                        className='navItem'
-                        style={({ isActive }) => {
-                            return {
-                                backgroundColor: isActive ? "#4747F3" : "",
-                                color: isActive ? "white" : ""
-                            };
-                        }}
-                        to='/dashboard'
-                    >
-                        Dashboard
-                    </NavLink>
+
 
                     {user?.email ?
-                        <NavLink to='/home'>
-                            <button onClick={handleLogOut} className='primaryBtn logOut'>Log Out</button>
-                        </NavLink>
+                        <>
+                            <NavLink
+                                className='navItem'
+                                to='/dashboard'
+                            >
+                                <span style={{ display: 'flex', alignItems: 'center' }}><img className='avatar' src="https://cdn.mypanel.link/770smr/jsq3r7guazj336du.png" alt="profile" />{user.displayName && user.displayName}</span>
+                            </NavLink>
+                            <NavLink to='/home'>
+                                <button onClick={handleLogOut} className='primaryBtn logOut'>Log Out</button>
+                            </NavLink>
+                        </>
                         :
                         <NavLink to='/register'>
                             <button onClick={() => setIsLogin(true)} className='secondaryBtn'>Log In</button>

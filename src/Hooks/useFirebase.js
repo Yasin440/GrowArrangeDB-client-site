@@ -59,7 +59,7 @@ const useFirebase = () => {
     //logIn with google
     const googleProvider = new GoogleAuthProvider();
     const signInWithGoogle = () => {
-        setLoading(true);
+        // setLoading(true);
         return signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
@@ -69,7 +69,7 @@ const useFirebase = () => {
                 // Handle Errors here.
                 setError(error.message);
             })
-            .finally(() => setLoading(false));
+        // .finally(() => setLoading(false));
     }
 
     //observed User state change
