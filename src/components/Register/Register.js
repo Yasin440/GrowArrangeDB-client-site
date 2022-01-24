@@ -6,6 +6,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -13,15 +14,19 @@ import useAuth from '../../Hooks/useAuth';
 import RegistrationNow from '../../shared/RegistrationNow/RegistrationNow';
 import Header from '../../shared/Header/Header';
 import Footer from '../../shared/Footer/Footer';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Register = () => {
     const [loginData, setLoginData] = useState();
     const [retypePassError, setRetypePassError] = useState(false);
-    const { registerWithEmailPassword, setLoading, isLogin, setIsLogin } = useAuth();
+    const { registerWithEmailPassword, logInWithEmailPassword, signInWithGoogle, isLogin, setIsLogin, loading, setLoading } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const redirect_url = location.state?.from || '/home';
 
+    //get data from data field
     const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
@@ -29,6 +34,7 @@ const Register = () => {
         newLoginData[field] = value;
         setLoginData(newLoginData);
     }
+    //make registration
     const handleRegisterSubmit = e => {
         e.preventDefault()
         setRetypePassError(false);
@@ -42,7 +48,9 @@ const Register = () => {
                     toast.success("Registration Successful..!", {
                         theme: "colored"
                     });
+                    navigate(redirect_url);
                 })
+                //handle registration error
                 .catch((error) => {
                     if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
                         toast.error("Invalid..!,Email Already used!", {
@@ -69,6 +77,33 @@ const Register = () => {
         }
 
         e.preventDefault();
+    }
+    //log in with registered email
+    const handleLoginWithEmailPass = e => {
+        e.preventDefault()
+        logInWithEmailPassword(loginData.email, loginData.password)
+            .then(result => {
+                toast.success("Login Successful..!", {
+                    theme: "colored"
+                });
+                navigate(redirect_url);
+            })
+            .catch(error => {
+                toast.error("Wrong email of password", {
+                    theme: "colored"
+                });
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }
+    //log in with google account
+    const handleGoogleLogin = () => {
+        signInWithGoogle()
+            .then(result => {
+                toast.success("login Successful..!");
+                navigate(redirect_url);
+            })
     }
     return (
         <>
@@ -113,7 +148,7 @@ const Register = () => {
                                     {retypePassError &&
                                         <Alert sx={{ mt: 2, mx: 'auto' }} severity="error">Password didn't Match — check it out!</Alert>
                                     }
-                                    <button type='submit' className='primaryBtn registrationBtn'>Register</button>
+                                    <button type='submit' className='primaryBtn registrationBtn'>{loading ? <CircularProgress sx={{ width: '100%' }} disableShrink /> : 'Register'}</button>
                                 </form>
                                 <div className="haveAccount">
                                     <p onClick={() => setIsLogin(true)}>Already have an account.</p>
@@ -121,21 +156,21 @@ const Register = () => {
                             </>
                             :
                             <>
-                                <form action="">
+                                <form onSubmit={handleLoginWithEmailPass}>
                                     <h1 className="title titleBar">Please Login..</h1>
                                     <div className="email">
                                         <span className="formIcon">
                                             <EmailIcon />
                                         </span>
-                                        <input required placeholder='Email' type="email" />
+                                        <input name='email' onBlur={handleOnBlur} required placeholder='Email' type="email" />
                                     </div>
                                     <div className="password">
                                         <span className="formIcon">
                                             <LockIcon />
                                         </span>
-                                        <input required placeholder='Password' type="email" />
+                                        <input name='password' onBlur={handleOnBlur} required placeholder='Password' type="password" />
                                     </div>
-                                    <button className='primaryBtn registrationBtn'>Log In</button>
+                                    <button type='submit' className='primaryBtn registrationBtn'>{loading ? <CircularProgress sx={{ width: '100%' }} disableShrink /> : "Log In"}</button>
                                 </form>
                                 <div className="haveAccount">
                                     <p onClick={() => setIsLogin(false)}>Have no account.</p>
@@ -147,6 +182,7 @@ const Register = () => {
                                 !isLogin ? 'Registration' : 'Log In'
                             } With...</h3>
                             <div style={{ textAlign: 'center' }} className="icon">
+                                <GoogleIcon onClick={handleGoogleLogin} />
                                 <FacebookIcon />
                                 <InstagramIcon />
                                 <TwitterIcon />
