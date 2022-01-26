@@ -101,8 +101,10 @@ const Register = () => {
     const handleGoogleLogin = () => {
         signInWithGoogle()
             .then(result => {
-                toast.success("login Successful..!");
-                navigate(redirect_url);
+                if (result) {
+                    toast.success("login Successful..!");
+                    navigate(redirect_url);
+                }
             })
     }
     return (

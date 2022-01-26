@@ -1,15 +1,22 @@
 import { Container, Grid } from '@mui/material';
 import './AddServices.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ServiceDetailsModal from '../../../shared/ServiceDetailsModal/ServiceDetailsModal';
 
 const AddServices = () => {
-    const [openModal, setOpenModal] = React.useState(false);
-    const [addServices, setAddServices] = React.useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [addServices, setAddServices] = useState(false);
+    const [categories, setCategories] = useState();
     const handleOpen = () => {
         setOpenModal(true);
         setAddServices(true);
     }
+    //get category
+    useEffect(() => {
+        fetch('http://localhost:4000/getCategory')
+            .then(res => res.json())
+            .then(data => setCategories(data))
+    }, [openModal])
     return (
         <div>
             <div className="addService">
@@ -30,11 +37,14 @@ const AddServices = () => {
                             <div className="mt-2">
                                 <span style={{ marginLeft: '1rem' }}>Select services category</span>
                                 <select name="category" id='category' placeholder='Services Category'>
-                                    <option value="facebook">Facebook Like</option>
-                                    <option value="facebook">Instagram follows</option>
-                                    <option value="facebook">Web site Like</option>
-                                    <option value="facebook">Twitter twits</option>
-                                    <option value="facebook">LinkedIn connect</option>
+                                    {
+                                        categories?.map(e =>
+                                            <option
+                                                key={e._id}
+                                                value={`${e.category}`}>{e.category}
+                                            </option>)
+                                    }
+
                                 </select>
                                 <span className='addCategory' onClick={handleOpen}>+ New Category.!</span>
                             </div>

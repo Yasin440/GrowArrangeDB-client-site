@@ -1,8 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
+import { toast } from 'react-toastify';
+import { useForm } from "react-hook-form";
 
 const style = {
     position: 'absolute',
@@ -18,6 +20,27 @@ const style = {
 
 const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
     const handleClose = () => setOpenModal(false);
+    const { register, handleSubmit, reset } = useForm();
+    //add category
+    const handleAddCategory = data => {
+        fetch('http://localhost:4000/addCategory', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(event => {
+                if (event.insertedId) {
+                    toast.success("Category Added Successfully..!", {
+                        theme: "colored"
+                    });
+                    reset();
+                    setOpenModal(false);
+                }
+            })
+    }
     return (
         <div>
             <Modal
@@ -29,13 +52,18 @@ const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
                 <Box sx={style}>
                     {addServices ? <span>
                         <CloseIcon onClick={handleClose} sx={{ position: 'absolute', top: '3px', right: '3px', fontSize: '15px', color: 'red', fontWeight: '900' }} />
-                        <form action="">
+                        <form onSubmit={handleSubmit(handleAddCategory)}>
                             <h3 className="title">Add new category</h3>
                             <div className="mt-2">
-                                <input style={{ borderRadius: "1rem" }} name="title" required placeholder='Add new category' type="text" />
+                                <input
+                                    style={{ borderRadius: "1rem", paddingLeft: '15px' }}
+                                    {...register("category")}
+                                    required
+                                    placeholder='Add new category'
+                                    type="text" />
                             </div>
                             <div className="mt-2" style={{ textItems: 'center' }}>
-                                <button className='primaryBtn '>Add category</button>
+                                <button type="submit" className='primaryBtn '>Add category</button>
                             </div>
                         </form>
                     </span> :
