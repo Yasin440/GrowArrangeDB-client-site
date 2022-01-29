@@ -119,6 +119,14 @@ const useFirebase = () => {
         })
     }
 
+    const [categories, setCategories] = useState();
+    //==get category
+    useEffect(() => {
+        fetch('http://localhost:4000/getCategory')
+            .then(res => res.json())
+            .then(data => setCategories(data))
+    }, [])
+
     //== get admin validation in true of false ==//
     useEffect(() => {
         fetch(`https://nameless-river-31605.herokuapp.com/client/isAdmin/${user.email}`)
@@ -168,7 +176,8 @@ const useFirebase = () => {
         logInWithEmailPassword,
         setLoading,
         signInWithGoogle,
-        logOut
+        logOut,
+        categories
     }
 }
 

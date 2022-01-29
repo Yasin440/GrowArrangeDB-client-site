@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ServicesTable.css';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -30,24 +30,25 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         border: 0,
     },
 }));
+const ServicesTable = (props) => {
+    const { category } = props;
+    const [openModal, setOpenModal] = useState(false);
+    const handleOpen = (details, title) => {
+        setOpenModal({ open: true, details: details, title: title });
+    }
+    //==get category wise data
+    const [serviceWithCategory, setServiceWithCategory] = useState();
+    useEffect(() => {
+        fetch(`http://localhost:4000/allServices/${category}`)
+            .then(res => res.json())
+            .then(data => {
+                setServiceWithCategory(data);
+            })
 
-function createData(id, name, calories, fat, carbs, protein) {
-    return { id, name, calories, fat, carbs, protein };
-}
-
-const rows = [
-    createData(1, 'Instagram HQ Followers | NonDrop | Max 1M |⚡Speed: +20K/D | Start: Instant |♻️90 Days Refill', 159, 6.0, 24, 4.0),
-    createData(2, 'Facebook Post Likes | Low Drop | Max 100K |⚡Speed: +500/D | Start: 0-1 Hours |❌No Refill', 237, 9.0, 37, 4.3),
-    createData(3, 'Eclair', 262, 16.0, 24, 6.0),
-    createData(4, 'Cupcake', 305, 3.7, 67, 4.3),
-    createData(5, 'Gingerbread', 356, 16.0, 49, 3.9),
-];
-const ServicesTable = () => {
-    const [openModal, setOpenModal] = React.useState(false);
-    const handleOpen = () => setOpenModal(true);
+    }, [category])
     return (
         <div>
-            <h1 className='title titleBar'>🙆‍♂️ Suicide Services - Cheap</h1>
+            <h1 className='title titleBar'>{category}</h1>
             <TableContainer component={Paper}>
                 <Table className='table' sx={{ minWidth: 1253 }} aria-label="customized table">
                     <TableHead>
@@ -62,30 +63,30 @@ const ServicesTable = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody className='tableBody'>
-                        {rows.map((row) => (
-                            <StyledTableRow key={row.name}>
-                                <StyledTableCell align="left">{row.id}</StyledTableCell>
+                        {serviceWithCategory?.map(row => (
+                            <StyledTableRow key={row._id}>
+                                <StyledTableCell align="left">01</StyledTableCell>
                                 <StyledTableCell component="th" scope="row">
-                                    {row.name}
+                                    {row.title}
                                 </StyledTableCell>
                                 <StyledTableCell align="left">
                                     <span style={{ backgroundColor: '#362682' }}>
-                                        {row.calories}
+                                        {row.rate_par_1k}
                                     </span>
                                 </StyledTableCell>
                                 <StyledTableCell align="left">
                                     <span style={{ backgroundColor: '#362682' }}>
-                                        {row.fat}
+                                        {row.min_order}
                                     </span>
                                 </StyledTableCell>
                                 <StyledTableCell align="left">
                                     <span style={{ backgroundColor: '#fb1e1e' }}>
-                                        {row.carbs}
+                                        {row.max_order}
                                     </span>
                                 </StyledTableCell>
-                                <StyledTableCell align="left">{row.protein}</StyledTableCell>
+                                <StyledTableCell align="left">{row.average_time}</StyledTableCell>
                                 <StyledTableCell align="left">
-                                    <button onClick={handleOpen} className='detailsBtn'>
+                                    <button onClick={() => handleOpen(row.details, row.title)} className='detailsBtn'>
                                         <DehazeIcon />
                                     </button>
                                 </StyledTableCell>

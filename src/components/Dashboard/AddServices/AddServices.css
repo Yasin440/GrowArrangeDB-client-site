@@ -4,6 +4,9 @@
     appearance: none;
     border-radius: 1rem;
 }
+.addService .addServicesForm textarea{
+    height: 8rem;
+}
 .addService .addServicesForm button{
     width:100%;
     border-radius: 1rem;

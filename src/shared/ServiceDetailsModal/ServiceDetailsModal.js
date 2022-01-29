@@ -5,6 +5,7 @@ import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { toast } from 'react-toastify';
 import { useForm } from "react-hook-form";
+import { Divider } from '@mui/material';
 
 const style = {
     position: 'absolute',
@@ -44,7 +45,7 @@ const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
     return (
         <div>
             <Modal
-                open={openModal}
+                open={openModal.open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
@@ -70,10 +71,11 @@ const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
                         <>
                             <CloseIcon onClick={handleClose} sx={{ position: 'absolute', top: '3px', right: '3px', fontSize: '18px', color: 'red', fontWeight: 'bold' }} />
                             <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Text in a modal
+                                {openModal.title}
                             </Typography>
+                            <Divider />
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                                {openModal.details}
                             </Typography>
                         </>
                     }
