@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import ServiceDetailsModal from '../../shared/ServiceDetailsModal/ServiceDetailsModal';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -33,8 +34,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const ServicesTable = (props) => {
     const { category } = props;
     const [openModal, setOpenModal] = useState(false);
-    const handleOpen = (details, title) => {
-        setOpenModal({ open: true, details: details, title: title });
+    const handleOpen = (details, title, _id) => {
+        setOpenModal({ open: true, details: details, title: title, _id: _id });
     }
     //==get category wise data
     const [serviceWithCategory, setServiceWithCategory] = useState();
@@ -59,42 +60,48 @@ const ServicesTable = (props) => {
                             <StyledTableCell align="left">Min order</StyledTableCell>
                             <StyledTableCell align="left">Max order</StyledTableCell>
                             <StyledTableCell align="left">Average time</StyledTableCell>
-                            <StyledTableCell align="left">Details</StyledTableCell>
+                            <StyledTableCell align="left">Actions</StyledTableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody className='tableBody'>
-                        {serviceWithCategory?.map(row => (
-                            <StyledTableRow key={row._id}>
-                                <StyledTableCell align="left">01</StyledTableCell>
-                                <StyledTableCell component="th" scope="row">
-                                    {row.title}
-                                </StyledTableCell>
-                                <StyledTableCell align="left">
-                                    <span style={{ backgroundColor: '#362682' }}>
-                                        {row.rate_par_1k}
-                                    </span>
-                                </StyledTableCell>
-                                <StyledTableCell align="left">
-                                    <span style={{ backgroundColor: '#362682' }}>
-                                        {row.min_order}
-                                    </span>
-                                </StyledTableCell>
-                                <StyledTableCell align="left">
-                                    <span style={{ backgroundColor: '#fb1e1e' }}>
-                                        {row.max_order}
-                                    </span>
-                                </StyledTableCell>
-                                <StyledTableCell align="left">{row.average_time}</StyledTableCell>
-                                <StyledTableCell align="left">
-                                    <button onClick={() => handleOpen(row.details, row.title)} className='detailsBtn'>
-                                        <DehazeIcon />
-                                    </button>
-                                </StyledTableCell>
-                                <ServiceDetailsModal openModal={openModal} setOpenModal={setOpenModal} />
-                            </StyledTableRow>
-                        ))}
-                    </TableBody>
+                    {serviceWithCategory &&
+                        <TableBody className='tableBody'>
+                            {serviceWithCategory?.map(row => (
+                                <StyledTableRow key={row._id}>
+                                    <StyledTableCell align="left">01</StyledTableCell>
+                                    <StyledTableCell component="th" scope="row">
+                                        {row.title}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="left">
+                                        <span style={{ backgroundColor: '#362682' }}>
+                                            {row.rate_par_1k}
+                                        </span>
+                                    </StyledTableCell>
+                                    <StyledTableCell align="left">
+                                        <span style={{ backgroundColor: '#362682' }}>
+                                            {row.min_order}
+                                        </span>
+                                    </StyledTableCell>
+                                    <StyledTableCell align="left">
+                                        <span style={{ backgroundColor: '#fb1e1e' }}>
+                                            {row.max_order}
+                                        </span>
+                                    </StyledTableCell>
+                                    <StyledTableCell align="left">{row.average_time}</StyledTableCell>
+                                    <StyledTableCell align="left">
+                                        <button onClick={() => handleOpen(row.details, row.title, row._id)} className='detailsBtn'>
+                                            <DehazeIcon />
+                                        </button>
+                                    </StyledTableCell>
+                                    <ServiceDetailsModal openModal={openModal} setOpenModal={setOpenModal} />
+                                </StyledTableRow>
+                            ))}
+                        </TableBody>
+                    }
+
                 </Table>
+                {!serviceWithCategory &&
+                    <LinearProgress sx={{ height: '5px', backgroundColor: 'aqua' }} />
+                }
             </TableContainer>
         </div>
     );

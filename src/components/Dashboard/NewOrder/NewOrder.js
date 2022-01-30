@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './NewOrder.css';
 import { Grid } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
+import useAuth from '../../../Hooks/useAuth';
+import { useParams } from 'react-router-dom';
 
 const NewOrder = () => {
+    const { _id } = useParams();
+    const { categories } = useAuth();
+    const [service, setService] = useState();
+    const { title, category, details, average_time, max_order, min_order, rate_par_1k } = service || {};
+    console.log(title);
+    useEffect(() => {
+        fetch(`http://localhost:4000/dashboard/newOrder/${_id}`)
+            .then(res => res.json())
+            .then(data => setService(data))
+    }, [_id]);
+    //==get category wise data
+    const [serviceWithCategory, setServiceWithCategory] = useState();
+    useEffect(() => {
+        fetch(`http://localhost:4000/allServices/${service?.category}`)
+            .then(res => res.json())
+            .then(data => {
+                setServiceWithCategory(data);
+            })
+
+    }, [service?.category])
     return (
         <div className='newOrder'>
             <Grid container columnSpacing={4}>
@@ -13,21 +35,45 @@ const NewOrder = () => {
                         <div className="mt-2">
                             <span>Category</span>
                             <select name="category" id='category'>
-                                <option value="facebook">Facebook Like</option>
-                                <option value="facebook">Instagram follows</option>
-                                <option value="facebook">Web site Like</option>
-                                <option value="facebook">Twitter twits</option>
-                                <option value="facebook">LinkedIn connect</option>
+                                {service && <option value={category}>{category}</option>}
+                                {service &&
+                                    categories?.map(e => e.category !== category &&
+                                        <option key={e._id} value={`${e.category}`}>{e.category}
+                                        </option>
+
+                                    )
+                                }
+
+
+                                {!service &&
+                                    categories?.map(e =>
+                                        <option
+                                            key={e._id}
+                                            value={`${e.category}`}>{e.category}
+                                        </option>)
+                                }
                             </select>
                         </div>
                         <div className="mt-2">
                             <span>Service</span>
                             <select name="category" id='category'>
-                                <option value="facebook">Facebook Like</option>
-                                <option value="facebook">Instagram follows</option>
-                                <option value="facebook">Web site Like</option>
-                                <option value="facebook">Twitter twits</option>
-                                <option value="facebook">LinkedIn connect</option>
+                                {service && <option value={service?.category}>{service?.category}</option>}
+                                {service &&
+                                    categories?.map(e => e.category !== service?.category &&
+                                        <option key={e._id} value={`${e.category}`}>{e.category}
+                                        </option>
+
+                                    )
+                                }
+
+
+                                {!service &&
+                                    categories?.map(e =>
+                                        <option
+                                            key={e._id}
+                                            value={`${e.category}`}>{e.category}
+                                        </option>)
+                                }
                             </select>
                         </div>
                         <div className="mt-2">

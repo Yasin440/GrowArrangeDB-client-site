@@ -64,6 +64,20 @@ input:focus,select:focus,textarea:focus{
   background-color: #4747F3;
   transition: .5s all;
 }
+.actionBtn{
+  background-color: #4747f3;
+  font-weight: bold;
+  margin: 6px 6px 6px 0;
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  color: #fff;
+  transition: .5s all;
+}
+.actionBtn:hover{
+  background-color: #362682;
+}
 .title{
   width: fit-content;
   margin: 3rem auto;

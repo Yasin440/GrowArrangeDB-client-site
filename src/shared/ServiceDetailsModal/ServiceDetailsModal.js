@@ -6,13 +6,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import { toast } from 'react-toastify';
 import { useForm } from "react-hook-form";
 import { Divider } from '@mui/material';
+import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
+import { Link } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 450,
+    width: "50%",
+    heignt: "90%",
     backgroundColor: 'background.paper',
     border: '2px solid #362682',
     boxShadow: 5,
@@ -22,6 +25,7 @@ const style = {
 const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
     const handleClose = () => setOpenModal(false);
     const { register, handleSubmit, reset } = useForm();
+    const { open, title, details, _id } = openModal;
     //add category
     const handleAddCategory = data => {
         fetch('http://localhost:4000/addCategory', {
@@ -45,7 +49,7 @@ const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
     return (
         <div>
             <Modal
-                open={openModal.open}
+                open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
@@ -71,11 +75,16 @@ const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
                         <>
                             <CloseIcon onClick={handleClose} sx={{ position: 'absolute', top: '3px', right: '3px', fontSize: '18px', color: 'red', fontWeight: 'bold' }} />
                             <Typography id="modal-modal-title" variant="h6" component="h2">
-                                {openModal.title}
+                                {title}
+                                <Link to={`/dashboard/newOrder/${_id}`}>
+                                    <button className='actionBtn'>
+                                        <AddTaskOutlinedIcon /> <span>Order</span>
+                                    </button>
+                                </Link>
                             </Typography>
                             <Divider />
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                {openModal.details}
+                                {details}
                             </Typography>
                         </>
                     }
