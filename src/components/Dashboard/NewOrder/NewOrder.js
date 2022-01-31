@@ -18,14 +18,15 @@ const NewOrder = () => {
     }, [_id]);
     //==get category wise data
     const [serviceWithCategory, setServiceWithCategory] = useState();
+    console.log(serviceWithCategory);
     useEffect(() => {
-        fetch(`http://localhost:4000/allServices/${service?.category}`)
+        fetch(`http://localhost:4000/allServices/${category}`)
             .then(res => res.json())
             .then(data => {
                 setServiceWithCategory(data);
             })
 
-    }, [service?.category])
+    }, [category])
     return (
         <div className='newOrder'>
             <Grid container columnSpacing={4}>
@@ -43,8 +44,6 @@ const NewOrder = () => {
 
                                     )
                                 }
-
-
                                 {!service &&
                                     categories?.map(e =>
                                         <option
@@ -57,21 +56,19 @@ const NewOrder = () => {
                         <div className="mt-2">
                             <span>Service</span>
                             <select name="category" id='category'>
-                                {service && <option value={service?.category}>{service?.category}</option>}
+                                {service && <option value={title}>{title}</option>}
                                 {service &&
-                                    categories?.map(e => e.category !== service?.category &&
-                                        <option key={e._id} value={`${e.category}`}>{e.category}
+                                    serviceWithCategory?.map(e => e.title !== title &&
+                                        <option key={e._id} value={`${e.title}`}>{e.title}
                                         </option>
 
                                     )
                                 }
-
-
                                 {!service &&
                                     categories?.map(e =>
                                         <option
                                             key={e._id}
-                                            value={`${e.category}`}>{e.category}
+                                            value={`${e._id}`}>{e.category}
                                         </option>)
                                 }
                             </select>

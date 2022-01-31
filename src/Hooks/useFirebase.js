@@ -8,7 +8,7 @@ initializeFirebase();
 const useFirebase = () => {
     const auth = getAuth();
     //toggle registration and login form
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     const [user, setUser] = useState({});
     const [cars, setCars] = useState();
     const [error, setError] = useState();

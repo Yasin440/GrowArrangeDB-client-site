@@ -1,5 +1,5 @@
 .header{
-    background-color: #f5f5dc54;
+    background-color: #bfb0fb9e;
     width:100%
 }
 .header .logo{
@@ -49,9 +49,16 @@
     color: rgb(223, 0, 0);
     border-color: rgb(223, 0, 0);
 }
-@media only screen and (max-width: 600px) {
-    .header .toggleBtnActive{
+@media only screen and (max-width: 830px) {
+    .header .nav-bar .toggleBtnActive{
         display: none;
+    }
+    .header .nav-bar .nav-right {
+        display: block;
+        width:100%;
+    }
+    .header .nav-bar .nav-rightM {
+        width:100%;
     }
     .header .nav-right{
         width:100%;

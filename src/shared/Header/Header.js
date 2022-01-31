@@ -8,7 +8,7 @@ import useAuth from '../../Hooks/useAuth';
 import { toast } from 'react-toastify';
 
 const Header = () => {
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(true);
     const { setIsLogin, user, logOut } = useAuth();
 
     const handleLogOut = () => {
@@ -23,76 +23,78 @@ const Header = () => {
                 <div className="logo">
                     <img style={{ width: '100%' }} src={logo} alt="logo" />
                 </div>
-                <div className={`nav-right ${toggle ? 'toggleBtnActive' : ""}`}>
-                    <NavLink
-                        className='navItem'
-                        style={({ isActive }) => {
-                            return {
-                                backgroundColor: isActive ? "#4747F3" : "",
-                                color: isActive ? "white" : ""
-                            };
-                        }}
-                        to='/home'
-                    >
-                        Home
-                    </NavLink>
-                    <NavLink
-                        className='navItem'
-                        style={({ isActive }) => {
-                            return {
-                                backgroundColor: isActive ? "#4747F3" : "",
-                                color: isActive ? "white" : ""
-                            };
-                        }}
-                        to='/services'
-                    >
-                        Services
-                    </NavLink>
-                    <NavLink
-                        className='navItem'
-                        style={({ isActive }) => {
-                            return {
-                                backgroundColor: isActive ? "#4747F3" : "",
-                                color: isActive ? "white" : ""
-                            };
-                        }}
-                        to='/aboutUs'
-                    >
-                        About Us
-                    </NavLink>
-                    <NavLink
-                        className='navItem'
-                        style={({ isActive }) => {
-                            return {
-                                backgroundColor: isActive ? "#4747F3" : "",
-                                color: isActive ? "white" : ""
-                            };
-                        }}
-                        to='/contactUS'
-                    >
-                        Contact Us
-                    </NavLink>
-
-
-                    {user?.email ?
-                        <>
-                            <NavLink
-                                className='navItem'
-                                to='/dashboard'
-                            >
-                                <span style={{ display: 'flex', alignItems: 'center' }}><img className='avatar' src="https://cdn.mypanel.link/770smr/jsq3r7guazj336du.png" alt="profile" />{user.displayName && user.displayName}</span>
-                            </NavLink>
-                            <NavLink to='/home'>
-                                <button onClick={handleLogOut} className='primaryBtn logOut'>Log Out</button>
-                            </NavLink>
-                        </>
-                        :
-                        <NavLink to='/register'>
-                            <button onClick={() => setIsLogin(true)} className='secondaryBtn'>Log In</button>
-                            <button onClick={() => setIsLogin(false)} className='primaryBtn'>Register</button>
+                <div className={`nav-rightM ${toggle ? 'toggleBtnActive' : ''}`}>
+                    <div className='nav-right'>
+                        <NavLink
+                            className='navItem'
+                            style={({ isActive }) => {
+                                return {
+                                    backgroundColor: isActive ? "#4747F3" : "",
+                                    color: isActive ? "white" : ""
+                                };
+                            }}
+                            to='/home'
+                        >
+                            Home
                         </NavLink>
-                    }
+                        <NavLink
+                            className='navItem'
+                            style={({ isActive }) => {
+                                return {
+                                    backgroundColor: isActive ? "#4747F3" : "",
+                                    color: isActive ? "white" : ""
+                                };
+                            }}
+                            to='/services'
+                        >
+                            Services
+                        </NavLink>
+                        <NavLink
+                            className='navItem'
+                            style={({ isActive }) => {
+                                return {
+                                    backgroundColor: isActive ? "#4747F3" : "",
+                                    color: isActive ? "white" : ""
+                                };
+                            }}
+                            to='/aboutUs'
+                        >
+                            About Us
+                        </NavLink>
+                        <NavLink
+                            className='navItem'
+                            style={({ isActive }) => {
+                                return {
+                                    backgroundColor: isActive ? "#4747F3" : "",
+                                    color: isActive ? "white" : ""
+                                };
+                            }}
+                            to='/contactUS'
+                        >
+                            Contact Us
+                        </NavLink>
 
+
+                        {user?.email ?
+                            <>
+                                <NavLink
+                                    className='navItem'
+                                    to='/dashboard'
+                                >
+                                    <span style={{ display: 'flex', alignItems: 'center' }}><img className='avatar' src="https://cdn.mypanel.link/770smr/jsq3r7guazj336du.png" alt="profile" />{user.displayName && user.displayName}</span>
+                                </NavLink>
+                                <NavLink to='/home'>
+                                    <button onClick={handleLogOut} className='primaryBtn logOut'>Log Out</button>
+                                </NavLink>
+                            </>
+                            :
+                            <NavLink to='/register'>
+                                <button onClick={() => setIsLogin(true)} className='secondaryBtn'>Log In</button>
+                                <button onClick={() => setIsLogin(false)} className='primaryBtn'>Register</button>
+                            </NavLink>
+                        }
+
+                    </div>
                 </div>
                 <div className="toggleBtn">
                     <Button onClick={() => setToggle(!toggle)} className="toggleBtn" sx={{ color: 'brown', cursor: 'pointer' }}><DehazeIcon /></Button>

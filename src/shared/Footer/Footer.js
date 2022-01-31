@@ -48,8 +48,8 @@ const Footer = () => {
                         <h3 className='subTitle'>Make Appointment</h3>
                         <ul className='list'>
                             <li><i className="far fa-clock" style={{ marginRight: '8px' }}></i>9AM - 5PM , Monday - Saturday</li>
-                            <li><i className="fas fa-phone-volume" style={{ marginRight: '8px' }}></i>+88023344XXXXX</li>
-                            <li><i className="far fa-envelope" style={{ marginRight: '8px' }}></i>example@gmail.com</li>
+                            <li><i className="fas fa-phone-volume" style={{ marginRight: '8px' }}></i>+88001970797533</li>
+                            <li><i className="far fa-envelope" style={{ marginRight: '8px' }}></i>growtharrange@gmail.com</li>
                         </ul>
                     </Grid>
                 </Grid>

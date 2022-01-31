@@ -12,8 +12,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import useAuth from '../../Hooks/useAuth';
 import RegistrationNow from '../../shared/RegistrationNow/RegistrationNow';
-import Header from '../../shared/Header/Header';
-import Footer from '../../shared/Footer/Footer';
+// import Header from '../../shared/Header/Header';
+// import Footer from '../../shared/Footer/Footer';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -101,102 +101,98 @@ const Register = () => {
     const handleGoogleLogin = () => {
         signInWithGoogle()
             .then(result => {
-                if (result) {
-                    toast.success("login Successful..!");
-                    navigate(redirect_url);
-                }
+                toast.success("Login Successful..!", {
+                    theme: "colored"
+                });
+                navigate(redirect_url);
             })
     }
     return (
-        <>
-            <Header />
-            <div className='register'>
-                <Container>
-                    <Grid md={6} sx={{ margin: 'auto' }}>
-                        {!isLogin ?
-                            <>
-                                <form onSubmit={handleRegisterSubmit}>
-                                    <h1 className="title titleBar">Please Register..</h1>
-                                    <div className="name">
-                                        <span className="formIcon">
-                                            <PermIdentityIcon />
-                                        </span>
-                                        <input onBlur={handleOnBlur} required placeholder='Name' name='name' type="text" />
-                                    </div>
-                                    <div className="email">
-                                        <span className="formIcon">
-                                            <EmailIcon />
-                                        </span>
-                                        <input onBlur={handleOnBlur} required placeholder='Email' name='email' type="email" />
-                                    </div>
-                                    <Grid container columnSpacing={2}>
-                                        <Grid item md={6} xs={12}>
-                                            <div className="password">
-                                                <span className="formIcon">
-                                                    <LockIcon />
-                                                </span>
-                                                <input onBlur={handleOnBlur} required placeholder='Password' type="password" name='password' />
-                                            </div>
-                                        </Grid>
-                                        <Grid item md={6} xs={12}>
-                                            <div className="re-password">
-                                                <span className="formIcon">
-                                                    <VpnKeyIcon />
-                                                </span>
-                                                <input onBlur={handleOnBlur} required placeholder='Confirm Password' type="password" name='password2' />
-                                            </div>
-                                        </Grid>
+        <div className='register'>
+            <Container>
+                <Grid md={6} sx={{ margin: 'auto' }}>
+                    {!isLogin ?
+                        <>
+                            <form onSubmit={handleRegisterSubmit}>
+                                <h1 className="title titleBar">Please Register..</h1>
+                                <div className="name">
+                                    <span className="formIcon">
+                                        <PermIdentityIcon />
+                                    </span>
+                                    <input onBlur={handleOnBlur} required placeholder='Name' name='name' type="text" />
+                                </div>
+                                <div className="email">
+                                    <span className="formIcon">
+                                        <EmailIcon />
+                                    </span>
+                                    <input onBlur={handleOnBlur} required placeholder='Email' name='email' type="email" />
+                                </div>
+                                <Grid container columnSpacing={2}>
+                                    <Grid item md={6} xs={12}>
+                                        <div className="password">
+                                            <span className="formIcon">
+                                                <LockIcon />
+                                            </span>
+                                            <input onBlur={handleOnBlur} required placeholder='Password' type="password" name='password' />
+                                        </div>
                                     </Grid>
-                                    {retypePassError &&
-                                        <Alert sx={{ mt: 2, mx: 'auto' }} severity="error">Password didn't Match — check it out!</Alert>
-                                    }
-                                    <button type='submit' className='primaryBtn registrationBtn'>{loading ? <CircularProgress sx={{ width: '100%' }} disableShrink /> : 'Register'}</button>
-                                </form>
-                                <div className="haveAccount">
-                                    <p onClick={() => setIsLogin(true)}>Already have an account.</p>
-                                </div>
-                            </>
-                            :
-                            <>
-                                <form onSubmit={handleLoginWithEmailPass}>
-                                    <h1 className="title titleBar">Please Login..</h1>
-                                    <div className="email">
-                                        <span className="formIcon">
-                                            <EmailIcon />
-                                        </span>
-                                        <input name='email' onBlur={handleOnBlur} required placeholder='Email' type="email" />
-                                    </div>
-                                    <div className="password">
-                                        <span className="formIcon">
-                                            <LockIcon />
-                                        </span>
-                                        <input name='password' onBlur={handleOnBlur} required placeholder='Password' type="password" />
-                                    </div>
-                                    <button type='submit' className='primaryBtn registrationBtn'>{loading ? <CircularProgress sx={{ width: '100%' }} disableShrink /> : "Log In"}</button>
-                                </form>
-                                <div className="haveAccount">
-                                    <p onClick={() => setIsLogin(false)}>Have no account.</p>
-                                </div>
-                            </>
-                        }
-                        <div className="socialIcon">
-                            <h3 className="title titleBar">{
-                                !isLogin ? 'Registration' : 'Log In'
-                            } With...</h3>
-                            <div style={{ textAlign: 'center' }} className="icon">
-                                <GoogleIcon onClick={handleGoogleLogin} />
-                                <FacebookIcon />
-                                <InstagramIcon />
-                                <TwitterIcon />
-                                <LinkedInIcon />
+                                    <Grid item md={6} xs={12}>
+                                        <div className="re-password">
+                                            <span className="formIcon">
+                                                <VpnKeyIcon />
+                                            </span>
+                                            <input onBlur={handleOnBlur} required placeholder='Confirm Password' type="password" name='password2' />
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                                {retypePassError &&
+                                    <Alert sx={{ mt: 2, mx: 'auto' }} severity="error">Password didn't Match — check it out!</Alert>
+                                }
+                                <button type='submit' className='primaryBtn registrationBtn'>{loading ? <CircularProgress sx={{ width: '100%' }} disableShrink /> : 'Register'}</button>
+                            </form>
+                            <div className="haveAccount">
+                                <p onClick={() => setIsLogin(true)}>Already have an account.</p>
                             </div>
+                        </>
+                        :
+                        <>
+                            <form onSubmit={handleLoginWithEmailPass}>
+                                <h1 className="title titleBar">Please Login..</h1>
+                                <div className="email">
+                                    <span className="formIcon">
+                                        <EmailIcon />
+                                    </span>
+                                    <input name='email' onBlur={handleOnBlur} required placeholder='Email' type="email" />
+                                </div>
+                                <div className="password">
+                                    <span className="formIcon">
+                                        <LockIcon />
+                                    </span>
+                                    <input name='password' onBlur={handleOnBlur} required placeholder='Password' type="password" />
+                                </div>
+                                <button type='submit' className='primaryBtn registrationBtn'>{loading ? <CircularProgress sx={{ width: '100%' }} disableShrink /> : "Log In"}</button>
+                            </form>
+                            <div className="haveAccount">
+                                <p onClick={() => setIsLogin(false)}>Have no account.</p>
+                            </div>
+                        </>
+                    }
+                    <div className="socialIcon">
+                        <h3 className="title titleBar">{
+                            !isLogin ? 'Registration' : 'Log In'
+                        } With...</h3>
+                        <div style={{ textAlign: 'center' }} className="icon">
+                            <GoogleIcon onClick={handleGoogleLogin} />
+                            <FacebookIcon />
+                            <InstagramIcon />
+                            <TwitterIcon />
+                            <LinkedInIcon />
                         </div>
-                    </Grid>
-                </Container>
-                <RegistrationNow />
-            </div >
-            <Footer />
-        </>
+                    </div>
+                </Grid>
+            </Container>
+            <RegistrationNow />
+        </div >
 
     );
 };
