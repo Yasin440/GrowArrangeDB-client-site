@@ -4,38 +4,57 @@ import { Grid } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import useAuth from '../../../Hooks/useAuth';
 import { useParams } from 'react-router-dom';
+import { useForm } from "react-hook-form";
 
 const NewOrder = () => {
-    const { _id } = useParams();
+    const { id } = useParams();
     const { categories } = useAuth();
     const [service, setService] = useState();
+    const [order, setOrder] = useState();
     const { title, category, details, average_time, max_order, min_order, rate_par_1k } = service || {};
-    console.log(title);
+    const { register, handleSubmit, reset } = useForm();
+    console.log(service);
+    console.log(order);
+    //handleOnBlur
+    const handleOnBlur = (e) => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const orderData = { ...order };
+        orderData[field] = value;
+        setOrder(orderData);
+        setService();
+    }
+    //order place add services to DB
+    const placeOrder = data => {
+        console.log(data);
+        setService(data);
+        reset();
+    }
+    //get service with id
     useEffect(() => {
-        fetch(`http://localhost:4000/dashboard/newOrder/${_id}`)
+        fetch(`http://localhost:4000/dashboard/newOrder/${id}`)
             .then(res => res.json())
             .then(data => setService(data))
-    }, [_id]);
+    }, [id]);
     //==get category wise data
     const [serviceWithCategory, setServiceWithCategory] = useState();
-    console.log(serviceWithCategory);
     useEffect(() => {
-        fetch(`http://localhost:4000/allServices/${category}`)
+        fetch(`http://localhost:4000/allServices/${category || order.category}`)
             .then(res => res.json())
             .then(data => {
                 setServiceWithCategory(data);
             })
 
-    }, [category])
+    }, [category, order.category])
     return (
         <div className='newOrder'>
             <Grid container columnSpacing={4}>
                 <Grid item md={8}>
-                    <form action="" className="newOrderForm">
+                    <form onSubmit={handleSubmit(placeOrder)} className="newOrderForm">
                         <h1 className="title titleBar">Order New Services...</h1>
                         <div className="mt-2">
                             <span>Category</span>
-                            <select name="category" id='category'>
+                            <select onChange={handleOnBlur} name="category" id='category'>
                                 {service && <option value={category}>{category}</option>}
                                 {service &&
                                     categories?.map(e => e.category !== category &&
@@ -55,7 +74,7 @@ const NewOrder = () => {
                         </div>
                         <div className="mt-2">
                             <span>Service</span>
-                            <select name="category" id='category'>
+                            <select name="title" id='category'>
                                 {service && <option value={title}>{title}</option>}
                                 {service &&
                                     serviceWithCategory?.map(e => e.title !== title &&
@@ -65,21 +84,21 @@ const NewOrder = () => {
                                     )
                                 }
                                 {!service &&
-                                    categories?.map(e =>
-                                        <option
-                                            key={e._id}
-                                            value={`${e._id}`}>{e.category}
-                                        </option>)
+                                    serviceWithCategory?.map(e =>
+                                        <option key={e._id} value={`${e.title}`}>{e.title}
+                                        </option>
+
+                                    )
                                 }
                             </select>
                         </div>
                         <div className="mt-2">
                             <span>Link</span>
-                            <input name="title" required type="text" />
+                            <input {...register("link")} required type="text" />
                         </div>
                         <div className="mt-2">
                             <span>Quantity</span>
-                            <input name="title" required type="text" />
+                            <input {...register("quantity")} required type="text" />
                         </div>
                         <div className="mt-2">
                             <span>
@@ -88,11 +107,11 @@ const NewOrder = () => {
                                 The average time is based on 10 latest completed orders per 1000 quantity.'><InfoIcon sx={{ width: '17px', marginBottom: '-8px' }} />
                                 </span>
                             </span>
-                            <input name="title" required type="text" />
+                            <input {...register("average_time")} required type="text" />
                         </div>
                         <div className="mt-2">
                             <span>Charge</span>
-                            <input name="title" required type="text" />
+                            <input {...register("charge")} readOnly required type="text" />
                         </div>
                         <div className="mt-2" style={{ textItems: 'center' }}>
                             <button className='primaryBtn '>Place Order</button>

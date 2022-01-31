@@ -30,7 +30,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="/dashboard/addServices" element={<AddServices />} />
             <Route path="/dashboard/manageOrder" element={<ManageOrder />} />
-            <Route path="/dashboard/newOrder/:_id" element={<NewOrder />} />
+            <Route path="/dashboard/newOrder/:id" element={<NewOrder />} />
             <Route path="/dashboard/newOrder/" element={<NewOrder />} />
             <Route path="/dashboard/allServices" element={<AllServices />} />
             <Route path="/dashboard/myOrders" element={<MyOrders />} />
