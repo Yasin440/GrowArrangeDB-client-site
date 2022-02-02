@@ -14,7 +14,7 @@ const NewOrderHome = () => {
     const [error, setError] = useState(false);
     const [quantity, setQuantity] = useState(null);
     const [service, setService] = useState({});
-    const { title, category, details, average_time, max_order, min_order, rate_par_1k } = service || {};
+    const { ID, title, category, details, average_time, max_order, min_order, rate_par_1k } = service || {};
     const { register, handleSubmit, reset } = useForm();
 
     const handleOnChange = e => {
@@ -28,15 +28,21 @@ const NewOrderHome = () => {
     //order place add services to DB
     const placeOrder = data => {
         console.log(data);
+        data.ID = ID;
+        data.start_count = '';
+        data.quantity = '';
+        data.remains = '';
         data.email = user.email;
         data.title = title;
         data.category = category;
+        data.date = Date().toLocaleString();
         data.details = details;
         data.price = price;
         data.currency = 'taka';
         data.status = 'pending';
-        if (quantity < service.min_order || quantity > service.max_order) {
+        if (quantity <= service.min_order - 1 || service.max_order - 1 <= quantity) {
             setError(true);
+            return;
         } else if (!error) {
             const confirm = window.confirm('Sure to Order this services..?')
             if (confirm) {
@@ -100,9 +106,9 @@ const NewOrderHome = () => {
                                 />
                                 {
                                     error ?
-                                        <p className='inputErrorInfo'>Order {min_order} between {max_order} is required</p>
+                                        <p className='inputErrorInfo'>Order between{min_order} to {max_order} is required</p>
                                         :
-                                        <p className='inputInfo'>Order between {min_order} to {max_order}</p>
+                                        <p className='inputInfo'>Min: {min_order}- Max: {max_order}</p>
                                 }
                             </div>
                             <div className="mt-2">

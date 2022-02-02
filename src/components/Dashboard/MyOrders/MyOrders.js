@@ -1,9 +1,10 @@
 import React from 'react';
+import MyOrderTable from './MyOrderTable';
 
 const MyOrders = () => {
     return (
         <div>
-            <h1>Orders</h1>
+            <MyOrderTable />
         </div>
     );
 };

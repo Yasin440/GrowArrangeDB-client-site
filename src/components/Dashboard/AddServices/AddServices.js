@@ -61,6 +61,13 @@ const AddServices = () => {
                             <h1 className="title titleBar">Add New Services...</h1>
                             <div className="mt-2">
                                 <input
+                                    {...register("ID")}
+                                    required
+                                    placeholder='Use an unique ID'
+                                    type="text" />
+                            </div>
+                            <div className="mt-2">
+                                <input
                                     {...register("title")}
                                     required
                                     placeholder='Services Title'
