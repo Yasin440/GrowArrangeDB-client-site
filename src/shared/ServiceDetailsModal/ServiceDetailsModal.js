@@ -25,7 +25,7 @@ const style = {
 const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
     const handleClose = () => setOpenModal(false);
     const { register, handleSubmit, reset } = useForm();
-    const { open, title, details, _id } = openModal;
+    const { open, title, details, _id } = openModal || {};
     //add category
     const handleAddCategory = data => {
         fetch('http://localhost:4000/addCategory', {
@@ -49,29 +49,31 @@ const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
     return (
         <div>
             <Modal
-                open={open}
+                open={open || openModal}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    {addServices ? <span>
-                        <CloseIcon onClick={handleClose} sx={{ position: 'absolute', top: '3px', right: '3px', fontSize: '15px', color: 'red', fontWeight: '900' }} />
-                        <form onSubmit={handleSubmit(handleAddCategory)}>
-                            <h3 className="title">Add new category</h3>
-                            <div className="mt-2">
-                                <input
-                                    style={{ borderRadius: "1rem", paddingLeft: '15px' }}
-                                    {...register("category")}
-                                    required
-                                    placeholder='Add new category'
-                                    type="text" />
-                            </div>
-                            <div className="mt-2" style={{ textItems: 'center' }}>
-                                <button type="submit" className='primaryBtn '>Add category</button>
-                            </div>
-                        </form>
-                    </span> :
+                    {addServices ?
+                        <span>
+                            <CloseIcon onClick={handleClose} sx={{ position: 'absolute', top: '3px', right: '3px', fontSize: '15px', color: 'red', fontWeight: '900' }} />
+                            <form onSubmit={handleSubmit(handleAddCategory)}>
+                                <h3 className="title">Add new category</h3>
+                                <div className="mt-2">
+                                    <input
+                                        style={{ borderRadius: "1rem", paddingLeft: '15px' }}
+                                        {...register("category")}
+                                        required
+                                        placeholder='Add new category'
+                                        type="text" />
+                                </div>
+                                <div className="mt-2" style={{ textItems: 'center' }}>
+                                    <button type="submit" className='primaryBtn '>Add category</button>
+                                </div>
+                            </form>
+                        </span>
+                        :
                         <>
                             <CloseIcon onClick={handleClose} sx={{ position: 'absolute', top: '3px', right: '3px', fontSize: '18px', color: 'red', fontWeight: 'bold' }} />
                             <Typography id="modal-modal-title" variant="h6" component="h2">

@@ -15,7 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import CampaignIcon from '@mui/icons-material/Campaign';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+// import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
@@ -199,14 +199,14 @@ export default function Dashboard() {
                             {open && <span>Add Services</span>}
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink
                             style={active}
                             to='/dashboard/newOrder'>
                             <AddShoppingCartIcon />
                             {open && <span>New order</span>}
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink
                             style={active}

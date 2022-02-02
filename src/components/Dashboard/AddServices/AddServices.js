@@ -13,6 +13,8 @@ const AddServices = () => {
     const handleOpen = () => {
         setOpenModal(true);
         setAddServices(true);
+        console.log(openModal);
+        console.log(addServices);
     }
     //get category
     useEffect(() => {
