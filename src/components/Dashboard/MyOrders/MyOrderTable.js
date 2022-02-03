@@ -31,11 +31,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 const MyOrderTable = () => {
-    const { user } = useAuth();
-    //==get category wise data
     const [orderWithEmail, setOrderWithEmail] = useState();
+    const { user } = useAuth();
+
+    //==get order with user email wise data
     useEffect(() => {
-        fetch(`http://localhost:4000/order/allOrder/${user.email}`)
+        fetch(`http://localhost:4000/order/myOrder/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setOrderWithEmail(data);
@@ -44,15 +45,15 @@ const MyOrderTable = () => {
     }, [user.email])
     return (
         <div>
-            <h1 className='title titleBar'>My all orders...%</h1>
+            <h1 className='title titleBar'>My all orders..😍</h1>
             <TableContainer component={Paper}>
-                <Table className='table' sx={{ minWidth: 1253 }} aria-label="customized table">
+                <Table className='table' sx={{ minWidth: 1250 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
                             <StyledTableCell>ID</StyledTableCell>
-                            <StyledTableCell align="left">Service</StyledTableCell>
-                            <StyledTableCell align="left">Link</StyledTableCell>
                             <StyledTableCell align="left">Date</StyledTableCell>
+                            <StyledTableCell align="left">Link</StyledTableCell>
+                            <StyledTableCell align="left">Service</StyledTableCell>
                             <StyledTableCell align="left">Charge</StyledTableCell>
                             <StyledTableCell align="left">Start count</StyledTableCell>
                             <StyledTableCell align="left">Quantity</StyledTableCell>
@@ -65,41 +66,29 @@ const MyOrderTable = () => {
                             {orderWithEmail?.map(row => (
                                 <StyledTableRow key={row._id}>
                                     <StyledTableCell align="left">{row.ID}</StyledTableCell>
-                                    <StyledTableCell component="th" scope="row">
-                                        {row.service}
+                                    <StyledTableCell>
+                                        {row.date}
                                     </StyledTableCell>
                                     <StyledTableCell align="left">
-                                        <span style={{ backgroundColor: '#362682' }}>
-                                            {row.link}
-                                        </span>
+                                        <a target='_blank' rel='noreferrer' title={row.link} href={row.link}>🔗Link</a>
                                     </StyledTableCell>
                                     <StyledTableCell align="left">
-                                        <span style={{ backgroundColor: '#362682' }}>
-                                            {row.date}
-                                        </span>
+                                        {row.title}
                                     </StyledTableCell>
                                     <StyledTableCell align="left">
-                                        <span style={{ backgroundColor: '#fb1e1e' }}>
-                                            {row.charge}
-                                        </span>
+                                        {row.price}
                                     </StyledTableCell>
                                     <StyledTableCell align="left">
-                                        <span style={{ backgroundColor: '#fb1e1e' }}>
-                                            {row.start_count}
-                                        </span>
+                                        {row.start_count}
                                     </StyledTableCell>
                                     <StyledTableCell align="left">
-                                        <span style={{ backgroundColor: '#fb1e1e' }}>
-                                            {row.quantity}
-                                        </span>
+                                        {row.quantity}
                                     </StyledTableCell>
                                     <StyledTableCell align="left">
-                                        <span style={{ backgroundColor: '#fb1e1e' }}>
-                                            {row.remains}
-                                        </span>
+                                        {row.remains}
                                     </StyledTableCell>
                                     <StyledTableCell align="left">
-                                        <span style={{ backgroundColor: '#fb1e1e' }}>
+                                        <span className={`${row.status} status`}>
                                             {row.status}
                                         </span>
                                     </StyledTableCell>
@@ -108,7 +97,6 @@ const MyOrderTable = () => {
                             ))}
                         </TableBody>
                     }
-
                 </Table>
                 {!orderWithEmail &&
                     <LinearProgress sx={{ height: '5px', backgroundColor: 'aqua' }} />

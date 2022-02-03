@@ -35,7 +35,7 @@ const NewOrderHome = () => {
         data.email = user.email;
         data.title = title;
         data.category = category;
-        data.date = Date().toLocaleString();
+        data.date = new Date().toLocaleString();
         data.details = details;
         data.price = price;
         data.currency = 'taka';
