@@ -29,7 +29,7 @@ const NewOrder = () => {
     //==get category wise data
     const [serviceWithCategory, setServiceWithCategory] = useState();
     useEffect(() => {
-        fetch(`http://localhost:4000/allServices/${select?.category}`)
+        fetch(`https://agile-coast-57726.herokuapp.com/allServices/${select?.category}`)
             .then(res => res.json())
             .then(data => {
                 setServiceWithCategory(data);
@@ -38,7 +38,7 @@ const NewOrder = () => {
     }, [select?.category])
     //==get services with title
     useEffect(() => {
-        fetch(`http://localhost:4000/allServices/${select?.title}`)
+        fetch(`https://agile-coast-57726.herokuapp.com/allServices/${select?.title}`)
             .then(res => res.json())
             .then(data => {
                 setOrder(data);

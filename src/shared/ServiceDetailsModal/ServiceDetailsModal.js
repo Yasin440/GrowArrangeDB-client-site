@@ -28,7 +28,7 @@ const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
     const { open, title, details, _id } = openModal || {};
     //add category
     const handleAddCategory = data => {
-        fetch('http://localhost:4000/addCategory', {
+        fetch('https://agile-coast-57726.herokuapp.com/addCategory', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

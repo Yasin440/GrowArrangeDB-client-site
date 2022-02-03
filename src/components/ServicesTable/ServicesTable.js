@@ -41,7 +41,7 @@ const ServicesTable = (props) => {
     //==get category wise data
     const [serviceWithCategory, setServiceWithCategory] = useState();
     useEffect(() => {
-        fetch(`http://localhost:4000/allServices/${category}`)
+        fetch(`https://agile-coast-57726.herokuapp.com/allServices/${category}`)
             .then(res => res.json())
             .then(data => {
                 setServiceWithCategory(data);

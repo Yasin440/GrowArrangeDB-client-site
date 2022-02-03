@@ -36,7 +36,7 @@ const MyOrderTable = () => {
 
     //==get order with user email wise data
     useEffect(() => {
-        fetch(`http://localhost:4000/order/myOrder/${user.email}`)
+        fetch(`https://agile-coast-57726.herokuapp.com/order/myOrder/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setOrderWithEmail(data);

@@ -18,7 +18,7 @@ const AddServices = () => {
     }
     //get category
     useEffect(() => {
-        fetch('http://localhost:4000/getCategory')
+        fetch('https://agile-coast-57726.herokuapp.com/getCategory')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [openModal])
@@ -27,7 +27,7 @@ const AddServices = () => {
         console.log(data);
         const confirm = window.confirm('Are you sure to add this services..?')
         if (confirm) {
-            fetch('http://localhost:4000/addServices', {
+            fetch('https://agile-coast-57726.herokuapp.com/addServices', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

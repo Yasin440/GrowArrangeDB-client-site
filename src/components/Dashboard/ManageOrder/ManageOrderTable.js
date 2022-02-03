@@ -37,7 +37,7 @@ const ManageOrderTable = (props) => {
 
     //==get all order with category wise.
     useEffect(() => {
-        fetch(`http://localhost:4000/order/allOrder/${category}`)
+        fetch(`https://agile-coast-57726.herokuapp.com/order/allOrder/${category}`)
             .then(res => res.json())
             .then(data => {
                 setAllOrderWithCategory(data);

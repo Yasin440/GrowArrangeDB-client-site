@@ -46,7 +46,7 @@ const NewOrderHome = () => {
         } else if (!error) {
             const confirm = window.confirm('Sure to Order this services..?')
             if (confirm) {
-                fetch('http://localhost:4000/order/addOrder', {
+                fetch('https://agile-coast-57726.herokuapp.com/order/addOrder', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -70,7 +70,7 @@ const NewOrderHome = () => {
     }
     //get service with id
     useEffect(() => {
-        fetch(`http://localhost:4000/dashboard/newOrder/${id}`)
+        fetch(`https://agile-coast-57726.herokuapp.com/dashboard/newOrder/${id}`)
             .then(res => res.json())
             .then(data => setService(data))
     }, [id]);

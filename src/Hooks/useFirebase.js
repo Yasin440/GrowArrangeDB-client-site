@@ -110,7 +110,7 @@ const useFirebase = () => {
     //***/== save user info to database ==/***//
     const saveUserDB = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch('http://localhost:4000/clients', {
+        fetch('https://agile-coast-57726.herokuapp.com/clients', {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -122,7 +122,7 @@ const useFirebase = () => {
     const [categories, setCategories] = useState();
     //==get category
     useEffect(() => {
-        fetch('http://localhost:4000/getCategory')
+        fetch('https://agile-coast-57726.herokuapp.com/getCategory')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
