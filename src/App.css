@@ -114,3 +114,11 @@ background-color: #00000025 !important;
 .css-zxdg2z {
   padding: 10px !important;
 }
+.detailsBtn{
+  background-color: #4747f3;
+  padding: 0px 15px;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  color: #fff;
+}

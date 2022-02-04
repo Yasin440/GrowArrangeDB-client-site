@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './Header.css';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import Button from '@mui/material/Button';
@@ -20,9 +20,11 @@ const Header = () => {
     return (
         <div className='header'>
             <div className="nav-bar">
-                <div className="logo">
-                    <img style={{ width: '100%' }} src={logo} alt="logo" />
-                </div>
+                <Link to='/home'>
+                    <div className="logo">
+                        <img style={{ width: '100%' }} src={logo} alt="logo" />
+                    </div>
+                </Link>
                 <div className={`nav-rightM ${toggle ? 'toggleBtnActive' : ''}`}>
                     <div className='nav-right'>
                         <NavLink
@@ -48,18 +50,6 @@ const Header = () => {
                             to='/services'
                         >
                             Services
-                        </NavLink>
-                        <NavLink
-                            className='navItem'
-                            style={({ isActive }) => {
-                                return {
-                                    backgroundColor: isActive ? "#4747F3" : "",
-                                    color: isActive ? "white" : ""
-                                };
-                            }}
-                            to='/aboutUs'
-                        >
-                            About Us
                         </NavLink>
                         <NavLink
                             className='navItem'

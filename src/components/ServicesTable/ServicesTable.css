@@ -16,17 +16,9 @@
 .table .tableBody .processing{
     background-color: brown;
 }
-.table .tableBody .complete{
+.table .tableBody .completed{
     background-color: green;
 }
 .table .tableBody .canceled{
     background-color: red;
-}
-.table .tableBody .detailsBtn{
-    background-color: #4747f3;
-    padding: 0px 15px;
-    display: flex;
-    align-items: center;
-    border-radius: 1rem;
-    color: #fff;
 }

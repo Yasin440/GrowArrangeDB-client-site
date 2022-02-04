@@ -56,7 +56,7 @@ const AddServices = () => {
                         addServices={addServices}
                     />
 
-                    <Grid md={6} sx={{ margin: 'auto' }}>
+                    <Grid md={8} sx={{ margin: 'auto' }}>
                         <form onSubmit={handleSubmit(addService)} className="addServicesForm">
                             <h1 className="title titleBar">Add New Services...</h1>
                             <div className="mt-2">

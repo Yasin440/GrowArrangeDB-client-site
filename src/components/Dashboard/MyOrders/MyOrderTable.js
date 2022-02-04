@@ -82,7 +82,7 @@ const MyOrderTable = () => {
                                         {row.start_count}
                                     </StyledTableCell>
                                     <StyledTableCell align="left">
-                                        {row.quantity}
+                                        {row.orderQuantity}
                                     </StyledTableCell>
                                     <StyledTableCell align="left">
                                         {row.remains}

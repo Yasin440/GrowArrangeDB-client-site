@@ -9,6 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import LinearProgress from '@mui/material/LinearProgress';
+import DehazeIcon from '@mui/icons-material/Dehaze';
+import { Link } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -32,8 +34,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const ManageOrderTable = (props) => {
     const [allOrderWithCategory, setAllOrderWithCategory] = useState();
     const { category } = props;
-    console.log(category);
-    console.log(allOrderWithCategory?.length);
 
     //==get all order with category wise.
     useEffect(() => {
@@ -62,6 +62,7 @@ const ManageOrderTable = (props) => {
                                     <StyledTableCell align="left">Quantity</StyledTableCell>
                                     <StyledTableCell align="left">Remains</StyledTableCell>
                                     <StyledTableCell align="left">Status</StyledTableCell>
+                                    <StyledTableCell align="left">Edit</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             {/* show all category wise data */}
@@ -86,7 +87,7 @@ const ManageOrderTable = (props) => {
                                                 {row.start_count}
                                             </StyledTableCell>
                                             <StyledTableCell align="left">
-                                                {row.quantity}
+                                                {row.orderQuantity}
                                             </StyledTableCell>
                                             <StyledTableCell align="left">
                                                 {row.remains}
@@ -96,7 +97,13 @@ const ManageOrderTable = (props) => {
                                                     {row.status}
                                                 </span>
                                             </StyledTableCell>
-
+                                            <StyledTableCell align="left">
+                                                <Link to={`/dashboard/manageOrder/edit/${row._id}`}>
+                                                    <button className='detailsBtn'>
+                                                        <DehazeIcon />
+                                                    </button>
+                                                </Link>
+                                            </StyledTableCell>
                                         </StyledTableRow>
                                     ))}
                                 </TableBody>

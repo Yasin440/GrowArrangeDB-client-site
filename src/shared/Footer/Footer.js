@@ -27,7 +27,6 @@ const Footer = () => {
                     <Grid md={3}>
                         <h3 className='subTitle'>Quick Links</h3>
                         <ul className='list'>
-                            <li>About Us</li>
                             <li>Services</li>
                             <li>Projects</li>
                             <li>Pricing</li>

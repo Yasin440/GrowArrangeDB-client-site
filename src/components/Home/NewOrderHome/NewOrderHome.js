@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import './NewOrderHome.css';
 import { Grid, Container } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import '../../Dashboard/NewOrder/NewOrder.css';
 import useAuth from '../../../Hooks/useAuth';
 import { toast } from 'react-toastify';
 
@@ -30,9 +30,10 @@ const NewOrderHome = () => {
         console.log(data);
         data.ID = ID;
         data.start_count = '';
-        data.quantity = '';
         data.remains = '';
         data.email = user.email;
+        data.displayName = user.displayName;
+        data.average_time = average_time;
         data.title = title;
         data.category = category;
         data.date = new Date().toLocaleString();
@@ -122,7 +123,7 @@ const NewOrderHome = () => {
                             </div>
                             <div className="mt-2">
                                 <span>Charge</span>
-                                <input readOnly value={price} type="text" />
+                                <input readOnly value={`${price} taka`} type="text" />
                                 <p className='inputInfo'>Rate pre 1k={rate_par_1k}</p>
                             </div>
                             <div className="mt-2" style={{ textItems: 'center' }}>

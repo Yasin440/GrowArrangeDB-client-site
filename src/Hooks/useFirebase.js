@@ -39,10 +39,9 @@ const useFirebase = () => {
                     })
                     .catch((error) => {
                         setError(error.message);
-                    });
+                    })
                 navigate('/home');
             })
-            ;
     }
 
     //logInWithEmailPassword
@@ -51,15 +50,12 @@ const useFirebase = () => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
             .then(result => setUser(result.user))
-            ;
-
-
     }
 
     //logIn with google
     const googleProvider = new GoogleAuthProvider();
     const signInWithGoogle = () => {
-        // setLoading(true);
+        setLoading(true);
         return signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
@@ -69,7 +65,7 @@ const useFirebase = () => {
                 // Handle Errors here.
                 setError(error.message);
             })
-        // .finally(() => setLoading(false));
+            .finally(() => setLoading(false))
     }
 
     //observed User state change

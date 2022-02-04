@@ -8,7 +8,18 @@
     color: gray;
     font-size: 15px;
 }
-.newOrder .newOrderForm input,.newOrder .newOrderForm select{
+.editOrder .editOrderForm button{
+    width:100%;
+    border-radius: 6px;
+}
+.editOrder .details .content span{
+    color:#c000ffc2;
+}
+.editOrder .editOrderForm button:hover{
+    background-color: #4747f3;
+    border-color: #4747f3;
+}
+.newOrder .newOrderForm input,.newOrder .newOrderForm select,.editOrder .editOrderForm input,.editOrder .editOrderForm select{
     padding-left: 10px;
     border-radius: 6px;
     background-color: #f1f1ff;

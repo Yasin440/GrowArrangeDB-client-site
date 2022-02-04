@@ -143,7 +143,7 @@ const OurServices = () => {
                         variant="body1"
                         gutterBottom
                         component="div">
-                        Have any works you want to done by me?<Link to="/aboutUs"><span style={{ color: '#0779E4' }}> About Us</span></Link>
+                        Have any works you want to done by me?<Link to="/contactUs"><span style={{ color: '#0779E4' }}> Contact Us</span></Link>
                     </Typography>
                     <Typography
                         sx={{ fontWeight: '550', color: '#00000090' }}
