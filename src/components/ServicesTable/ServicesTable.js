@@ -50,65 +50,70 @@ const ServicesTable = (props) => {
     }, [category])
     return (
         <div>
-            <h1 className='title titleBar'>{category}</h1>
-            <TableContainer component={Paper}>
-                <Table className='table' sx={{ minWidth: 1253 }} aria-label="customized table">
-                    <TableHead>
-                        <TableRow>
-                            <StyledTableCell>ID</StyledTableCell>
-                            <StyledTableCell align="left">Service Title</StyledTableCell>
-                            <StyledTableCell align="left">Rate per 1000</StyledTableCell>
-                            <StyledTableCell align="left">Min order</StyledTableCell>
-                            <StyledTableCell align="left">Max order</StyledTableCell>
-                            <StyledTableCell align="left">Average time</StyledTableCell>
-                            <StyledTableCell align="left">Actions</StyledTableCell>
-                        </TableRow>
-                    </TableHead>
-                    {serviceWithCategory &&
-                        <TableBody className='tableBody'>
-                            {serviceWithCategory?.map(row => (
-                                <StyledTableRow key={row._id}>
-                                    <StyledTableCell align="left">{row.ID}</StyledTableCell>
-                                    <StyledTableCell component="th" scope="row">
-                                        {row.title}
-                                    </StyledTableCell>
-                                    <StyledTableCell align="left">
-                                        <span style={{ backgroundColor: '#362682' }}>
-                                            {row.rate_par_1k}
-                                        </span>
-                                    </StyledTableCell>
-                                    <StyledTableCell align="left">
-                                        <span style={{ backgroundColor: '#362682' }}>
-                                            {row.min_order}
-                                        </span>
-                                    </StyledTableCell>
-                                    <StyledTableCell align="left">
-                                        <span style={{ backgroundColor: '#fb1e1e' }}>
-                                            {row.max_order}
-                                        </span>
-                                    </StyledTableCell>
-                                    <StyledTableCell align="left">{row.average_time}</StyledTableCell>
-                                    <StyledTableCell sx={{ display: 'flex', alignItems: 'center' }} align="left">
-                                        <Link to={`/dashboard/newOrder/${row._id}`}>
-                                            <button className='actionBtn'>
-                                                Order
-                                            </button>
-                                        </Link>
-                                        <button onClick={() => handleOpen(row.details, row.title, row._id)} className='detailsBtn'>
-                                            <DehazeIcon />
-                                        </button>
-                                    </StyledTableCell>
-                                    <ServiceDetailsModal openModal={openModal} setOpenModal={setOpenModal} />
-                                </StyledTableRow>
-                            ))}
-                        </TableBody>
-                    }
+            {
+                serviceWithCategory?.length >= 1 &&
+                <>
+                    <h1 className='title titleBar'>{category}</h1>
+                    <TableContainer component={Paper}>
+                        <Table className='table' sx={{ minWidth: 1253 }} aria-label="customized table">
+                            <TableHead>
+                                <TableRow>
+                                    <StyledTableCell>ID</StyledTableCell>
+                                    <StyledTableCell align="left">Service Title</StyledTableCell>
+                                    <StyledTableCell align="left">Rate per 1000</StyledTableCell>
+                                    <StyledTableCell align="left">Min order</StyledTableCell>
+                                    <StyledTableCell align="left">Max order</StyledTableCell>
+                                    <StyledTableCell align="left">Average time</StyledTableCell>
+                                    <StyledTableCell align="left">Actions</StyledTableCell>
+                                </TableRow>
+                            </TableHead>
+                            {serviceWithCategory &&
+                                <TableBody className='tableBody'>
+                                    {serviceWithCategory?.map(row => (
+                                        <StyledTableRow key={row._id}>
+                                            <StyledTableCell align="left">{row.ID}</StyledTableCell>
+                                            <StyledTableCell component="th" scope="row">
+                                                {row.title}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                <span style={{ backgroundColor: '#362682' }}>
+                                                    {row.rate_par_1k}
+                                                </span>
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                <span style={{ backgroundColor: '#362682' }}>
+                                                    {row.min_order}
+                                                </span>
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                <span style={{ backgroundColor: '#fb1e1e' }}>
+                                                    {row.max_order}
+                                                </span>
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">{row.average_time}</StyledTableCell>
+                                            <StyledTableCell sx={{ display: 'flex', alignItems: 'center' }} align="left">
+                                                <Link to={`/dashboard/newOrder/${row._id}`}>
+                                                    <button className='actionBtn'>
+                                                        Order
+                                                    </button>
+                                                </Link>
+                                                <button onClick={() => handleOpen(row.details, row.title, row._id)} className='detailsBtn'>
+                                                    <DehazeIcon />
+                                                </button>
+                                            </StyledTableCell>
+                                            <ServiceDetailsModal openModal={openModal} setOpenModal={setOpenModal} />
+                                        </StyledTableRow>
+                                    ))}
+                                </TableBody>
+                            }
 
-                </Table>
-                {!serviceWithCategory &&
-                    <LinearProgress sx={{ height: '5px', backgroundColor: 'aqua' }} />
-                }
-            </TableContainer>
+                        </Table>
+                        {!serviceWithCategory &&
+                            <LinearProgress sx={{ height: '5px', backgroundColor: 'aqua' }} />
+                        }
+                    </TableContainer>
+                </>
+            }
         </div>
     );
 };

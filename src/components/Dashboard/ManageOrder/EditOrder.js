@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom';
 import { Grid, Container } from '@mui/material';
 import { toast } from 'react-toastify';
 import { useForm } from "react-hook-form";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const EditOrder = () => {
+    const [loading, setLoading] = useState(false)
     const { id } = useParams();
     const [dataForEdit, setDataForEdit] = useState({});
     const { register, handleSubmit, reset } = useForm();
-    const { displayName, email, ID, category, orderQuantity, title, start_count, status, date, price, remains, average_time, currency } = dataForEdit;
+    const { _id, displayName, email, ID, category, orderQuantity, title, start_count, status, date, price, remains, average_time, currency } = dataForEdit;
     console.log(dataForEdit);
 
     const statusOption = [{ id: '01', status: 'pending' }, { id: '02', status: 'processing' }, { id: '03', status: 'canceled' }, { id: '04', status: 'completed' }];
@@ -22,7 +24,24 @@ const EditOrder = () => {
     }, [id])
     //handle update order
     const updateOrder = data => {
-        console.log(data);
+        data._id = _id;
+        setLoading(true)
+        fetch('https://agile-coast-57726.herokuapp.com/order/getOrder_forEdit/update', {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount >= 1)
+                    toast.success('Order Edited Successfully..!', {
+                        theme: "colored"
+                    });
+                setLoading(false);
+                reset();
+            })
     }
     return (
         <div className='editOrder'>
@@ -82,7 +101,7 @@ const EditOrder = () => {
                                 <input readOnly value={`${price} ${currency}`} type="text" />
                             </div>
                             <div className="mt-2" style={{ textItems: 'center' }}>
-                                <button className='primaryBtn '>Update Order</button>
+                                <button type='submit' className='primaryBtn '>{loading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} disableShrink /> : "Update Order"}</button>
                             </div>
                         </form>
                     </Grid>

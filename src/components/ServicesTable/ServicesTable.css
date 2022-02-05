@@ -14,7 +14,7 @@
     background-color: #4747f3;
 }
 .table .tableBody .processing{
-    background-color: brown;
+    background-color: tomato;
 }
 .table .tableBody .completed{
     background-color: green;

@@ -80,7 +80,7 @@ input:focus,select:focus,textarea:focus{
 }
 .title{
   width: fit-content;
-  margin: 3rem auto;
+  margin: 2rem auto 3rem auto;
   color: #362682;
 }
 .titleBar::before{
@@ -122,3 +122,43 @@ background-color: #00000025 !important;
   border-radius: 1rem;
   color: #fff;
 }
+/* ======== all section title css start ========== */
+
+.title-section{
+  text-align: center;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  padding: 80px 0;
+}
+.title-section h1{
+  font-size: 56px;
+  text-transform: uppercase;
+  margin: 0;
+}
+@media (max-width: 576px){
+.title-section h1 {
+  font-size: 35px!important;
+}}
+.title-section h1 span{
+color: tomato;
+}
+.title-bg{
+font-size: 110px;
+left: 0;
+letter-spacing: 10px;
+line-height: .7;
+position: absolute;
+right: 0;
+top: 50%;
+text-transform: uppercase;
+transform: translateY(-50%);
+color:  #ff634729;
+}
+@media (max-width: 576px){
+.title-bg {
+  font-size: 4rem;
+}}
+
+/* ======== all section title css end ========== */

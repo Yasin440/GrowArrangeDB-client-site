@@ -7,12 +7,16 @@ const AllServices = () => {
     const { categories } = useAuth();
     return (
         <div>
+            <div className='title-section'>
+                <h1>our crush <span>service</span></h1>
+                <span className='title-bg'>services</span>
+            </div>
             {
                 !categories ?
                     <div style={{ width: 'fit-content', margin: '4rem auto' }}>
                         <CircularProgress />
                     </div> :
-                    <div style={{ padding: '3rem 0', width: '100%', margin: 'auto' }}>
+                    <div style={{ width: '100%', margin: 'auto' }}>
 
                         {
                             categories?.map(category => <ServicesTable key={category._id} category={category.category} />)

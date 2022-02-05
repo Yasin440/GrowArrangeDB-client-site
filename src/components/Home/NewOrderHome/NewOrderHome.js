@@ -6,14 +6,18 @@ import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import useAuth from '../../../Hooks/useAuth';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const NewOrderHome = () => {
     const { id } = useParams();
     const { user } = useAuth();
     const [price, setPrice] = useState();
     const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false)
     const [quantity, setQuantity] = useState(null);
     const [service, setService] = useState({});
+    const navigate = useNavigate();
     const { ID, title, category, details, average_time, max_order, min_order, rate_par_1k } = service || {};
     const { register, handleSubmit, reset } = useForm();
 
@@ -27,7 +31,7 @@ const NewOrderHome = () => {
     }
     //order place add services to DB
     const placeOrder = data => {
-        console.log(data);
+        setLoading(true);
         data.ID = ID;
         data.start_count = '';
         data.remains = '';
@@ -61,12 +65,11 @@ const NewOrderHome = () => {
                                 theme: "colored"
                             });
                             reset();
+                            setLoading(false);
+                            navigate('/dashboard/myOrders');
                         }
                     })
             }
-        } else {
-            console.log('sorry')
-            console.log(error)
         }
     }
     //get service with id
@@ -127,7 +130,7 @@ const NewOrderHome = () => {
                                 <p className='inputInfo'>Rate pre 1k={rate_par_1k}</p>
                             </div>
                             <div className="mt-2" style={{ textItems: 'center' }}>
-                                <button className='primaryBtn '>Place Order</button>
+                                <button type='submit' className='primaryBtn '>{loading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} disableShrink /> : "Place Order"}</button>
                             </div>
                         </form>
                     </Grid>

@@ -12,8 +12,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import useAuth from '../../Hooks/useAuth';
 import RegistrationNow from '../../shared/RegistrationNow/RegistrationNow';
-// import Header from '../../shared/Header/Header';
-// import Footer from '../../shared/Footer/Footer';
+import Header from '../../shared/Header/Header';
+import Footer from '../../shared/Footer/Footer';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -109,6 +109,7 @@ const Register = () => {
     }
     return (
         <div className='register'>
+            <Header />
             <Container>
                 <Grid md={6} sx={{ margin: 'auto' }}>
                     {!isLogin ?
@@ -148,7 +149,7 @@ const Register = () => {
                                 {retypePassError &&
                                     <Alert sx={{ mt: 2, mx: 'auto' }} severity="error">Password didn't Match — check it out!</Alert>
                                 }
-                                <button type='submit' className='primaryBtn registrationBtn'>{loading ? <CircularProgress sx={{ width: '100%' }} disableShrink /> : 'Register'}</button>
+                                <button type='submit' className='primaryBtn registrationBtn'>{loading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} disableShrink /> : 'Register'}</button>
                             </form>
                             <div className="haveAccount">
                                 <p onClick={() => setIsLogin(true)}>Already have an account.</p>
@@ -170,7 +171,7 @@ const Register = () => {
                                     </span>
                                     <input name='password' onBlur={handleOnBlur} required placeholder='Password' type="password" />
                                 </div>
-                                <button type='submit' className='primaryBtn registrationBtn'>{loading ? <CircularProgress sx={{ width: '100%' }} disableShrink /> : "Log In"}</button>
+                                <button type='submit' className='primaryBtn registrationBtn'>{loading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} disableShrink /> : "Log In"}</button>
                             </form>
                             <div className="haveAccount">
                                 <p onClick={() => setIsLogin(false)}>Have no account.</p>
@@ -192,6 +193,7 @@ const Register = () => {
                 </Grid>
             </Container>
             <RegistrationNow />
+            <Footer />
         </div >
 
     );

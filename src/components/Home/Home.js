@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from '../../shared/Header/Header';
-import Footer from '../../shared/Footer/Footer';
 import './Home.css';
 import Register from '../Register/Register';
 import Grid from '@mui/material/Grid';
@@ -8,6 +6,8 @@ import { Container } from '@mui/material';
 import OurServices from '../../shared/OurServices/OurServices';
 import useAuth from '../../Hooks/useAuth';
 import RegistrationNow from '../../shared/RegistrationNow/RegistrationNow';
+import Footer from '../../shared/Footer/Footer';
+import Header from '../../shared/Header/Header';
 
 const Home = () => {
     const { user } = useAuth();

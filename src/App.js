@@ -8,7 +8,6 @@ import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import Services from './components/Services/Services';
 import ContactUs from './components/ContactUs/ContactUs';
 import Dashboard from './components/Dashboard/Dashboard';
-// import NewOrder from './components/Dashboard/NewOrder/NewOrder';
 import AddServices from './components/Dashboard/AddServices/AddServices';
 import AllServices from './components/Dashboard/AllServices/AllServices';
 import MyOrders from './components/Dashboard/MyOrders/MyOrders';
@@ -23,6 +22,7 @@ function App() {
       <BrowserRouter>
         <ToastContainer position='top-center' />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contactUs" element={<ContactUs />} />
@@ -32,7 +32,6 @@ function App() {
             <Route path="/dashboard/manageOrder/edit/:id" element={<EditOrder />} />
             <Route path="/dashboard/manageOrder/edit" element={<EditOrder />} />
             <Route path="/dashboard/newOrder/:id" element={<NewOrderHome />} />
-            {/* <Route path="/dashboard/newOrder/" element={<NewOrder />} /> */}
             <Route path="/dashboard/allServices" element={<AllServices />} />
             <Route path="/dashboard" element={<AllServices />} />
             <Route path="/dashboard/myOrders" element={<MyOrders />} />
