@@ -54,7 +54,7 @@ const ContactUs = () => {
                                         </Grid>
                                         <Grid item >
                                             <p>Email Address :</p>
-                                            <p>growtharrange@gmail.com</p>
+                                            <p>info@growtharrangebd.com</p>
                                         </Grid>
                                     </Grid>
                                     <Grid sx={{ alignItems: 'center' }} container columnSpacing={2} data-aos='flip-left'>
@@ -63,7 +63,7 @@ const ContactUs = () => {
                                         </Grid>
                                         <Grid item>
                                             <p>Phone Number :</p>
-                                            <p>+8801790797533</p>
+                                            <p>+8801970797533</p>
                                         </Grid>
                                     </Grid>
                                     <Grid container sx={{ alignItems: 'center' }} columnSpacing={2} data-aos='flip-right'>
