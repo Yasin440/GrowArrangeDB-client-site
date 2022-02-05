@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavLink, Link, Outlet } from 'react-router-dom';
+import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
 import './Dashboard.css';
 import logo from '../../media/logo2.png';
 import logo1 from '../../media/logo1.png';
@@ -15,12 +15,15 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import CampaignIcon from '@mui/icons-material/Campaign';
-// import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import EditOffIcon from '@mui/icons-material/EditOff';
 import AddTaskIcon from '@mui/icons-material/AddTask';
+import useAuth from '../../Hooks/useAuth';
+import { toast } from 'react-toastify';
+import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
 
 const drawerWidth = 240;
 
@@ -107,7 +110,10 @@ const active = ({ isActive }) => {
 };
 
 export default function Dashboard() {
+    const { admin, logOut } = useAuth();
     const [open, setOpen] = React.useState(true);
+    const location = useLocation();
+    console.log('location', location);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -116,6 +122,13 @@ export default function Dashboard() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const handleLogOut = () => {
+        logOut();
+        toast.success("Log Out Successful..!", {
+            theme: "colored"
+        });
+    }
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -178,35 +191,38 @@ export default function Dashboard() {
                 <Divider />
                 <ul>
                     <li>
+                        <NavLink to='/home'>
+                            <HomeIcon />
+                            {open && <span>Home</span>}
+                        </NavLink>
+                    </li>
+                    <li>
                         <NavLink to=''>
                             <CampaignIcon />
                             {open && <span>News & updates</span>}
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink
-                            style={active}
-                            to='/dashboard/manageOrder'>
-                            <EditOffIcon />
-                            {open && <span>Manage order</span>}
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            style={active}
-                            to='/dashboard/addServices'>
-                            <AddBoxIcon />
-                            {open && <span>Add Services</span>}
-                        </NavLink>
-                    </li>
-                    {/* <li>
-                        <NavLink
-                            style={active}
-                            to='/dashboard/newOrder'>
-                            <AddShoppingCartIcon />
-                            {open && <span>New order</span>}
-                        </NavLink>
-                    </li> */}
+                    {admin &&
+                        <>
+                            <li>
+                                <NavLink
+                                    style={active}
+                                    to='/dashboard/manageOrder'>
+                                    <EditOffIcon />
+                                    {open && <span>Manage order</span>}
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    style={active}
+                                    to='/dashboard/addServices'>
+                                    <AddBoxIcon />
+                                    {open && <span>Add Services</span>}
+                                </NavLink>
+                            </li>
+                        </>
+                    }
+
                     <li>
                         <NavLink
                             style={active}
@@ -229,6 +245,15 @@ export default function Dashboard() {
                             to='/dashboard/tickets'>
                             <ConfirmationNumberIcon />
                             {open && <span>Tickets</span>}
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            onClick={handleLogOut}
+                            style={active}
+                            to='/'>
+                            <LogoutIcon />
+                            {open && <span>Log Out</span>}
                         </NavLink>
                     </li>
                 </ul>

@@ -10,13 +10,11 @@ const useFirebase = () => {
     //toggle registration and login form
     const [isLogin, setIsLogin] = useState(true);
     const [user, setUser] = useState({});
-    const [cars, setCars] = useState();
     const [error, setError] = useState();
     const [loading, setLoading] = useState(true);
     const [admin, setAdmin] = useState(false);
     const [jwtToken, setJwtToken] = useState('');
     const [manageAllOrders, setManageAllOrders] = useState();
-    const [manageMyOrders, setManageMyOrders] = useState();
 
 
 
@@ -125,20 +123,12 @@ const useFirebase = () => {
 
     //== get admin validation in true of false ==//
     useEffect(() => {
-        fetch(`https://nameless-river-31605.herokuapp.com/client/isAdmin/${user.email}`)
+        fetch(`https://agile-coast-57726.herokuapp.com/client/isAdmin/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setAdmin(data.admin);
             })
     }, [user.email])
-
-    //== get all cars ==//
-    useEffect(() => {
-        fetch('https://nameless-river-31605.herokuapp.com/cars/all')
-            .then(res => res.json())
-            .then(data => setCars(data))
-    }, [])
-
 
     //get all order info from database
     useEffect(() => {
@@ -146,26 +136,14 @@ const useFirebase = () => {
             .then(res => res.json())
             .then(data => setManageAllOrders(data))
     }, [])
-
-    //get my order info from database with email
-    useEffect(() => {
-        fetch(`https://nameless-river-31605.herokuapp.com/orderedCars/${user?.email}`)
-            .then(res => res.json())
-            .then(data => setManageMyOrders(data))
-    }, [user.email])
-
     return {
         user,
-        cars,
         isLogin,
         setIsLogin,
-        setCars,
         admin,
         error,
         loading,
         jwtToken,
-        manageMyOrders,
-        setManageMyOrders,
         manageAllOrders,
         setManageAllOrders,
         registerWithEmailPassword,

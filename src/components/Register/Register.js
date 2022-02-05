@@ -109,7 +109,7 @@ const Register = () => {
     }
     return (
         <div className='register'>
-            <Header />
+            {location.pathname === '/register' && <Header />}
             <Container>
                 <Grid md={6} sx={{ margin: 'auto' }}>
                     {!isLogin ?
@@ -193,7 +193,7 @@ const Register = () => {
                 </Grid>
             </Container>
             <RegistrationNow />
-            <Footer />
+            {location.pathname === '/register' && <Footer />}
         </div >
 
     );

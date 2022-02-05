@@ -15,27 +15,43 @@ import Tickets from './components/Dashboard/Tickets/Tickets';
 import ManageOrder from './components/Dashboard/ManageOrder/ManageOrder';
 import NewOrderHome from './components/Home/NewOrderHome/NewOrderHome';
 import EditOrder from './components/Dashboard/ManageOrder/EditOrder';
+import PrivateRoute from './components/Register/PrivateRoute';
+import PrivateAdminRoute from './components/Register/PrivateAdminRoute';
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <ToastContainer position='top-center' />
+        <ToastContainer position='top-center' autoClose={2500} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/contactUs" element={<ContactUs />} />
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="/dashboard/addServices" element={<AddServices />} />
-            <Route path="/dashboard/manageOrder" element={<ManageOrder />} />
-            <Route path="/dashboard/manageOrder/edit/:id" element={<EditOrder />} />
-            <Route path="/dashboard/manageOrder/edit" element={<EditOrder />} />
-            <Route path="/dashboard/newOrder/:id" element={<NewOrderHome />} />
-            <Route path="/dashboard/allServices" element={<AllServices />} />
+          <Route path="/contactUs" element={<PrivateRoute><ContactUs /></PrivateRoute>} />
+          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
             <Route path="/dashboard" element={<AllServices />} />
+            <Route path="/dashboard/allServices" element={<AllServices />} />
             <Route path="/dashboard/myOrders" element={<MyOrders />} />
             <Route path="/dashboard/tickets" element={<Tickets />} />
+            <Route
+              path="/dashboard/addServices"
+              element={<PrivateAdminRoute><AddServices /></PrivateAdminRoute>}>
+            </Route>
+            <Route
+              path="/dashboard/manageOrder"
+              element={<PrivateAdminRoute><ManageOrder /></PrivateAdminRoute>}>
+            </Route>
+            <Route
+              path="/dashboard/manageOrder/edit/:id"
+              element={<PrivateAdminRoute><EditOrder /></PrivateAdminRoute>}>
+            </Route>
+            <Route
+              path="/dashboard/manageOrder/edit"
+              element={<PrivateAdminRoute><EditOrder /></PrivateAdminRoute>}>
+            </Route>
+            <Route path="/dashboard/newOrder/:id"
+              element={<PrivateRoute><NewOrderHome /></PrivateRoute>}>
+            </Route>
           </Route>
           <Route path="/register" element={<Register />} />
         </Routes>

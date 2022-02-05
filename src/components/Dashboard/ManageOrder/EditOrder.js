@@ -11,7 +11,6 @@ const EditOrder = () => {
     const [dataForEdit, setDataForEdit] = useState({});
     const { register, handleSubmit, reset } = useForm();
     const { _id, displayName, email, ID, category, orderQuantity, title, start_count, status, date, price, remains, average_time, currency } = dataForEdit;
-    console.log(dataForEdit);
 
     const statusOption = [{ id: '01', status: 'pending' }, { id: '02', status: 'processing' }, { id: '03', status: 'canceled' }, { id: '04', status: 'completed' }];
     //get ordered data with id
@@ -45,6 +44,10 @@ const EditOrder = () => {
     }
     return (
         <div className='editOrder'>
+            <div className='title-section'>
+                <h1>edit<span>order</span></h1>
+                <span className='title-bg'>as admin</span>
+            </div>
             <Container sx={{ marginBottom: '4rem' }}>
                 <Grid container columnSpacing={4}>
                     <Grid item md={8}>

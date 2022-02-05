@@ -31,7 +31,6 @@ const NewOrderHome = () => {
     }
     //order place add services to DB
     const placeOrder = data => {
-        setLoading(true);
         data.ID = ID;
         data.start_count = '';
         data.remains = '';
@@ -49,7 +48,8 @@ const NewOrderHome = () => {
             setError(true);
             return;
         } else if (!error) {
-            const confirm = window.confirm('Sure to Order this services..?')
+            const confirm = window.confirm('Sure to Order this services..?');
+            setLoading(true);
             if (confirm) {
                 fetch('https://agile-coast-57726.herokuapp.com/order/addOrder', {
                     method: 'POST',
@@ -126,11 +126,15 @@ const NewOrderHome = () => {
                             </div>
                             <div className="mt-2">
                                 <span>Charge</span>
-                                <input readOnly value={`${price} taka`} type="text" />
+                                <input readOnly value={`${price || 0} taka`} type="text" />
                                 <p className='inputInfo'>Rate pre 1k={rate_par_1k}</p>
                             </div>
                             <div className="mt-2" style={{ textItems: 'center' }}>
-                                <button type='submit' className='primaryBtn '>{loading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} disableShrink /> : "Place Order"}</button>
+                                {loading ?
+                                    <button disabled className='primaryBtn '><CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} /></button>
+                                    :
+                                    <button type='submit' className='primaryBtn '>Place Order</button>
+                                }
                             </div>
                         </form>
                     </Grid>

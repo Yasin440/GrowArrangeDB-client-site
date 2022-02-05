@@ -58,7 +58,10 @@ const AddServices = () => {
 
                     <Grid md={8} sx={{ margin: 'auto' }}>
                         <form onSubmit={handleSubmit(addService)} className="addServicesForm">
-                            <h1 className="title titleBar">Add New Services...</h1>
+                            <div className='title-section'>
+                                <h1>add new<span>service</span></h1>
+                                <span className='title-bg'>services</span>
+                            </div>
                             <div className="mt-2">
                                 <input
                                     {...register("ID")}
