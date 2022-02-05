@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile, getIdToken } from "firebase/auth";
 import initializeFirebase from "../components/Register/Firebase/firebase.init";
+import { toast } from 'react-toastify';
 
 //initialize firebase app
 initializeFirebase();
@@ -58,6 +59,9 @@ const useFirebase = () => {
             .then((result) => {
                 const user = result.user;
                 saveUserDB(user.email, user.displayName, 'PUT');
+                toast.success("Login Successful..!", {
+                    theme: "colored"
+                });
             })
             .catch((error) => {
                 // Handle Errors here.
