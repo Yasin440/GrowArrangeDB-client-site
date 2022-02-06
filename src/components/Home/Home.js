@@ -10,7 +10,7 @@ import Footer from '../../shared/Footer/Footer';
 import Header from '../../shared/Header/Header';
 
 const Home = () => {
-    const { user } = useAuth();
+    const { user, allOrders } = useAuth();
     return (
         <div className="home">
             <Header />
@@ -19,7 +19,7 @@ const Home = () => {
                     <Grid item md={8} xs={12}>
                         <h3>Growth Arrange<span style={{ color: 'red' }}> - #1</span></h3>
                         <h1 style={{ fontSize: '50px', marginTop: '0' }}><span style={{ color: 'red' }}>Cheap</span> Service Panel For<br />Digital Marketer.</h1>
-                        <p>84236 Orders until now!</p>
+                        <p>{10220 + parseFloat(`${allOrders?.length}`)} Orders until now!</p>
                     </Grid>
                     <Grid item md={4} xs={12}>
                         <img width="60%" src="https://cdn.mypanel.link/770smr/z5t84khwk1u3gg48.gif" alt="IMG" />

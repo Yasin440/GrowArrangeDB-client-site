@@ -19,8 +19,10 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import useAuth from '../../Hooks/useAuth';
 
 const OurServices = () => {
+    const { clients, allOrders } = useAuth()
     return (
         <div className='ourServices' style={{ padding: '5rem 0' }}>
             <div style={{ marginBottom: '8rem' }}><h1 className="title titleBar">Our Crush Services..</h1></div>
@@ -182,7 +184,9 @@ const OurServices = () => {
                                         gutterBottom
                                         component="div">
                                         {/* countUp number */}
-                                        <CountUp end={100} duration={1} redraw={true}>
+                                        <CountUp
+                                            end={450 + parseFloat(`${clients?.length}`)} duration={1}
+                                            redraw={true}>
                                             {({ countUpRef, start }) => (
                                                 <VisibilitySensor onChange={start} delayedCall>
                                                     <span ref={countUpRef} />
@@ -218,7 +222,9 @@ const OurServices = () => {
                                         gutterBottom
                                         component="div">
                                         {/* countUp number */}
-                                        <CountUp end={12} duration={1} redraw={true}>
+                                        <CountUp
+                                            end={10020 + parseFloat(`${allOrders?.length}`)} duration={1}
+                                            redraw={true}>
                                             {({ countUpRef, start }) => (
                                                 <VisibilitySensor onChange={start} delayedCall>
                                                     <span ref={countUpRef} />
@@ -230,7 +236,7 @@ const OurServices = () => {
                                         sx={{ fontWeight: 'bold' }}
                                         variant="subtitle2" display="block"
                                         gutterBottom>
-                                        PROJECT COMPLETED
+                                        COMPLETED ORDERS
                                     </Typography>
                                 </div>
                             </div>
@@ -254,7 +260,9 @@ const OurServices = () => {
                                         gutterBottom
                                         component="div">
                                         {/* countUp number */}
-                                        <CountUp end={100} duration={1} redraw={true}>
+                                        <CountUp
+                                            end={100 + parseFloat(`${clients?.length}`)} duration={1}
+                                            redraw={true}>
                                             {({ countUpRef, start }) => (
                                                 <VisibilitySensor onChange={start} delayedCall>
                                                     <span ref={countUpRef} />

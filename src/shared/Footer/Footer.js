@@ -6,6 +6,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
@@ -28,10 +29,10 @@ const Footer = () => {
                         <div>
                             <h3 className='subTitle'>Quick Links</h3>
                             <ul className='list'>
-                                <li>Services</li>
-                                <li>Projects</li>
-                                <li>Pricing</li>
-                                <li>Contact</li>
+                                <Link to='/dashboard'><li>Dashboard</li></Link>
+                                <Link to='/services'><li>Services</li></Link>
+                                <Link to='/myOrders'><li>My Order</li></Link>
+                                <Link to='/contactUs'><li>Contact Us</li></Link>
                             </ul>
                         </div>
                     </Grid>

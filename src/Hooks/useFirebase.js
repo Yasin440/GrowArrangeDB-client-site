@@ -15,7 +15,8 @@ const useFirebase = () => {
     const [loading, setLoading] = useState(true);
     const [admin, setAdmin] = useState(false);
     const [jwtToken, setJwtToken] = useState('');
-    const [manageAllOrders, setManageAllOrders] = useState();
+    const [allOrders, setAllOrders] = useState();
+    const [clients, setClients] = useState();
 
 
 
@@ -136,20 +137,26 @@ const useFirebase = () => {
 
     //get all order info from database
     useEffect(() => {
-        fetch('https://nameless-river-31605.herokuapp.com/orderedCars/all')
+        fetch('https://agile-coast-57726.herokuapp.com/order/allOrder')
             .then(res => res.json())
-            .then(data => setManageAllOrders(data))
+            .then(data => setAllOrders(data))
+    }, [])
+    //get all Clients info from database
+    useEffect(() => {
+        fetch('https://agile-coast-57726.herokuapp.com/user/allUsers')
+            .then(res => res.json())
+            .then(data => setClients(data))
     }, [])
     return {
         user,
+        clients,
         isLogin,
         setIsLogin,
         admin,
         error,
         loading,
         jwtToken,
-        manageAllOrders,
-        setManageAllOrders,
+        allOrders,
         registerWithEmailPassword,
         logInWithEmailPassword,
         setLoading,

@@ -119,7 +119,7 @@ const EditOrder = () => {
                             👉<span>Start Count:</span> {start_count} <br />
                             👉<span>Order Quantity:</span> {orderQuantity} <br />
                             👉<span>Remains:</span> {remains} <br />
-                            👉<span>Price:</span> {price} taka <br />
+                            👉<span>Price:</span>&#2547;{price}<br />
                         </p>
                     </Grid>
                 </Grid>

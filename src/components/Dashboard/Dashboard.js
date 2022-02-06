@@ -175,7 +175,7 @@ export default function Dashboard() {
                                 </div>
                                 <div className="welcome">Welcome</div>
                                 <div className="name">Growth Arrange</div>
-                                <div className="balance">balance: $1.433</div>
+                                <div className="balance">balance: &#2547;0.00</div>
                             </div>
                             :
                             <div className='profileImg'>
