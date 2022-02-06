@@ -17,6 +17,7 @@ import NewOrderHome from './components/Home/NewOrderHome/NewOrderHome';
 import EditOrder from './components/Dashboard/ManageOrder/EditOrder';
 import PrivateRoute from './components/Register/PrivateRoute';
 import PrivateAdminRoute from './components/Register/PrivateAdminRoute';
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 function App() {
   return (
@@ -55,6 +56,10 @@ function App() {
           </Route>
           <Route path="/register" element={<Register />} />
         </Routes>
+        <MessengerCustomerChat
+          pageId="111345553866625"
+          appId="271659555053536"
+        />
       </BrowserRouter>
     </AuthProvider>
   );

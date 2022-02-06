@@ -12,10 +12,10 @@ const Footer = () => {
     return (
         <div className='footer'>
             <Container style={{ padding: '60px 0' }}>
-                <Grid container sx={{ justifyContent: 'space-around' }}>
-                    <Grid md={3} style={{ textAlign: 'center' }}>
+                <Grid container justifyContent="center">
+                    <Grid item md={3} sm={6} xs={12} sx={{ textAlign: 'center' }}>
                         <img style={{ width: "150px", cursor: 'pointer' }} src={`${logo}`} alt="logo" />
-                        <p style={{ marginTop: '0' }}>Lorem ipsum dolor sit amet, consectet adipiscing elit, sed do eiusmod</p>
+                        <p style={{ marginTop: '0' }}>Now, You can get connect with<br />GROWTH Arrange BD<br />for Grow your business.</p>
                         <div className="icon">
                             <FacebookIcon />
                             <InstagramIcon />
@@ -24,37 +24,43 @@ const Footer = () => {
                             <LinkedInIcon />
                         </div>
                     </Grid>
-                    <Grid md={3}>
-                        <h3 className='subTitle'>Quick Links</h3>
-                        <ul className='list'>
-                            <li>Services</li>
-                            <li>Projects</li>
-                            <li>Pricing</li>
-                            <li>Contact</li>
-                        </ul>
+                    <Grid item md={3} sm={6} xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <div>
+                            <h3 className='subTitle'>Quick Links</h3>
+                            <ul className='list'>
+                                <li>Services</li>
+                                <li>Projects</li>
+                                <li>Pricing</li>
+                                <li>Contact</li>
+                            </ul>
+                        </div>
                     </Grid>
-                    <Grid md={3}>
-                        <h3 className='subTitle'>Useful Links</h3>
-                        <ul className='list'>
-                            <li>Privacy Policy</li>
-                            <li>Terms and Conditions</li>
-                            <li>Disclaimer</li>
-                            <li>Support</li>
-                            <li>FAQ</li>
-                        </ul>
+                    <Grid item md={3} sm={6} xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <div>
+                            <h3 className='subTitle'>Useful Links</h3>
+                            <ul className='list'>
+                                <li>Privacy Policy</li>
+                                <li>Terms and Conditions</li>
+                                <li>Disclaimer</li>
+                                <li>Support</li>
+                                <li>FAQ</li>
+                            </ul>
+                        </div>
                     </Grid>
-                    <Grid md={3}>
-                        <h3 className='subTitle'>Make Appointment</h3>
-                        <ul className='list'>
-                            <li><i className="far fa-clock" style={{ marginRight: '8px' }}></i>9AM - 5PM , Monday - Saturday</li>
-                            <li><i className="fas fa-phone-volume" style={{ marginRight: '8px' }}></i>+88001970797533</li>
-                            <li><i className="far fa-envelope" style={{ marginRight: '8px' }}></i>growtharrange@gmail.com</li>
-                        </ul>
+                    <Grid item md={3} sm={6} xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <div>
+                            <h3 className='subTitle'>Make Appointment</h3>
+                            <ul className='list'>
+                                <li><i className="far fa-clock" style={{ marginRight: '8px' }}></i>9AM - 5PM , Monday - Saturday</li>
+                                <li><i className="fas fa-phone-volume" style={{ marginRight: '8px' }}></i>+8801970797533</li>
+                                <li><i className="far fa-envelope" style={{ marginRight: '8px' }}></i>growtharrange@gmail.com</li>
+                            </ul>
+                        </div>
                     </Grid>
                 </Grid>
                 <div className="bottomFooter">
-                    <p >Textile & Garment Industry Template Kit by Jegtheme</p>
-                    <p >Copyright &copy; 2021. All rights reserved.</p>
+                    <p >GROWTH Arrange BD-Your Business & Customer Influencer Helper</p>
+                    <p >Copyright &copy; 2022. All rights reserved.</p>
                 </div>
             </Container>
         </div >
