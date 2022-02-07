@@ -78,11 +78,13 @@ const ServiceDetailsModal = ({ openModal, setOpenModal, addServices }) => {
                             <CloseIcon onClick={handleClose} sx={{ position: 'absolute', top: '3px', right: '3px', fontSize: '18px', color: 'red', fontWeight: 'bold' }} />
                             <Typography id="modal-modal-title" variant="h6" component="h2">
                                 {title}
-                                <Link to={`/dashboard/newOrder/${_id}`}>
-                                    <button className='actionBtn'>
-                                        <AddTaskOutlinedIcon /> <span>Order</span>
-                                    </button>
-                                </Link>
+                                <div>
+                                    <Link to={`/dashboard/newOrder/${_id}`}>
+                                        <button className='actionBtn'>
+                                            <span><AddTaskOutlinedIcon /> <span>Order</span></span>
+                                        </button>
+                                    </Link>
+                                </div>
                             </Typography>
                             <Divider />
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>

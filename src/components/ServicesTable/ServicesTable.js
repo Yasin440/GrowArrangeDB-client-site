@@ -12,6 +12,9 @@ import DehazeIcon from '@mui/icons-material/Dehaze';
 import ServiceDetailsModal from '../../shared/ServiceDetailsModal/ServiceDetailsModal';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Link } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { toast } from 'react-toastify';
+import useAuth from '../../Hooks/useAuth';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -34,6 +37,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 const ServicesTable = (props) => {
     const { category } = props;
+    const { admin } = useAuth();
     const [openModal, setOpenModal] = useState(false);
     const handleOpen = (details, title, _id) => {
         setOpenModal({ open: true, details: details, title: title, _id: _id });
@@ -48,6 +52,25 @@ const ServicesTable = (props) => {
             })
 
     }, [category])
+    //delete services
+    const handleDeleteService = id => {
+        const confirm = window.confirm('Are you sure to DELETE..!');
+        if (confirm) {
+            fetch(`https://agile-coast-57726.herokuapp.com/allServices/delete/${id}`, {
+                method: "DELETE"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast.success('Service DELETE successfully..!', {
+                            theme: "colored"
+                        });
+                        const remain = serviceWithCategory.filter(data => data._id !== id);
+                        setServiceWithCategory(remain);
+                    }
+                })
+        }
+    }
     return (
         <div>
             {
@@ -63,7 +86,7 @@ const ServicesTable = (props) => {
                                     <StyledTableCell align="left">Rate per 1000</StyledTableCell>
                                     <StyledTableCell align="left">Min order</StyledTableCell>
                                     <StyledTableCell align="left">Max order</StyledTableCell>
-                                    <StyledTableCell align="left">Average time</StyledTableCell>
+                                    <StyledTableCell align="left">Daily Speed</StyledTableCell>
                                     <StyledTableCell align="left">Actions</StyledTableCell>
                                 </TableRow>
                             </TableHead>
@@ -100,6 +123,13 @@ const ServicesTable = (props) => {
                                                 <button onClick={() => handleOpen(row.details, row.title, row._id)} className='detailsBtn'>
                                                     <DehazeIcon />
                                                 </button>
+                                                {admin &&
+                                                    <button
+                                                        className='detailsBtn'
+                                                        onClick={() => handleDeleteService(row._id)}>
+                                                        <DeleteIcon />
+                                                    </button>
+                                                }
                                             </StyledTableCell>
                                             <ServiceDetailsModal openModal={openModal} setOpenModal={setOpenModal} />
                                         </StyledTableRow>
