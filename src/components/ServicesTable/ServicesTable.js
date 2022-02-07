@@ -124,11 +124,7 @@ const ServicesTable = (props) => {
                                                     <DehazeIcon />
                                                 </button>
                                                 {admin &&
-                                                    <button
-                                                        className='detailsBtn'
-                                                        onClick={() => handleDeleteService(row._id)}>
-                                                        <DeleteIcon />
-                                                    </button>
+                                                    <DeleteIcon className='deleteBtn' onClick={() => handleDeleteService(row._id)} />
                                                 }
                                             </StyledTableCell>
                                             <ServiceDetailsModal openModal={openModal} setOpenModal={setOpenModal} />

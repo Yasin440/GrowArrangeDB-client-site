@@ -36,11 +36,11 @@ const OurServices = () => {
                             <CardContent>
                                 <div className='serviceLogoTitle'>
                                     <FacebookIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Web Development
+                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Facebook Marketing
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Do Full-stack web development with JavaScript, MERN (Mongo DB, Express Js, React Js, Node js).
+                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">We are providing FB page, post, profile followers, views, like. Also can buy complete page to grow up your business.
                                     </Typography>
                                     <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
                                 </div>
@@ -54,11 +54,11 @@ const OurServices = () => {
                             <CardContent>
                                 <div className='serviceLogoTitle'>
                                     <YouTubeIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Responsive
+                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Youtube Subscriber & Views
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Develope web application which will familiar with all devices. Fully responsive with mobile, tab, laptop etc.
+                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Your videos content is so good but not growing your channel? Don't worry GROWTH Arrange can help you to grow your channel.
                                     </Typography>
                                     <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
                                 </div>
@@ -72,11 +72,11 @@ const OurServices = () => {
                             <CardContent>
                                 <div className='serviceLogoTitle'>
                                     <InstagramIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">UI & UX Design
+                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Instagram Followers
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Also develop User interface and User experience(UI/UX), based on your business or clients.
+                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Growth Arrange can grow the the number of your followers in a smarter way.
                                     </Typography>
                                     <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
                                 </div>
@@ -91,11 +91,11 @@ const OurServices = () => {
                             <CardContent>
                                 <div className='serviceLogoTitle'>
                                     <PinterestIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Web Development
+                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Pinterest
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Do Full-stack web development with JavaScript, MERN (Mongo DB, Express Js, React Js, Node js).
+                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Need to grow up your Pinterest account. Connect with us.
                                     </Typography>
                                     <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
                                 </div>
@@ -109,11 +109,11 @@ const OurServices = () => {
                             <CardContent>
                                 <div className='serviceLogoTitle'>
                                     <TwitterIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Responsive
+                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Grow with Twitter
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Develope web application which will familiar with all devices. Fully responsive with mobile, tab, laptop etc.
+                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">If your Twitter account is growing in a slow speed. Connect with us to get a high speed.
                                     </Typography>
                                     <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
                                 </div>
@@ -127,11 +127,11 @@ const OurServices = () => {
                             <CardContent>
                                 <div className='serviceLogoTitle'>
                                     <LinkedInIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">UI & UX Design
+                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">LinkedIn Connection
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Also develop User interface and User experience(UI/UX), based on your business or clients.
+                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Get professional LinkedIn Account for your career.
                                     </Typography>
                                     <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
                                 </div>

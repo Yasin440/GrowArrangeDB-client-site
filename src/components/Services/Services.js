@@ -15,10 +15,7 @@ const Services = () => {
                 <span className='title-bg'>services</span>
             </div>
             {
-                !categories ?
-                    <div style={{ width: 'fit-content', margin: '4rem auto' }}>
-                        <CircularProgress />
-                    </div> :
+                categories ?
                     <div style={{ padding: '3rem 0', width: '96%', margin: 'auto' }}>
 
                         {
@@ -26,6 +23,11 @@ const Services = () => {
                         }
 
                     </div>
+                    :
+                    <div style={{ width: 'fit-content', margin: '4rem auto' }}>
+                        <CircularProgress />
+                    </div>
+
             }
             <Footer />
         </div>

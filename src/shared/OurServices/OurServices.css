@@ -12,6 +12,7 @@
 }
 .ourServices .card{
     background-color: #bfb0fb9e;
+    height: 400px;
 }
 .ourServices .card:hover .serviceLogoTitle{
     transform: translateY(0%);
