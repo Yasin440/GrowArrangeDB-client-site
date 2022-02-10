@@ -13,8 +13,6 @@ const AddServices = () => {
     const handleOpen = () => {
         setOpenModal(true);
         setAddServices(true);
-        console.log(openModal);
-        console.log(addServices);
     }
     //get category
     useEffect(() => {
@@ -24,7 +22,6 @@ const AddServices = () => {
     }, [openModal])
     //add services to DB
     const addService = data => {
-        console.log(data);
         const confirm = window.confirm('Are you sure to add this services..?')
         if (confirm) {
             fetch('https://agile-coast-57726.herokuapp.com/addServices', {

@@ -3,23 +3,23 @@
     color: gray;
     font-size: 15px;
 }
-.editOrder .editOrderForm span{
+.editOrder .editOrderForm span,.addTicket span{
     font-weight: bold;
-    color: gray;
+    color: #4d4d4d;
     font-size: 15px;
 }
-.editOrder .editOrderForm button{
+.editOrder .editOrderForm button, .addTicket button{
     width:100%;
     border-radius: 6px;
 }
 .editOrder .details .content span{
     color:#c000ffc2;
 }
-.editOrder .editOrderForm button:hover{
+.editOrder .editOrderForm button:hover, .addTicket button:hover{
     background-color: #4747f3;
     border-color: #4747f3;
 }
-.newOrder .newOrderForm input,.newOrder .newOrderForm select,.editOrder .editOrderForm input,.editOrder .editOrderForm select{
+.newOrder .newOrderForm input,.newOrder .newOrderForm select,.editOrder .editOrderForm input,.editOrder .editOrderForm select, .addTicket input,.addTicket select, .addTicket textarea{
     padding-left: 10px;
     border-radius: 6px;
     background-color: #f1f1ff;

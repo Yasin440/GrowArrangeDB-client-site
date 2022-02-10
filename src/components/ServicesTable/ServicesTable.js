@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './ServicesTable.css';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';

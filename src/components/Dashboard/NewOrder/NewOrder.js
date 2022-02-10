@@ -11,8 +11,6 @@ const NewOrder = () => {
     const [select, setSelect] = useState();
     // const { title, category, details, average_time, max_order, min_order, rate_par_1k } = service || {};
     const { register, handleSubmit, reset } = useForm();
-    console.log(select);
-    console.log(order);
     //handleOnBlur
     const handleOnChange = (e) => {
         const field = e.target.name;
@@ -23,7 +21,6 @@ const NewOrder = () => {
     }
     //order place add services to DB
     const placeOrder = data => {
-        console.log(data);
         reset();
     }
     //==get category wise data

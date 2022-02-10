@@ -13,6 +13,7 @@ const NewOrderHome = () => {
     const { id } = useParams();
     const { user } = useAuth();
     const [price, setPrice] = useState();
+    const [balance, setBalance] = useState(0);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false)
     const [quantity, setQuantity] = useState(null);
@@ -44,10 +45,17 @@ const NewOrderHome = () => {
         data.price = price;
         data.currency = 'taka';
         data.status = 'pending';
+        data.payment = 'unpaid';
         if (quantity <= service.min_order - 1 || service.max_order - 1 <= quantity) {
             setError(true);
             return;
         } else if (!error) {
+            if (balance < price) {
+                toast.error('Insufficient Balance..!', {
+                    theme: "colored"
+                });
+                return;
+            }
             const confirm = window.confirm('Sure to Order this services..?');
             setLoading(true);
             if (confirm) {
@@ -126,7 +134,7 @@ const NewOrderHome = () => {
                             </div>
                             <div className="mt-2">
                                 <span>Charge</span>
-                                <input readOnly value={`${price || 0} taka`} type="text" />
+                                <input readOnly value={`৳ ${price || 0}`} type="text" />
                                 <p className='inputInfo'>Rate pre 1k={rate_par_1k}</p>
                             </div>
                             <div className="mt-2" style={{ textItems: 'center' }}>

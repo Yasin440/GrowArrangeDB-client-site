@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import '../../ServicesTable/ServicesTable.css';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -61,6 +60,7 @@ const ManageOrderTable = (props) => {
                                     <StyledTableCell align="left">Start count</StyledTableCell>
                                     <StyledTableCell align="left">Quantity</StyledTableCell>
                                     <StyledTableCell align="left">Remains</StyledTableCell>
+                                    <StyledTableCell align="left">Payment</StyledTableCell>
                                     <StyledTableCell align="left">Status</StyledTableCell>
                                     <StyledTableCell align="left">Edit</StyledTableCell>
                                 </TableRow>
@@ -91,6 +91,11 @@ const ManageOrderTable = (props) => {
                                             </StyledTableCell>
                                             <StyledTableCell align="left">
                                                 {row.remains}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                <span className={`${row.payment} status`}>
+                                                    {row.payment}
+                                                </span>
                                             </StyledTableCell>
                                             <StyledTableCell align="left">
                                                 <span className={`${row.status} status`}>

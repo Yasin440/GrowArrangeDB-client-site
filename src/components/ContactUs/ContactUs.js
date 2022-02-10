@@ -29,7 +29,6 @@ const ContactUs = () => {
                     });
                 }
             }, (error) => {
-                console.log(error.text);
             });
     }
 

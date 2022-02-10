@@ -10,9 +10,18 @@ const EditOrder = () => {
     const { id } = useParams();
     const [dataForEdit, setDataForEdit] = useState({});
     const { register, handleSubmit, reset } = useForm();
-    const { _id, displayName, email, ID, category, orderQuantity, title, start_count, status, date, price, remains, average_time, currency } = dataForEdit;
+    const { _id, displayName, email, ID, category, orderQuantity, title, start_count, status, date, price, remains, average_time, payment } = dataForEdit;
 
-    const statusOption = [{ id: '01', status: 'pending' }, { id: '02', status: 'processing' }, { id: '03', status: 'canceled' }, { id: '04', status: 'completed' }];
+    const statusOption = [
+        { id: '01', status: 'pending' },
+        { id: '02', status: 'processing' },
+        { id: '03', status: 'canceled' },
+        { id: '04', status: 'completed' }
+    ];
+    const paymentOption = [
+        { id: '01', payment: 'paid' },
+        { id: '02', payment: 'unpaid' }
+    ];
     //get ordered data with id
     useEffect(() => {
         fetch(`https://agile-coast-57726.herokuapp.com/order/getOrder_forEdit/${id}`)
@@ -52,7 +61,7 @@ const EditOrder = () => {
                 <Grid container columnSpacing={4}>
                     <Grid item md={8}>
                         <form onSubmit={handleSubmit(updateOrder)} className="editOrderForm">
-                            <h1 className="title titleBar">Order New Services...</h1>
+                            <h1 className="title titleBar">Edit this order...</h1>
                             <div className="mt-2">
                                 <span>User</span>
                                 <input readOnly type="text" value={displayName || email} />
@@ -96,12 +105,22 @@ const EditOrder = () => {
                                 </Grid>
                             </Grid>
                             <div className="mt-2">
+                                <span>Status</span>
+                                <select {...register("payment")}>
+                                    <option value={payment}>{payment}</option>
+                                    {
+                                        paymentOption.map(option => option.payment !== payment &&
+                                            <option key={option.id}>{option.payment}</option>)
+                                    }
+                                </select>
+                            </div>
+                            <div className="mt-2">
                                 <span>Average Time </span>
                                 <input readOnly value={average_time} type="text" />
                             </div>
                             <div className="mt-2">
                                 <span>Charge</span>
-                                <input readOnly value={`${price} ${currency}`} type="text" />
+                                <input readOnly value={`৳ ${price}`} type="text" />
                             </div>
                             <div className="mt-2" style={{ textItems: 'center' }}>
                                 <button type='submit' className='primaryBtn '>{loading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} disableShrink /> : "Update Order"}</button>

@@ -1,0 +1,40 @@
+.addBalance .content{
+    width: 80%;
+    margin: auto;
+    padding: 2rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    border-radius: 8px;
+    transition: .5s all ease;
+    background-color: #7fffd4c9;
+    text-align: center;
+}
+.addBalance .content p{
+    margin-bottom: 0;
+    font-weight: bold;
+}
+.addBalance .content span{
+    color:red;
+}
+.addBalance .content .list{
+    text-align: left;
+    width: fit-content;
+    margin: auto;
+}
+.addBalance .content .list li{
+    list-style: disc;
+}
+.addBalance .content .list span{
+    color: #ef00ff;
+    font-weight: bold;
+}
+.addBalance .content:hover{
+    box-shadow: 0px 0px 20px 5px #80808052;
+}
+.addBalance .content h1{
+    width:fit-content;
+    margin: auto;
+}
+.addBalance .content h1 span{
+    color:tomato;
+}

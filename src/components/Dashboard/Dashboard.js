@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Link, Outlet } from 'react-router-dom';
 import './Dashboard.css';
 import logo from '../../media/logo2.png';
 import logo1 from '../../media/logo1.png';
@@ -24,6 +24,7 @@ import useAuth from '../../Hooks/useAuth';
 import { toast } from 'react-toastify';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 const drawerWidth = 240;
 
@@ -110,10 +111,8 @@ const active = ({ isActive }) => {
 };
 
 export default function Dashboard() {
-    const { admin, logOut } = useAuth();
+    const { admin, logOut, user } = useAuth();
     const [open, setOpen] = React.useState(true);
-    const location = useLocation();
-    console.log('location', location);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -174,7 +173,7 @@ export default function Dashboard() {
                                     </Link>
                                 </div>
                                 <div className="welcome">Welcome</div>
-                                <div className="name">Growth Arrange</div>
+                                <div className="name">{user?.displayName || user?.email}</div>
                                 <div className="balance">balance: &#2547;0.00</div>
                             </div>
                             :
@@ -229,6 +228,14 @@ export default function Dashboard() {
                             to='/dashboard/allServices'>
                             <AddTaskIcon />
                             {open && <span>Services</span>}
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            style={active}
+                            to='/dashboard/addBalance'>
+                            <AccountBalanceWalletIcon />
+                            {open && <span>Add Balance</span>}
                         </NavLink>
                     </li>
                     <li>

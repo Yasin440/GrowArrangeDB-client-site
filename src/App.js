@@ -18,6 +18,7 @@ import EditOrder from './components/Dashboard/ManageOrder/EditOrder';
 import PrivateRoute from './components/Register/PrivateRoute';
 import PrivateAdminRoute from './components/Register/PrivateAdminRoute';
 import MessengerCustomerChat from 'react-messenger-customer-chat';
+import AddBalance from './components/Dashboard/AddBalance/AddBalance';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/dashboard" element={<AllServices />} />
             <Route path="/dashboard/allServices" element={<AllServices />} />
             <Route path="/dashboard/myOrders" element={<MyOrders />} />
+            <Route path="/dashboard/addBalance" element={<AddBalance />} />
             <Route path="/dashboard/tickets" element={<Tickets />} />
             <Route
               path="/dashboard/addServices"

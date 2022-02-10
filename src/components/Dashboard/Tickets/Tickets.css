@@ -1,0 +1,15 @@
+.addTickets{
+    padding: 3rem 6rem;
+    background-color: #7fffd4c9;
+    width: fit-content;
+    border-radius: 6px;
+    margin: 2rem 0;
+    transition: .5s all ease;
+}
+.addTickets:hover{
+    box-shadow: 0px 0px 15px 4px #8382824d;
+}
+.addTickets .primaryBtn:hover{
+   
+    box-shadow: 0px 0px 20px 5px  #3a3a3a8f;
+}
