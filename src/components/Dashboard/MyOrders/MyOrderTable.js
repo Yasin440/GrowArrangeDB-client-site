@@ -65,7 +65,7 @@ const MyOrderTable = () => {
                         <TableBody className='tableBody'>
                             {orderWithEmail?.map(row => (
                                 <StyledTableRow key={row._id}>
-                                    <StyledTableCell align="left">{row.ID}</StyledTableCell>
+                                    <StyledTableCell align="left">{row.order_id}</StyledTableCell>
                                     <StyledTableCell>
                                         {row.date}
                                     </StyledTableCell>

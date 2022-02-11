@@ -173,8 +173,12 @@ export default function Dashboard() {
                                     </Link>
                                 </div>
                                 <div className="welcome">Welcome</div>
-                                <div className="name">{user?.displayName || user?.email}</div>
-                                <div className="balance">balance: &#2547;0.00</div>
+                                <div className="name">
+                                    {user?.displayName || user?.email}
+                                </div>
+                                <Link to='/dashboard/addBalance'>
+                                    <div className="balance">balance: &#2547;0.00</div>
+                                </Link>
                             </div>
                             :
                             <div className='profileImg'>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -6,8 +6,8 @@ import Fade from '@mui/material/Fade';
 import { Container } from '@mui/material';
 import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
-import { useForm } from "react-hook-form";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import useAuth from '../../../Hooks/useAuth';
 
 const style = {
     position: 'absolute',
@@ -23,17 +23,116 @@ const style = {
     p: 4,
 };
 
-const AddTicketModal = ({ open, setOpen }) => {
+const AddTicketModal = ({ props }) => {
+    const { setOpen, open, setLoading, loading } = props;
+    const { user } = useAuth();
     const handleClose = () => setOpen(false);
-    const { register, handleSubmit, reset } = useForm();
-    const [loading, setLoading] = useState(false);
+    const [lastTickets, setLastTickets] = useState([]);
     const [subject, setSubject] = useState('payment');
+    const date = new Date().toLocaleString();
+    const ticket_id = lastTickets[0]?.ticket_id + 1 || 1;
 
-    const addTicketsPayment = data => {
-        console.log(data);
+    useEffect(() => {
+        fetch("http://localhost:4000/tickets/lastTickets")
+            .then(res => res.json())
+            .then(data => setLastTickets(data))
+    }, []);
+    console.log(ticket_id);
+
+    const initialPayment = {
+        subject: 'payment',
+        payment_type: 'bkash',
+        transaction_id: '',
+        amount: '',
+        money_sender_number: '',
+        payment_message: '',
+        date: date,
+        status: 'pending',
+        user: user.displayName,
+        email: user.email
     }
-    const addTicketsOrder = data => {
-        console.log(data);
+    const initialOrder = {
+        subject: 'order',
+        order_id: '',
+        request: 'refill',
+        order_message: '',
+        date: date,
+        status: 'pending',
+        user: user.displayName,
+        email: user.email
+    }
+    const [paymentEsau, setPaymentEsau] = useState(initialPayment);
+    const [orderEsau, setOrderEsau] = useState(initialOrder);
+    console.log(orderEsau);
+    //handleOnBlur
+    const onBlurPayment = (e) => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const orderData = { ...paymentEsau };
+        orderData[field] = value;
+        setPaymentEsau(orderData);
+    }
+    const onBlurOrder = (e) => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const orderData = { ...orderEsau };
+        orderData[field] = value;
+        setOrderEsau(orderData);
+    }
+
+    const addTicketsPayment = e => {
+        e.preventDefault();
+        paymentEsau.ticket_id = ticket_id;
+        const confirm = window.confirm('Are you sure to Add Tickets');
+        if (confirm) {
+            setLoading(true);
+            fetch("http://localhost:4000/tickets/addTickets", {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(paymentEsau)
+            })
+                .then(res => res.json())
+                .then(event => {
+                    if (event.insertedId) {
+                        toast.success('Ticket added successfully..!', {
+                            theme: "colored"
+                        });
+                        setLoading(false);
+                        setOpen(false);
+                    }
+                })
+        }
+
+        console.log(paymentEsau);
+    }
+    const addTicketsOrder = e => {
+        e.preventDefault();
+        orderEsau.ticket_id = ticket_id;
+        const confirm = window.confirm('Are you sure to Add Tickets');
+        if (confirm) {
+            setLoading(true);
+            fetch("http://localhost:4000/tickets/addTickets", {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(orderEsau)
+            })
+                .then(res => res.json())
+                .then(event => {
+                    if (event.insertedId) {
+                        toast.success('Ticket added successfully..!', {
+                            theme: "colored"
+                        });
+                        setLoading(false);
+                        setOpen(false);
+                    }
+                })
+            console.log(orderEsau);
+        }
+
     }
     return (
         <div>
@@ -55,7 +154,7 @@ const AddTicketModal = ({ open, setOpen }) => {
                             <h1 className="title titleBar">Add Tickets...</h1>
                             <form className="addTicket">
                                 <div className="mt-2">
-                                    <span>Subject<spin style={{ color: 'red' }}> *</spin></span>
+                                    <span>Subject<span style={{ color: 'red' }}> *</span></span>
                                     <select
                                         onChange={e => setSubject(e.target.value)}>
                                         <option value='payment'>Payment</option>
@@ -66,33 +165,62 @@ const AddTicketModal = ({ open, setOpen }) => {
                             {
                                 subject === 'payment' &&
                                 <>
-                                    <form className='addTicket' onSubmit={handleSubmit(addTicketsPayment)}>
+                                    <form
+                                        className='addTicket'
+                                        onSubmit={addTicketsPayment}>
                                         <div className="mt-2">
-                                            <span>Payment Type<spin style={{ color: 'red' }}> *</spin></span>
-                                            <select {...register("payment_type")}>
+                                            <span>Payment Type<span style={{ color: 'red' }}> *</span></span>
+                                            <select
+                                                onBlur={onBlurPayment}
+                                                name="payment_type">
                                                 <option value='bkash'>bKash</option>
                                                 <option value='nagad'>Nagad</option>
                                                 <option value='rocket'>Rocket</option>
                                             </select>
                                         </div>
                                         <div className="mt-2">
-                                            <span>Transaction ID<spin style={{ color: 'red' }}> *</spin></span>
-                                            <input {...register("transaction_id")} type="text" />
+                                            <span>Transaction ID<span style={{ color: 'red' }}> *</span></span>
+                                            <input
+                                                onBlur={onBlurPayment} name="transaction_id"
+                                                type="text" />
                                         </div>
                                         <div className="mt-2">
-                                            <span>Money Sender Number<spin style={{ color: 'red' }}> *</spin></span>
-                                            <input {...register("money_sender_number")} type="number" />
+                                            <span>Money Sender Number<span style={{ color: 'red' }}> *</span></span>
+                                            <input
+                                                onBlur={onBlurPayment} name="money_sender_number"
+                                                type="number" />
                                         </div>
                                         <div className="mt-2">
-                                            <span>Amount<spin style={{ color: 'red' }}> *</spin></span>
-                                            <input {...register("amount")} type="number" />
+                                            <span>Amount<span style={{ color: 'red' }}> *</span></span>
+                                            <input
+                                                onBlur={onBlurPayment}
+                                                name="amount"
+                                                type="number" />
                                         </div>
                                         <div className="mt-2">
                                             <span>message</span>
-                                            <textarea {...register("payment_message")} style={{ height: '150px' }} type='text' />
+                                            <textarea
+                                                onBlur={onBlurPayment} name="payment_message"
+                                                style={{ height: '150px' }}
+                                                type='text' />
                                         </div>
                                         <div className="mt-2" style={{ textItems: 'center' }}>
-                                            <button className='primaryBtn '>{loading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} /> : "Send"}</button>
+                                            {
+                                                loading ?
+                                                    <button
+                                                        disabled
+                                                        type='submit'
+                                                        className='primaryBtn '>
+                                                        <CircularProgress
+                                                            style={{ width: '25px', height: '25px', color: '#fff' }} />
+                                                    </button>
+                                                    :
+                                                    <button
+                                                        type='submit'
+                                                        className='primaryBtn '>
+                                                        Send
+                                                    </button>
+                                            }
                                         </div>
                                     </form>
                                 </>
@@ -100,14 +228,19 @@ const AddTicketModal = ({ open, setOpen }) => {
                             {
                                 subject === 'order' &&
                                 <>
-                                    <form className='addTicket' onSubmit={handleSubmit(addTicketsOrder)}>
+                                    <form className='addTicket' onSubmit={addTicketsOrder}>
                                         <div className="mt-2">
-                                            <span>Order ID<spin style={{ color: 'red' }}> *</spin></span>
-                                            <input {...register("order_id")} type="number" />
+                                            <span>Order ID<span style={{ color: 'red' }}> *</span></span>
+                                            <input
+                                                onBlur={onBlurOrder}
+                                                name="order_id"
+                                                type="number" />
                                         </div>
                                         <div className="mt-2">
-                                            <span>Request<spin style={{ color: 'red' }}> *</spin></span>
-                                            <select {...register("request")}>
+                                            <span>Request<span style={{ color: 'red' }}> *</span></span>
+                                            <select
+                                                onBlur={onBlurOrder}
+                                                name="request">
                                                 <option value='refill'>Refill</option>
                                                 <option value='speed up'>Speed Up</option>
                                                 <option value='cancel'>Cancel</option>
@@ -115,10 +248,29 @@ const AddTicketModal = ({ open, setOpen }) => {
                                         </div>
                                         <div className="mt-2">
                                             <span>message</span>
-                                            <textarea {...register("order_message")} style={{ height: '150px' }} type='text' />
+                                            <textarea
+                                                onBlur={onBlurOrder}
+                                                name="order_message"
+                                                style={{ height: '150px' }}
+                                                type='text' />
                                         </div>
                                         <div className="mt-2" style={{ textItems: 'center' }}>
-                                            <button submit className='primaryBtn '>{loading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} /> : "Send"}</button>
+                                            {
+                                                loading ?
+                                                    <button
+                                                        disabled
+                                                        type='submit'
+                                                        className='primaryBtn '>
+                                                        <CircularProgress
+                                                            style={{ width: '25px', height: '25px', color: '#fff' }} />
+                                                    </button>
+                                                    :
+                                                    <button
+                                                        type='submit'
+                                                        className='primaryBtn '>
+                                                        Send
+                                                    </button>
+                                            }
                                         </div>
                                     </form>
                                 </>

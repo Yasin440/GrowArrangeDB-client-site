@@ -13,7 +13,8 @@ const NewOrderHome = () => {
     const { id } = useParams();
     const { user } = useAuth();
     const [price, setPrice] = useState();
-    const [balance, setBalance] = useState(0);
+    const [balance, setBalance] = useState(1000);
+    const [lastOrder, setLastOrder] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false)
     const [quantity, setQuantity] = useState(null);
@@ -32,7 +33,8 @@ const NewOrderHome = () => {
     }
     //order place add services to DB
     const placeOrder = data => {
-        data.ID = ID;
+        data.service_id = ID;
+        data.order_id = lastOrder[0]?.order_id + 1;
         data.start_count = '';
         data.remains = '';
         data.email = user.email;
@@ -85,6 +87,12 @@ const NewOrderHome = () => {
         fetch(`https://agile-coast-57726.herokuapp.com/dashboard/newOrder/${id}`)
             .then(res => res.json())
             .then(data => setService(data))
+    }, [id]);
+    //get last order
+    useEffect(() => {
+        fetch("https://agile-coast-57726.herokuapp.com/order/lastOrder")
+            .then(res => res.json())
+            .then(data => setLastOrder(data))
     }, [id]);
     return (
         <div className='newOrder'>

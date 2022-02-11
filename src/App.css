@@ -179,22 +179,22 @@ color:  #ff634729;
   border-radius: 1rem;
   padding: 1px 10px;
 }
-.table .tableBody .status{
+.status{
   color: #fff;
   border-radius: 1rem;
   padding: 1px 10px;
   font-weight: 400;
 }
-.table .tableBody .pending{
+.pending{
   background-color: #4747f3;
 }
-.table .tableBody .processing,.table .tableBody .unpaid{
+.processing,.unpaid{
   background-color: tomato;
 }
-.table .tableBody .completed, .table .tableBody .paid{
+.completed, .paid{
   background-color: green;
 }
-.table .tableBody .canceled{
+.canceled{
   background-color: red;
 }
 /* ======== table css end ========== */

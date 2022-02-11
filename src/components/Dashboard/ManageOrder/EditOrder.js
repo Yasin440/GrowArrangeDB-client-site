@@ -10,7 +10,7 @@ const EditOrder = () => {
     const { id } = useParams();
     const [dataForEdit, setDataForEdit] = useState({});
     const { register, handleSubmit, reset } = useForm();
-    const { _id, displayName, email, ID, category, orderQuantity, title, start_count, status, date, price, remains, average_time, payment } = dataForEdit;
+    const { _id, service_id, order_id, displayName, email, category, orderQuantity, title, start_count, status, date, price, remains, average_time, payment } = dataForEdit;
 
     const statusOption = [
         { id: '01', status: 'pending' },
@@ -68,7 +68,7 @@ const EditOrder = () => {
                             </div>
                             <div className="mt-2">
                                 <span>ID - Title</span>
-                                <input readOnly type="text" value={`${ID} - ${title}`} />
+                                <input readOnly type="text" value={`${order_id} - ${title}`} />
                             </div>
                             <Grid container columnSpacing={2}>
                                 <Grid item md={6} xs={12}>
@@ -130,8 +130,10 @@ const EditOrder = () => {
                     <Grid className="details" item md={4}>
                         <h4>Order Description</h4>
                         <p className="content">
-                            👉<span>Service ID:</span> {ID} <br />
+                            👉<span>Service ID:</span> {service_id} <br />
+                            👉<span>Order ID:</span> {order_id} <br />
                             👉<span>User:</span> {displayName} <br />
+                            👉<span>User Email:</span> {email} <br />
                             👉<span>Category:</span> {category} <br />
                             👉<span>Title:</span> {title} <br />
                             👉<span>Date:</span> {date} <br />
@@ -139,6 +141,8 @@ const EditOrder = () => {
                             👉<span>Order Quantity:</span> {orderQuantity} <br />
                             👉<span>Remains:</span> {remains} <br />
                             👉<span>Price:</span>&#2547;{price}<br />
+                            👉<span>Payment:</span><span className={`status ${payment}`}> {payment}</span><br />
+                            👉<span>Status:</span ><span className={`status ${status}`}> {status}</span><br />
                         </p>
                     </Grid>
                 </Grid>

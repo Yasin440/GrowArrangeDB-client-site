@@ -7,7 +7,6 @@ import Footer from '../../shared/Footer/Footer';
 
 const Services = () => {
     const { categories } = useAuth();
-    console.log(categories);
     return (
         <div>
             <Header />

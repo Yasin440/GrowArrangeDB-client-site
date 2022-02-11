@@ -15,6 +15,10 @@
 .editOrder .details .content span{
     color:#c000ffc2;
 }
+.editOrder .details .content .status{
+    color:white;
+    font-weight: 600;
+}
 .editOrder .editOrderForm button:hover, .addTicket button:hover{
     background-color: #4747f3;
     border-color: #4747f3;
