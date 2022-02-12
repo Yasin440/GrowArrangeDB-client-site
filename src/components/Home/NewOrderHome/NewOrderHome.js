@@ -14,6 +14,7 @@ const NewOrderHome = () => {
     const { user } = useAuth();
     const [price, setPrice] = useState();
     const [lastOrder, setLastOrder] = useState([]);
+    const [balance, setBalance] = useState(0);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false)
     const [quantity, setQuantity] = useState(null);
@@ -51,7 +52,7 @@ const NewOrderHome = () => {
             setError(true);
             return;
         } else if (!error) {
-            if (user?.balance < price) {
+            if (balance < price) {
                 toast.error('Insufficient Balance..!', {
                     theme: "colored"
                 });
