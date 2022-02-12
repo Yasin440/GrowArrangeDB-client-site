@@ -30,14 +30,13 @@ const AddTicketModal = ({ props }) => {
     const [lastTickets, setLastTickets] = useState([]);
     const [subject, setSubject] = useState('payment');
     const date = new Date().toLocaleString();
-    const ticket_id = lastTickets[0]?.ticket_id + 1 || 1;
+    const ticket_id = lastTickets[0]?.ticket_id + 1 || 201;
 
     useEffect(() => {
-        fetch("http://localhost:4000/tickets/lastTickets")
+        fetch("https://agile-coast-57726.herokuapp.com/tickets/lastTickets")
             .then(res => res.json())
             .then(data => setLastTickets(data))
-    }, []);
-    console.log(ticket_id);
+    }, [loading]);
 
     const initialPayment = {
         subject: 'payment',
@@ -48,7 +47,7 @@ const AddTicketModal = ({ props }) => {
         payment_message: '',
         date: date,
         status: 'pending',
-        user: user.displayName,
+        displayName: user.displayName,
         email: user.email
     }
     const initialOrder = {
@@ -58,12 +57,11 @@ const AddTicketModal = ({ props }) => {
         order_message: '',
         date: date,
         status: 'pending',
-        user: user.displayName,
+        displayName: user.displayName,
         email: user.email
     }
     const [paymentEsau, setPaymentEsau] = useState(initialPayment);
     const [orderEsau, setOrderEsau] = useState(initialOrder);
-    console.log(orderEsau);
     //handleOnBlur
     const onBlurPayment = (e) => {
         const field = e.target.name;
@@ -86,7 +84,7 @@ const AddTicketModal = ({ props }) => {
         const confirm = window.confirm('Are you sure to Add Tickets');
         if (confirm) {
             setLoading(true);
-            fetch("http://localhost:4000/tickets/addTickets", {
+            fetch("https://agile-coast-57726.herokuapp.com/tickets/addTickets", {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -104,8 +102,6 @@ const AddTicketModal = ({ props }) => {
                     }
                 })
         }
-
-        console.log(paymentEsau);
     }
     const addTicketsOrder = e => {
         e.preventDefault();
@@ -113,7 +109,7 @@ const AddTicketModal = ({ props }) => {
         const confirm = window.confirm('Are you sure to Add Tickets');
         if (confirm) {
             setLoading(true);
-            fetch("http://localhost:4000/tickets/addTickets", {
+            fetch("https://agile-coast-57726.herokuapp.com/tickets/addTickets", {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -130,7 +126,6 @@ const AddTicketModal = ({ props }) => {
                         setOpen(false);
                     }
                 })
-            console.log(orderEsau);
         }
 
     }

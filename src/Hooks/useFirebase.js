@@ -132,7 +132,7 @@ const useFirebase = () => {
             .then(data => {
                 setAdmin(data.admin);
             })
-    }, [user.email])
+    }, [user.email, loading])
 
     //get all order info from database
     useEffect(() => {

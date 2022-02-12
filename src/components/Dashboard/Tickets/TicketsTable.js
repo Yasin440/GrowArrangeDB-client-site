@@ -9,9 +9,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import LinearProgress from '@mui/material/LinearProgress';
+import { toast } from 'react-toastify';
 // import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useAuth from '../../../Hooks/useAuth';
+import ManageTicketsModal from './ManageTicketsModal';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -35,15 +37,39 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const TicketsTable = ({ loading }) => {
     const { user, admin } = useAuth();
     const [myTickets, setMyTickets] = useState();
+    const [openManageTicketModal, setOpenManageTicketModal] = useState(false);
+    //handle ticket modal
+    const handleTicketModal = (ticket) => {
+        setOpenManageTicketModal({ open: true, ticket: ticket });
+    }
     //==get all tickets with email.
     useEffect(() => {
-        fetch(`http://localhost:4000/tickets/allTickets/${user?.email}`)
+        fetch(`https://agile-coast-57726.herokuapp.com/tickets/allTickets/${admin ? 'all' : user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyTickets(data);
             })
 
-    }, [user?.email, loading])
+    }, [admin, user?.email, loading])
+    //delete tickets
+    const handleDelete = (id) => {
+        const confirm = window.confirm('Are you sure to DELETE..?');
+        if (confirm) {
+            fetch(`https://agile-coast-57726.herokuapp.com/allTickets/delete/${id}`, {
+                method: "DELETE"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast.success('Tickets DELETE successfully..!', {
+                            theme: "colored"
+                        });
+                        const remain = myTickets.filter(data => data._id !== id);
+                        setMyTickets(remain);
+                    }
+                })
+        }
+    }
     return (
         <div>
             <TableContainer component={Paper}>
@@ -81,20 +107,25 @@ const TicketsTable = ({ loading }) => {
                                     {
                                         admin &&
                                         <>
-                                            <StyledTableCell>{row.user}<br />{row.email}</StyledTableCell>
+                                            <StyledTableCell>{row.displayName}<br />{row.email}</StyledTableCell>
                                             <StyledTableCell align="left">
                                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                                     <button
+                                                        onClick={() => { handleTicketModal(row) }}
                                                         className='detailsBtn'>
                                                         <DehazeIcon />
                                                     </button>
-                                                    <DeleteIcon className='deleteBtn' /></div>
+                                                    <DeleteIcon
+                                                        onClick={() => handleDelete(row._id)}
+                                                        className='deleteBtn' /></div>
                                             </StyledTableCell>
                                         </>
                                     }
                                 </StyledTableRow>
                             ))
                             }
+                            <ManageTicketsModal
+                                props={{ openManageTicketModal, setOpenManageTicketModal }} />
                         </TableBody>
                     }
 
