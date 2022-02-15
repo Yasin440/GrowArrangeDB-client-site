@@ -28,14 +28,35 @@ select{
 form select option{
   font-size: 15px;
 }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 input:focus,select:focus,textarea:focus{
   border: none;
   box-shadow: 0px 0px 8px 2px #6060f578;
   border-top: 2px solid #d5d5d5;
   outline: 0;
 }
+.newOrder .newOrderForm input,.newOrder .newOrderForm select,.editOrder .editOrderForm input,.editOrder .editOrderForm select, .addTicket input,.addTicket select, .addTicket textarea, .ticketDetails input{
+  padding-left: 10px;
+  border-radius: 6px;
+  background-color: #f1f1ff;
+  border: none;
+  border-top: 2px solid #d5d5d5;
+}
 .mt-2{
   margin-top: 2rem;
+}
+.mb-2{
+  margin-bottom: 2rem;
 }
 .primaryBtn{
   font-size: 15px;

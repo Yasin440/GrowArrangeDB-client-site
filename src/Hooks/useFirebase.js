@@ -108,6 +108,7 @@ const useFirebase = () => {
     //***/== save user info to database ==/***//
     const saveUserDB = (email, displayName, method) => {
         const user = { email, displayName };
+        user.balance = parseFloat(0).toFixed(2);
         fetch('https://agile-coast-57726.herokuapp.com/clients', {
             method: method,
             headers: {

@@ -96,6 +96,7 @@ const AddServices = () => {
                                         <input
                                             {...register("rate_par_1k")}
                                             required
+                                            onWheel={(e) => e.target.blur()}
                                             placeholder='Rate per 1000*'
                                             type="number" />
                                     </div>
@@ -105,6 +106,7 @@ const AddServices = () => {
                                         <input
                                             {...register("min_order")}
                                             required
+                                            onWheel={(e) => e.target.blur()}
                                             placeholder='Minium order*'
                                             type="number" />
                                     </div>
@@ -116,6 +118,7 @@ const AddServices = () => {
                                         <input
                                             {...register("max_order")}
                                             required
+                                            onWheel={(e) => e.target.blur()}
                                             placeholder='Maximum order*'
                                             type="number" />
                                     </div>

@@ -13,3 +13,29 @@
    
     box-shadow: 0px 0px 20px 5px  #3a3a3a8f;
 }
+.ticketDetails h3{
+    color:green;
+    font-weight: 600;
+}
+.ticketDetails p span{
+    color:#c000ffc2;
+    font-weight: 500;
+}
+.ticketDetails p .status{
+    color:#fff;
+    font-weight: 500;
+}
+.ticketDetails p{
+    border: 4px dotted aqua;
+    padding: 1rem;
+    width: fit-content;
+    line-height: 1.7rem;
+    border-radius: 20px;
+}
+.ticketDetails form .primaryBtn{
+    width: 100%;
+    border-radius: 6px;
+}
+.ticketDetails form .primaryBtn:hover{
+    background-color:green;
+}

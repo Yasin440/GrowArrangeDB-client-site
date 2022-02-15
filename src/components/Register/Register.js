@@ -5,11 +5,11 @@ import { Grid, Container, Alert } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+// import FacebookIcon from '@mui/icons-material/Facebook';
+// import InstagramIcon from '@mui/icons-material/Instagram';
+// import TwitterIcon from '@mui/icons-material/Twitter';
+// import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import useAuth from '../../Hooks/useAuth';
 import RegistrationNow from '../../shared/RegistrationNow/RegistrationNow';
 import Header from '../../shared/Header/Header';
@@ -183,10 +183,10 @@ const Register = () => {
                         } With...</h3>
                         <div style={{ textAlign: 'center' }} className="icon">
                             <GoogleIcon onClick={handleGoogleLogin} />
-                            <FacebookIcon />
+                            {/* <FacebookIcon />
                             <InstagramIcon />
                             <TwitterIcon />
-                            <LinkedInIcon />
+                            <LinkedInIcon /> */}
                         </div>
                     </div>
                 </Grid>

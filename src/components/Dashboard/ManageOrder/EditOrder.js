@@ -35,7 +35,7 @@ const EditOrder = () => {
         data._id = _id;
         setLoading(true)
         fetch('https://agile-coast-57726.herokuapp.com/order/getOrder_forEdit/update', {
-            method: 'PUT',
+            method: 'UPDATE',
             headers: {
                 'content-type': 'application/json'
             },
@@ -74,13 +74,13 @@ const EditOrder = () => {
                                 <Grid item md={6} xs={12}>
                                     <div className="mt-2">
                                         <span>Start Count</span>
-                                        <input required type="number" {...register("start_count")} />
+                                        <input onWheel={(e) => e.target.blur()} required type="number" {...register("start_count")} />
                                     </div>
                                 </Grid>
                                 <Grid item md={6} xs={12}>
                                     <div className="mt-2">
                                         <span>Remain</span>
-                                        <input required type="number" {...register("remains")} />
+                                        <input required onWheel={(e) => e.target.blur()} type="number" {...register("remains")} />
                                     </div>
                                 </Grid>
                             </Grid>
@@ -88,7 +88,11 @@ const EditOrder = () => {
                                 <Grid item md={6} xs={12}>
                                     <div className="mt-2">
                                         <span>Quantity</span>
-                                        <input readOnly value={orderQuantity} type="number" />
+                                        <input
+                                            readOnly
+                                            onWheel={(e) => e.target.blur()}
+                                            value={orderQuantity}
+                                            type="number" />
                                     </div>
                                 </Grid>
                                 <Grid item md={6} xs={12}>

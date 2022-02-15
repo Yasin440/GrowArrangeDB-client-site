@@ -183,6 +183,7 @@ const AddTicketModal = ({ props }) => {
                                             <span>Money Sender Number<span style={{ color: 'red' }}> *</span></span>
                                             <input
                                                 onBlur={onBlurPayment} name="money_sender_number"
+                                                onWheel={(e) => e.target.blur()}
                                                 type="number" />
                                         </div>
                                         <div className="mt-2">
@@ -190,6 +191,7 @@ const AddTicketModal = ({ props }) => {
                                             <input
                                                 onBlur={onBlurPayment}
                                                 name="amount"
+                                                onWheel={(e) => e.target.blur()}
                                                 type="number" />
                                         </div>
                                         <div className="mt-2">
@@ -229,6 +231,7 @@ const AddTicketModal = ({ props }) => {
                                             <input
                                                 onBlur={onBlurOrder}
                                                 name="order_id"
+                                                onWheel={(e) => e.target.blur()}
                                                 type="number" />
                                         </div>
                                         <div className="mt-2">

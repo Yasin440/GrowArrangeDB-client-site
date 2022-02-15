@@ -38,6 +38,7 @@ const TicketsTable = ({ loading }) => {
     const { user, admin } = useAuth();
     const [myTickets, setMyTickets] = useState();
     const [openManageTicketModal, setOpenManageTicketModal] = useState(false);
+    const [modelLoading, setModelLoading] = useState(false);
     //handle ticket modal
     const handleTicketModal = (ticket) => {
         setOpenManageTicketModal({ open: true, ticket: ticket });
@@ -50,7 +51,7 @@ const TicketsTable = ({ loading }) => {
                 setMyTickets(data);
             })
 
-    }, [admin, user?.email, loading])
+    }, [admin, user?.email, loading, modelLoading])
     //delete tickets
     const handleDelete = (id) => {
         const confirm = window.confirm('Are you sure to DELETE..?');
@@ -125,7 +126,7 @@ const TicketsTable = ({ loading }) => {
                             ))
                             }
                             <ManageTicketsModal
-                                props={{ openManageTicketModal, setOpenManageTicketModal }} />
+                                props={{ openManageTicketModal, setOpenManageTicketModal, modelLoading, setModelLoading }} />
                         </TableBody>
                     }
 

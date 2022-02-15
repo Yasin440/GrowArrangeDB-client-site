@@ -122,6 +122,7 @@ const NewOrderHome = () => {
                                 <input
                                     {...register("orderQuantity")}
                                     required type="number"
+                                    onWheel={(e) => e.target.blur()}
                                     onChange={handleOnChange}
                                 />
                                 {

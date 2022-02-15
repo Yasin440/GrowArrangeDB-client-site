@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link, Outlet } from 'react-router-dom';
 import './Dashboard.css';
 import logo from '../../media/logo2.png';
@@ -112,7 +112,21 @@ const active = ({ isActive }) => {
 
 export default function Dashboard() {
     const { admin, logOut, user } = useAuth();
-    const [open, setOpen] = React.useState(true);
+    const [balance, setBalance] = useState();
+    const [open, setOpen] = useState(true);
+    //user current balance
+    useEffect(() => {
+        fetch(`https://agile-coast-57726.herokuapp.com/user/allUsers/${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.balance) {
+                    setBalance(data.balance);
+                    return;
+                } else {
+                    setBalance(parseFloat(0).toFixed(2));
+                }
+            })
+    }, [user?.email])
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -177,7 +191,7 @@ export default function Dashboard() {
                                     {user?.displayName || user?.email}
                                 </div>
                                 <Link to='/dashboard/addBalance'>
-                                    <div className="balance">balance: &#2547;0.00</div>
+                                    <div className="balance">balance: &#2547; {balance}</div>
                                 </Link>
                             </div>
                             :

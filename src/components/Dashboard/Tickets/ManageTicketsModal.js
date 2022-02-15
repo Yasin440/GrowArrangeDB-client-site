@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Tickets.css';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -7,7 +8,7 @@ import { Container } from '@mui/material';
 import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import useAuth from '../../../Hooks/useAuth';
+import { Grid } from '@mui/material';
 
 const style = {
     position: 'absolute',
@@ -24,120 +25,74 @@ const style = {
 };
 
 const ManageTicketsModal = ({ props }) => {
-    const { openManageTicketModal, setOpenManageTicketModal } = props;
-    const { open, ticket } = openManageTicketModal || {};
-    const { email, displayName } = ticket || {};
-    // const { _id } = openManageTicketModal.ticket || {};
-    const [loading, setLoading] = useState();
-    console.log(open, email);
-    // const { user } = useAuth();
+    const [currentBalance, setCurrentBalance] = useState();
+    const [newBalance, setNewBalance] = useState({});
+    const [addingBalance, setAddingBalance] = useState();
+    const { openManageTicketModal, setOpenManageTicketModal, modelLoading, setModelLoading } = props;
+    const { ticket } = openManageTicketModal || {};
+    const { _id, ticket_id, subject, email, displayName, request, order_message, order_id, amount, money_sender_number, payment_message, payment_type, transaction_id, status } = ticket || {};
     const handleClose = () => setOpenManageTicketModal({ open: false, ticket: openManageTicketModal.ticket });
-    // const [lastTickets, setLastTickets] = useState([]);
-    // const [subject, setSubject] = useState('payment');
-    // const date = new Date().toLocaleString();
-    // const ticket_id = lastTickets[0]?.ticket_id + 1 || 201;
+    //user current balance
+    useEffect(() => {
+        fetch(`https://agile-coast-57726.herokuapp.com/user/allUsers/${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.balance) {
+                    setCurrentBalance(data.balance);
+                    return;
+                } else {
+                    setCurrentBalance(parseFloat(0).toFixed(2));
+                }
+            });
+    }, [email, modelLoading])
 
-    // useEffect(() => {
-    //     fetch("https://agile-coast-57726.herokuapp.com/tickets/lastTickets")
-    //         .then(res => res.json())
-    //         .then(data => setLastTickets(data))
-    // }, [loading]);
-
-    // const initialPayment = {
-    //     subject: 'payment',
-    //     payment_type: 'bkash',
-    //     transaction_id: '',
-    //     amount: '',
-    //     money_sender_number: '',
-    //     payment_message: '',
-    //     date: date,
-    //     status: 'pending',
-    //     user: user.displayName,
-    //     email: user.email
-    // }
-    // const initialOrder = {
-    //     subject: 'order',
-    //     order_id: '',
-    //     request: 'refill',
-    //     order_message: '',
-    //     date: date,
-    //     status: 'pending',
-    //     user: user.displayName,
-    //     email: user.email
-    // }
-    // const [paymentEsau, setPaymentEsau] = useState(initialPayment);
-    // const [orderEsau, setOrderEsau] = useState(initialOrder);
-    // console.log(orderEsau);
-    // //handleOnBlur
-    // const onBlurPayment = (e) => {
-    //     const field = e.target.name;
-    //     const value = e.target.value;
-    //     const orderData = { ...paymentEsau };
-    //     orderData[field] = value;
-    //     setPaymentEsau(orderData);
-    // }
-    // const onBlurOrder = (e) => {
-    //     const field = e.target.name;
-    //     const value = e.target.value;
-    //     const orderData = { ...orderEsau };
-    //     orderData[field] = value;
-    //     setOrderEsau(orderData);
-    // }
-
-    // const addTicketsPayment = e => {
-    //     e.preventDefault();
-    //     paymentEsau.ticket_id = ticket_id;
-    //     const confirm = window.confirm('Are you sure to Add Tickets');
-    //     if (confirm) {
-    //         setLoading(true);
-    //         fetch("https://agile-coast-57726.herokuapp.com/tickets/addTickets", {
-    //             method: 'POST',
-    //             headers: {
-    //                 'content-type': 'application/json'
-    //             },
-    //             body: JSON.stringify(paymentEsau)
-    //         })
-    //             .then(res => res.json())
-    //             .then(event => {
-    //                 if (event.insertedId) {
-    //                     toast.success('Ticket added successfully..!', {
-    //                         theme: "colored"
-    //                     });
-    //                     setLoading(false);
-    //                     setOpen(false);
-    //                 }
-    //             })
-    //     }
-
-    //     console.log(paymentEsau);
-    // }
-    // const addTicketsOrder = e => {
-    //     e.preventDefault();
-    //     orderEsau.ticket_id = ticket_id;
-    //     const confirm = window.confirm('Are you sure to Add Tickets');
-    //     if (confirm) {
-    //         setLoading(true);
-    //         fetch("https://agile-coast-57726.herokuapp.com/tickets/addTickets", {
-    //             method: 'POST',
-    //             headers: {
-    //                 'content-type': 'application/json'
-    //             },
-    //             body: JSON.stringify(orderEsau)
-    //         })
-    //             .then(res => res.json())
-    //             .then(event => {
-    //                 if (event.insertedId) {
-    //                     toast.success('Ticket added successfully..!', {
-    //                         theme: "colored"
-    //                     });
-    //                     setLoading(false);
-    //                     setOpen(false);
-    //                 }
-    //             })
-    //         console.log(orderEsau);
-    //     }
-
-    // }
+    const getBalance = e => {
+        const balanceData = { ...newBalance };
+        setAddingBalance(e.target.value);
+        const amount = parseFloat(currentBalance) + parseFloat(e.target.value);
+        balanceData[e.target.name] = parseFloat(amount).toFixed(2);
+        balanceData.email = email;
+        setNewBalance(balanceData);
+    }
+    const handleAddBalance = e => {
+        e.preventDefault();
+        if (addingBalance === amount) {
+            const confirm = window.confirm('Are you sure to ADD Balance?');
+            if (confirm) {
+                setModelLoading(true);
+                fetch('https://agile-coast-57726.herokuapp.com/clients/update/balance', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(newBalance)
+                })
+                    .then(res => res.json())
+                    .then(e => {
+                        if (e.modifiedCount > 0) {
+                            fetch(`https://agile-coast-57726.herokuapp.com/update/ticket/status/${_id}`, {
+                                method: "PUT"
+                            })
+                                .then(res => res.json())
+                                .then(e => {
+                                    if (e.modifiedCount > 0 || e.matchedCount > 0) {
+                                        toast.success("Balance added successfully.", {
+                                            theme: "colored"
+                                        });
+                                        setModelLoading(false);
+                                        handleClose();
+                                    }
+                                })
+                        };
+                    })
+                return;
+            }
+        } else {
+            toast.error(`Invalid input amount. Amount Will ৳ ${amount}`, {
+                theme: "colored"
+            });
+        }
+    }
     return (
         <div>
             <Modal
@@ -156,71 +111,77 @@ const ManageTicketsModal = ({ props }) => {
                         <CloseIcon onClick={handleClose} sx={{ position: 'absolute', top: '10px', right: '10px', fontSize: '18px', color: 'red', fontWeight: 'bold' }} />
                         <Container sx={{ marginBottom: '4rem' }}>
                             <h1 className="title titleBar">Manage Tickets...</h1>
-                            {/* {ticket.displayName} */}
-                            {email}<br />
-                            {displayName}
-                            {/* <form
-                                className='addTicket'
-                            // onSubmit={addTicketsPayment}
-                            >
-                                <div className="mt-2">
-                                    <span>Payment Type<span style={{ color: 'red' }}> *</span></span>
-                                    <select
-                                        // onBlur={onBlurPayment}
-                                        name="payment_type">
-                                        <option value='bkash'>bKash</option>
-                                        <option value='nagad'>Nagad</option>
-                                        <option value='rocket'>Rocket</option>
-                                    </select>
-                                </div>
-                                <div className="mt-2">
-                                    <span>Transaction ID<span style={{ color: 'red' }}> *</span></span>
-                                    <input
-                                        // onBlur={onBlurPayment} 
-                                        name="transaction_id"
-                                        type="text" />
-                                </div>
-                                <div className="mt-2">
-                                    <span>Money Sender Number<span style={{ color: 'red' }}> *</span></span>
-                                    <input
-                                        // onBlur={onBlurPayment} 
-                                        name="money_sender_number"
-                                        type="number" />
-                                </div>
-                                <div className="mt-2">
-                                    <span>Amount<span style={{ color: 'red' }}> *</span></span>
-                                    <input
-                                        // onBlur={onBlurPayment}
-                                        name="amount"
-                                        type="number" />
-                                </div>
-                                <div className="mt-2">
-                                    <span>message</span>
-                                    <textarea
-                                        // onBlur={onBlurPayment} 
-                                        name="payment_message"
-                                        style={{ height: '150px' }}
-                                        type='text' />
-                                </div>
-                                <div className="mt-2" style={{ textItems: 'center' }}>
-                                    {
-                                        loading ?
-                                            <button
-                                                disabled
-                                                type='submit'
-                                                className='primaryBtn '>
-                                                <CircularProgress
-                                                    style={{ width: '25px', height: '25px', color: '#fff' }} />
-                                            </button>
-                                            :
-                                            <button
-                                                type='submit'
-                                                className='primaryBtn '>
-                                                Send
-                                            </button>
-                                    }
-                                </div>
-                            </form> */}
+                            <div className='ticketDetails'>
+                                {subject === 'payment' &&
+                                    <Grid container columnSpacing={2}>
+                                        <Grid item xs={12} md={6}>
+                                            <h3>Tickets information..</h3>
+                                            <p>
+                                                <span>Subject:</span> {subject}<br />
+                                                <hr />
+                                                <hr />
+                                                <span>Ticket ID:</span> {ticket_id}<br />
+                                                <span>User:</span> {displayName}<br />
+                                                <span>Email:</span> {email}<br />
+                                                <span>Current Balance:</span> &#2547; {currentBalance}<br />
+                                                <hr />
+                                                <hr />
+                                                <span>Payment with:</span> {payment_type}<br />
+                                                <span>Sender Number:</span> {money_sender_number}<br />
+                                                <span>Transaction ID:</span> {transaction_id}<br />
+                                                <span>Add Amount:</span> &#2547; {amount}<br />
+                                                <span>Status:</span> <span className={`status ${status}`}>{status}</span><br />
+                                                <span>Message:</span> {payment_message}
+                                            </p>
+                                        </Grid>
+                                        <Grid item xs={12} md={6}>
+                                            <h3>Add Balance..</h3>
+                                            <div className="balance">current balance: &#2547;{currentBalance}</div>
+                                            {status === "completed" ?
+                                                <div style={{ color: 'red' }} className="balance">Balance Already Added.</div>
+                                                :
+                                                <form onSubmit={handleAddBalance}>
+                                                    <div className='mb-2'>
+                                                        <span>Add balance</span>
+                                                        <input
+                                                            onBlur={getBalance}
+                                                            name="balance"
+                                                            required
+                                                            onWheel={(e) => e.target.blur()} />
+                                                    </div>
+                                                    {modelLoading ?
+                                                        <button
+                                                            type='submit'
+                                                            disabled
+                                                            className='primaryBtn'>
+                                                            <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }}
+                                                                disableShrink />
+                                                        </button>
+                                                        :
+                                                        <button type='submit' className='primaryBtn'>Add</button>
+                                                    }
+
+                                                </form>
+                                            }
+
+                                        </Grid>
+                                    </Grid>
+
+                                }
+                                {subject === 'order' &&
+                                    <p>
+                                        <span>Subject:</span> {subject}<br />
+                                        <span>Ticket ID:</span> {ticket_id}<br />
+                                        <span>User:</span> {displayName}<br />
+                                        <span>Email:</span> {email}<br />
+                                        <span>Order ID:</span> {order_id}<br />
+                                        <span>Request For:</span> {request}<br />
+                                        <span>Status:</span> <span className={`status ${status}`}>{status}</span><br />
+                                        <span>Message:</span> {order_message}
+                                    </p>
+                                }
+                            </div>
+
                         </Container>
                     </Box>
                 </Fade>
