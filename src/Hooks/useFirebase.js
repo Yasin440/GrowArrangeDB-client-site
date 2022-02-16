@@ -10,6 +10,7 @@ const useFirebase = () => {
     const auth = getAuth();
     //toggle registration and login form
     const [isLogin, setIsLogin] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState({});
     const [error, setError] = useState();
     const [loading, setLoading] = useState(true);
@@ -152,6 +153,8 @@ const useFirebase = () => {
         clients,
         isLogin,
         setIsLogin,
+        isLoading,
+        setIsLoading,
         admin,
         error,
         loading,

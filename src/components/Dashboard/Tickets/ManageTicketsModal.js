@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Grid } from '@mui/material';
+import useAuth from '../../../Hooks/useAuth';
 
 const style = {
     position: 'absolute',
@@ -25,10 +26,11 @@ const style = {
 };
 
 const ManageTicketsModal = ({ props }) => {
+    const { isLoading, setIsLoading } = useAuth();
     const [currentBalance, setCurrentBalance] = useState();
     const [newBalance, setNewBalance] = useState({});
     const [addingBalance, setAddingBalance] = useState();
-    const { openManageTicketModal, setOpenManageTicketModal, modelLoading, setModelLoading } = props;
+    const { openManageTicketModal, setOpenManageTicketModal } = props;
     const { ticket } = openManageTicketModal || {};
     const { _id, ticket_id, subject, email, displayName, request, order_message, order_id, amount, money_sender_number, payment_message, payment_type, transaction_id, status } = ticket || {};
     const handleClose = () => setOpenManageTicketModal({ open: false, ticket: openManageTicketModal.ticket });
@@ -44,7 +46,7 @@ const ManageTicketsModal = ({ props }) => {
                     setCurrentBalance(parseFloat(0).toFixed(2));
                 }
             });
-    }, [email, modelLoading])
+    }, [email, isLoading])
 
     const getBalance = e => {
         const balanceData = { ...newBalance };
@@ -59,7 +61,7 @@ const ManageTicketsModal = ({ props }) => {
         if (addingBalance === amount) {
             const confirm = window.confirm('Are you sure to ADD Balance?');
             if (confirm) {
-                setModelLoading(true);
+                setIsLoading(true);
                 fetch('https://agile-coast-57726.herokuapp.com/clients/update/balance', {
                     method: 'POST',
                     headers: {
@@ -79,7 +81,7 @@ const ManageTicketsModal = ({ props }) => {
                                         toast.success("Balance added successfully.", {
                                             theme: "colored"
                                         });
-                                        setModelLoading(false);
+                                        setIsLoading(false);
                                         handleClose();
                                     }
                                 })
@@ -149,7 +151,7 @@ const ManageTicketsModal = ({ props }) => {
                                                             required
                                                             onWheel={(e) => e.target.blur()} />
                                                     </div>
-                                                    {modelLoading ?
+                                                    {isLoading ?
                                                         <button
                                                             type='submit'
                                                             disabled

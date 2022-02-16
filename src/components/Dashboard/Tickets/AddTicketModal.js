@@ -24,8 +24,8 @@ const style = {
 };
 
 const AddTicketModal = ({ props }) => {
-    const { setOpen, open, setLoading, loading } = props;
-    const { user } = useAuth();
+    const { setOpen, open } = props;
+    const { user, setIsLoading, isLoading } = useAuth();
     const handleClose = () => setOpen(false);
     const [lastTickets, setLastTickets] = useState([]);
     const [subject, setSubject] = useState('payment');
@@ -36,7 +36,7 @@ const AddTicketModal = ({ props }) => {
         fetch("https://agile-coast-57726.herokuapp.com/tickets/lastTickets")
             .then(res => res.json())
             .then(data => setLastTickets(data))
-    }, [loading]);
+    }, [isLoading]);
 
     const initialPayment = {
         subject: 'payment',
@@ -83,7 +83,7 @@ const AddTicketModal = ({ props }) => {
         paymentEsau.ticket_id = ticket_id;
         const confirm = window.confirm('Are you sure to Add Tickets');
         if (confirm) {
-            setLoading(true);
+            setIsLoading(true);
             fetch("https://agile-coast-57726.herokuapp.com/tickets/addTickets", {
                 method: 'POST',
                 headers: {
@@ -97,7 +97,7 @@ const AddTicketModal = ({ props }) => {
                         toast.success('Ticket added successfully..!', {
                             theme: "colored"
                         });
-                        setLoading(false);
+                        setIsLoading(false);
                         setOpen(false);
                     }
                 })
@@ -108,7 +108,7 @@ const AddTicketModal = ({ props }) => {
         orderEsau.ticket_id = ticket_id;
         const confirm = window.confirm('Are you sure to Add Tickets');
         if (confirm) {
-            setLoading(true);
+            setIsLoading(true);
             fetch("https://agile-coast-57726.herokuapp.com/tickets/addTickets", {
                 method: 'POST',
                 headers: {
@@ -122,7 +122,7 @@ const AddTicketModal = ({ props }) => {
                         toast.success('Ticket added successfully..!', {
                             theme: "colored"
                         });
-                        setLoading(false);
+                        setIsLoading(false);
                         setOpen(false);
                     }
                 })
@@ -203,7 +203,7 @@ const AddTicketModal = ({ props }) => {
                                         </div>
                                         <div className="mt-2" style={{ textItems: 'center' }}>
                                             {
-                                                loading ?
+                                                isLoading ?
                                                     <button
                                                         disabled
                                                         type='submit'
@@ -254,7 +254,7 @@ const AddTicketModal = ({ props }) => {
                                         </div>
                                         <div className="mt-2" style={{ textItems: 'center' }}>
                                             {
-                                                loading ?
+                                                isLoading ?
                                                     <button
                                                         disabled
                                                         type='submit'

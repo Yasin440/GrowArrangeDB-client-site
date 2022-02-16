@@ -111,7 +111,7 @@ const active = ({ isActive }) => {
 };
 
 export default function Dashboard() {
-    const { admin, logOut, user } = useAuth();
+    const { admin, logOut, user, isLoading } = useAuth();
     const [balance, setBalance] = useState();
     const [open, setOpen] = useState(true);
     //user current balance
@@ -126,7 +126,7 @@ export default function Dashboard() {
                     setBalance(parseFloat(0).toFixed(2));
                 }
             })
-    }, [user?.email])
+    }, [user?.email, isLoading])
 
     const handleDrawerOpen = () => {
         setOpen(true);

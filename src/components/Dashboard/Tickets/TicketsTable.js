@@ -34,11 +34,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         border: 0,
     },
 }));
-const TicketsTable = ({ loading }) => {
-    const { user, admin } = useAuth();
+const TicketsTable = () => {
+    const { user, admin, isLoading } = useAuth();
     const [myTickets, setMyTickets] = useState();
     const [openManageTicketModal, setOpenManageTicketModal] = useState(false);
-    const [modelLoading, setModelLoading] = useState(false);
     //handle ticket modal
     const handleTicketModal = (ticket) => {
         setOpenManageTicketModal({ open: true, ticket: ticket });
@@ -51,7 +50,7 @@ const TicketsTable = ({ loading }) => {
                 setMyTickets(data);
             })
 
-    }, [admin, user?.email, loading, modelLoading])
+    }, [admin, user?.email, isLoading])
     //delete tickets
     const handleDelete = (id) => {
         const confirm = window.confirm('Are you sure to DELETE..?');
@@ -126,7 +125,7 @@ const TicketsTable = ({ loading }) => {
                             ))
                             }
                             <ManageTicketsModal
-                                props={{ openManageTicketModal, setOpenManageTicketModal, modelLoading, setModelLoading }} />
+                                props={{ openManageTicketModal, setOpenManageTicketModal }} />
                         </TableBody>
                     }
 

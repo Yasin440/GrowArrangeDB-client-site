@@ -4,9 +4,10 @@ import { Grid, Container } from '@mui/material';
 import { toast } from 'react-toastify';
 import { useForm } from "react-hook-form";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import useAuth from '../../../Hooks/useAuth';
 
 const EditOrder = () => {
-    const [loading, setLoading] = useState(false)
+    const { isLoading, setIsLoading } = useAuth();
     const { id } = useParams();
     const [dataForEdit, setDataForEdit] = useState({});
     const { register, handleSubmit, reset } = useForm();
@@ -33,7 +34,7 @@ const EditOrder = () => {
     //handle update order
     const updateOrder = data => {
         data._id = _id;
-        setLoading(true)
+        setIsLoading(true)
         fetch('https://agile-coast-57726.herokuapp.com/order/getOrder_forEdit/update', {
             method: 'UPDATE',
             headers: {
@@ -47,7 +48,7 @@ const EditOrder = () => {
                     toast.success('Order Edited Successfully..!', {
                         theme: "colored"
                     });
-                setLoading(false);
+                setIsLoading(false);
                 reset();
             })
     }
@@ -127,7 +128,7 @@ const EditOrder = () => {
                                 <input readOnly value={`৳ ${price}`} type="text" />
                             </div>
                             <div className="mt-2" style={{ textItems: 'center' }}>
-                                <button type='submit' className='primaryBtn '>{loading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} disableShrink /> : "Update Order"}</button>
+                                <button type='submit' className='primaryBtn '>{isLoading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} disableShrink /> : "Update Order"}</button>
                             </div>
                         </form>
                     </Grid>
