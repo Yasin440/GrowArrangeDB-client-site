@@ -99,7 +99,7 @@ const ServicesTable = (props) => {
                                             </StyledTableCell>
                                             <StyledTableCell align="left">
                                                 <span style={{ backgroundColor: '#362682' }}>
-                                                    {row.rate_par_1k}
+                                                    &#2547; {row.rate_par_1k}
                                                 </span>
                                             </StyledTableCell>
                                             <StyledTableCell align="left">

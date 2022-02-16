@@ -76,7 +76,7 @@ const MyOrderTable = () => {
                                         {row.title}
                                     </StyledTableCell>
                                     <StyledTableCell align="left">
-                                        {row.price}
+                                        &#2547; {row.price}
                                     </StyledTableCell>
                                     <StyledTableCell align="left">
                                         {row.start_count}
