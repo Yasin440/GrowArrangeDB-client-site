@@ -8,6 +8,7 @@ import useAuth from '../../Hooks/useAuth';
 import RegistrationNow from '../../shared/RegistrationNow/RegistrationNow';
 import Footer from '../../shared/Footer/Footer';
 import Header from '../../shared/Header/Header';
+import ContactUs from '../ContactUs/ContactUs';
 
 const Home = () => {
     const { user, allOrders } = useAuth();
@@ -28,6 +29,7 @@ const Home = () => {
             </Container>
             {user.email ? <RegistrationNow /> : <Register />}
             <OurServices />
+            <ContactUs />
             <Footer />
         </div>
     );
