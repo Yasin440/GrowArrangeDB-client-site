@@ -21,7 +21,8 @@ const EditOrder = () => {
     ];
     const paymentOption = [
         { id: '01', payment: 'paid' },
-        { id: '02', payment: 'unpaid' }
+        { id: '02', payment: 'unpaid' },
+        { id: '03', payment: 'refund' }
     ];
     //get ordered data with id
     useEffect(() => {
@@ -30,27 +31,30 @@ const EditOrder = () => {
             .then(data => {
                 setDataForEdit(data);
             })
-    }, [id])
+    }, [id, isLoading])
     //handle update order
     const updateOrder = data => {
         data._id = _id;
-        setIsLoading(true)
-        fetch('https://agile-coast-57726.herokuapp.com/order/getOrder_forEdit/update', {
-            method: 'UPDATE',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.modifiedCount >= 1)
-                    toast.success('Order Edited Successfully..!', {
-                        theme: "colored"
-                    });
-                setIsLoading(false);
-                reset();
+        const confirm = window.confirm("Are you sure to EDIT order !");
+        if (confirm) {
+            setIsLoading(true)
+            fetch('https://agile-coast-57726.herokuapp.com/order/getOrder_forEdit/update', {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
             })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.modifiedCount >= 1)
+                        toast.success('Order Edited Successfully..!', {
+                            theme: "colored"
+                        });
+                    setIsLoading(false);
+                    reset();
+                })
+        }
     }
     return (
         <div className='editOrder'>

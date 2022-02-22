@@ -6,27 +6,66 @@
     display: block !important;
     transform: scale(1,1);
 }
+.ourServices .card{
+    height: 435px;
+}
+.ourServices .card .ServiceSubTitle{
+    color: #fff;
+    font-weight: 600;
+}
+.ourServices .card .ServiceTitle{
+    color: #fff;
+    font-weight: 700;
+    margin: 2rem 0;
+    background-color: #4747f3;
+    border-radius: 4px;
+}
+.ourServices .card .content{
+    padding-top: 55px;
+    padding-bottom: 135px;
+}
+.ourServices .card:hover .content{
+    background-color: #00000093;;
+}
 .ourServices .serviceLogoTitle{
     transform: translateY(65%);
     transition: all 0.5s ease-in-out
 }
 .ourServices .card{
-    background-color: #bfb0fb9e;
-    height: 400px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.ourServices .fbMarketing{
+    background-image: url(../../media/fbMarketing.jpg);
+}
+.ourServices .ytMarketing{
+    background-image: url(../../media/YT-marketing.jpg);
+}
+.ourServices .instagramMarketing{
+    background-image: url(../../media/InstagramMarketing.jpg);
+}
+.ourServices .pinterestMarketing{
+    background-image: url(../../media/penterestMarketing.jpg);
+}
+.ourServices .twitterMarketing{
+    background-image: url(../../media/twitterMarketing.jpg);
+}
+.ourServices .linkedInMarketing{
+    background-image: url(../../media/linkedinMarketing.png);
 }
 .ourServices .card:hover .serviceLogoTitle{
     transform: translateY(0%);
 }
 .ourServices .serviceLogoTitle .serviceIcon{
     font-size: 3.8rem;
-    background-color: #4747F3;
+    background-color: #362682;
     border-radius: 8px;
     color: #fff;
     padding: 6px; 
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 .ourServices .card:hover .serviceLogoTitle .serviceIcon{
-    color: #fff;
-    background: #4747F3;
-    border-radius: 3rem;
+    color: #362682;
+    background-color: #fff;
 }

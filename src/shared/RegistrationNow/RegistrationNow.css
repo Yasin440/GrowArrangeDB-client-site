@@ -1,9 +1,12 @@
 .registrationNow{
     text-align: center;
-    color: #fff;
-    background-color: #4747f399;
+    color:orangered;
+    background-image: url(../../media/registerNowBG.jpg);
     padding-bottom: 4rem;
     margin-top: 8rem;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .registrationNow img{
     width: 180px;

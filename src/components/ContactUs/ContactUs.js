@@ -7,6 +7,7 @@ import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import RoomIcon from '@mui/icons-material/Room';
 import SendIcon from '@mui/icons-material/Send';
 import './ContactUs.css';
+import { useLocation } from 'react-router-dom';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
@@ -14,6 +15,7 @@ import Header from '../../shared/Header/Header';
 import Footer from '../../shared/Footer/Footer';
 
 const ContactUs = () => {
+    const location = useLocation();
     const sendEmail = e => {
         e.preventDefault();
         emailjs.sendForm(
@@ -34,7 +36,7 @@ const ContactUs = () => {
 
     return (
         <>
-            <Header />
+            {location.pathname === '/contactUS' && <Header />}
             <div style={{ paddingBottom: '5rem' }} className='contactPage container'>
                 <div className='title-section'>
                     <h1>contact <span>us</span></h1>
@@ -110,7 +112,7 @@ const ContactUs = () => {
                     </Grid>
                 </Container>
             </div >
-            <Footer />
+            {location.pathname === '/contactUS' && <Footer />}
         </>
     );
 };

@@ -1,6 +1,7 @@
 *{
   border: 0;
   box-sizing: border-box;
+  transition: .5s all ease;
 }
 button,svg{
   cursor: pointer;
@@ -211,6 +212,9 @@ color:  #ff634729;
 }
 .processing,.unpaid{
   background-color: tomato;
+}
+.refund{
+  background-color:yellowgreen;
 }
 .completed, .paid{
   background-color: green;

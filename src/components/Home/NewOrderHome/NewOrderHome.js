@@ -26,6 +26,20 @@ const NewOrderHome = () => {
     const { ID, title, category, details, average_time, max_order, min_order, rate_par_1k } = service || {};
     const { register, handleSubmit, reset } = useForm();
 
+
+    //get service with id
+    useEffect(() => {
+        fetch(`https://agile-coast-57726.herokuapp.com/dashboard/newOrder/${id}`)
+            .then(res => res.json())
+            .then(data => setService(data))
+    }, [id]);
+    //get last order
+    useEffect(() => {
+        fetch("https://agile-coast-57726.herokuapp.com/order/lastOrder")
+            .then(res => res.json())
+            .then(data => setLastOrder(data))
+    }, [id]);
+
     const handleOnChange = e => {
         const quantity = e.target.value;
         const singlePrice = rate_par_1k / 1000;
@@ -37,7 +51,7 @@ const NewOrderHome = () => {
     //order place add services to DB
     const placeOrder = data => {
         data.service_id = ID;
-        data.order_id = lastOrder[0]?.order_id + 1;
+        data.order_id = lastOrder[0]?.order_id + 1 || 22001;
         data.start_count = '';
         data.remains = '';
         data.email = user.email;
@@ -110,18 +124,6 @@ const NewOrderHome = () => {
                 }
             });
     }, [user?.email])
-    //get service with id
-    useEffect(() => {
-        fetch(`https://agile-coast-57726.herokuapp.com/dashboard/newOrder/${id}`)
-            .then(res => res.json())
-            .then(data => setService(data))
-    }, [id]);
-    //get last order
-    useEffect(() => {
-        fetch("https://agile-coast-57726.herokuapp.com/order/lastOrder")
-            .then(res => res.json())
-            .then(data => setLastOrder(data))
-    }, [id]);
     return (
         <div className='newOrder'>
             <Container sx={{ marginBottom: '4rem' }}>

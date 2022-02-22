@@ -30,110 +30,110 @@ const OurServices = () => {
                 <Grid container spacing={3} sx={{ width: '100%', marginBottom: '3rem' }}>
                     <Grid item xs={12} sm={6} md={4} sx={{ textAlign: 'center' }}>
                         <Card
-                            sx={{ minWidth: 260, py: 2, cursor: 'pointer' }}
+                            sx={{ minWidth: 260, cursor: 'pointer' }}
                             data-aos='flip-up'
-                            className='card'>
-                            <CardContent>
+                            className='card fbMarketing'>
+                            <CardContent className="content">
                                 <div className='serviceLogoTitle'>
                                     <FacebookIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Facebook Marketing
+                                    <Typography className="ServiceTitle" variant="h6" gutterBottom component="div">Facebook Marketing
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">We are providing FB page, post, profile followers, views, like. Also can buy complete page to grow up your business.
+                                    <Typography className="ServiceSubTitle" variant="body1" gutterBottom component="div">We are providing FB page, post, profile followers, views, like. Also can buy complete page to grow up your business.
                                     </Typography>
-                                    <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
+                                    <Link to="/services"><Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button></Link>
                                 </div>
                             </CardContent>
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} sx={{ textAlign: 'center' }}>
                         <Card
-                            sx={{ minWidth: 260, py: 2, cursor: 'pointer' }} data-aos="slide-up"
-                            className='card'>
-                            <CardContent>
+                            sx={{ minWidth: 260, cursor: 'pointer' }} data-aos="slide-up"
+                            className='card ytMarketing'>
+                            <CardContent className="content">
                                 <div className='serviceLogoTitle'>
                                     <YouTubeIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Youtube Subscriber & Views
+                                    <Typography className="ServiceTitle" variant="h6" gutterBottom component="div">Youtube Subscriber & Views
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Your videos content is so good but not growing your channel? Don't worry GROWTH Arrange can help you to grow your channel.
+                                    <Typography className="ServiceSubTitle" variant="body1" gutterBottom component="div">Your videos content is so good but not growing your channel? Don't worry GROWTH Arrange can help you to grow your channel.
                                     </Typography>
-                                    <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
+                                    <Link to="/services"><Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button></Link>
                                 </div>
                             </CardContent>
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} sx={{ textAlign: 'center' }}>
                         <Card
-                            sx={{ minWidth: 260, py: 2, cursor: 'pointer' }} data-aos="slide-up"
-                            className='card'>
-                            <CardContent>
+                            sx={{ minWidth: 260, cursor: 'pointer' }} data-aos="slide-up"
+                            className='card instagramMarketing'>
+                            <CardContent className="content">
                                 <div className='serviceLogoTitle'>
                                     <InstagramIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Instagram Followers
+                                    <Typography className="ServiceTitle" variant="h6" gutterBottom component="div">Instagram Followers
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Growth Arrange can grow the the number of your followers in a smarter way.
+                                    <Typography className="ServiceSubTitle" variant="body1" gutterBottom component="div">Growth Arrange can grow the the number of your followers in a smarter way.
                                     </Typography>
-                                    <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
+                                    <Link to="/services"><Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button></Link>
                                 </div>
                             </CardContent>
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} sx={{ textAlign: 'center' }}>
                         <Card
-                            sx={{ minWidth: 260, py: 2, cursor: 'pointer' }}
+                            sx={{ minWidth: 260, cursor: 'pointer' }}
                             data-aos='flip-up'
-                            className='card'>
-                            <CardContent>
+                            className='card pinterestMarketing'>
+                            <CardContent className="content">
                                 <div className='serviceLogoTitle'>
                                     <PinterestIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Pinterest
+                                    <Typography className="ServiceTitle" variant="h6" gutterBottom component="div">Pinterest
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Need to grow up your Pinterest account. Connect with us.
+                                    <Typography className="ServiceSubTitle" variant="body1" gutterBottom component="div">Need to grow up your Pinterest account. Connect with us.
                                     </Typography>
-                                    <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
+                                    <Link to="/services"><Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button></Link>
                                 </div>
                             </CardContent>
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} sx={{ textAlign: 'center' }}>
                         <Card
-                            sx={{ minWidth: 260, py: 2, cursor: 'pointer' }} data-aos="slide-up"
-                            className='card'>
-                            <CardContent>
+                            sx={{ minWidth: 260, cursor: 'pointer' }} data-aos="slide-up"
+                            className='card twitterMarketing'>
+                            <CardContent className="content">
                                 <div className='serviceLogoTitle'>
                                     <TwitterIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">Grow with Twitter
+                                    <Typography className="ServiceTitle" variant="h6" gutterBottom component="div">Grow with Twitter
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">If your Twitter account is growing in a slow speed. Connect with us to get a high speed.
+                                    <Typography className="ServiceSubTitle" variant="body1" gutterBottom component="div">If your Twitter account is growing in a slow speed. Connect with us to get a high speed.
                                     </Typography>
-                                    <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
+                                    <Link to="/services"><Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button></Link>
                                 </div>
                             </CardContent>
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} sx={{ textAlign: 'center' }}>
                         <Card
-                            sx={{ minWidth: 260, py: 2, cursor: 'pointer' }} data-aos="slide-up"
-                            className='card'>
-                            <CardContent>
+                            sx={{ minWidth: 260, cursor: 'pointer' }} data-aos="slide-up"
+                            className='card linkedInMarketing'>
+                            <CardContent className="content">
                                 <div className='serviceLogoTitle'>
                                     <LinkedInIcon className='serviceIcon' />
-                                    <Typography sx={{ color: '#0779E4', fontWeight: 600, my: 3 }} variant="h6" gutterBottom component="div">LinkedIn Connection
+                                    <Typography className="ServiceTitle" variant="h6" gutterBottom component="div">LinkedIn Connection
                                     </Typography>
                                 </div>
                                 <div className="service-content">
-                                    <Typography sx={{ fontWeight: '550', color: '#362682' }} variant="body1" gutterBottom component="div">Get professional LinkedIn Account for your career.
+                                    <Typography className="ServiceSubTitle" variant="body1" gutterBottom component="div">Get professional LinkedIn Account for your career.
                                     </Typography>
-                                    <Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button>
+                                    <Link to="/services"><Button variant="contained" sx={{ fontWeight: 'bold', mt: 2, color: '#fff' }} size="small">Learn More<ArrowRightAltIcon /></Button></Link>
                                 </div>
                             </CardContent>
                         </Card>
