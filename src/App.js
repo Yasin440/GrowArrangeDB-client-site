@@ -19,6 +19,7 @@ import PrivateRoute from './components/Register/PrivateRoute';
 import PrivateAdminRoute from './components/Register/PrivateAdminRoute';
 import MessengerCustomerChat from 'react-messenger-customer-chat';
 import AddBalance from './components/Dashboard/AddBalance/AddBalance';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
               element={<PrivateRoute><NewOrderHome /></PrivateRoute>}>
             </Route>
           </Route>
+          <Route path="*" element={<NotFound />} />
           <Route path="/register" element={<Register />} />
         </Routes>
         <MessengerCustomerChat

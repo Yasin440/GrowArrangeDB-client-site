@@ -1,6 +1,9 @@
 .header{
-    background-color: #bfb0fb9e;
-    width:100%
+    background-color: #d7cefd;
+    width: 100%;
+    position: sticky;
+    z-index: 10;
+    top: 0;
 }
 .header .logo{
     width: 70px;

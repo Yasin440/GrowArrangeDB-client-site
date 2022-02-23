@@ -191,7 +191,7 @@ export default function Dashboard() {
                                     {user?.displayName || user?.email}
                                 </div>
                                 <Link to='/dashboard/addBalance'>
-                                    <div className="balance">balance: &#2547; {balance || 0.00}</div>
+                                    <div className={`balance ${balance < 100 && 'lowBalance'}`}>balance: &#2547; {balance || 0.00}</div>
                                 </Link>
                             </div>
                             :

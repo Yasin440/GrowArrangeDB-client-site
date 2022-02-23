@@ -37,22 +37,22 @@
     background-repeat: no-repeat;
 }
 .ourServices .fbMarketing{
-    background-image: url(../../media/fbMarketing.jpg);
+    background-image: url(https://i.ibb.co/Qb2f8B5/fb-Marketing.jpg);
 }
 .ourServices .ytMarketing{
-    background-image: url(../../media/YT-marketing.jpg);
+    background-image: url(https://i.ibb.co/129qbCC/YT-marketing.jpg);
 }
 .ourServices .instagramMarketing{
-    background-image: url(../../media/InstagramMarketing.jpg);
+    background-image: url(https://i.ibb.co/jyD0y9C/Instagram-Marketing.jpg);
 }
 .ourServices .pinterestMarketing{
-    background-image: url(../../media/penterestMarketing.jpg);
+    background-image: url(https://i.ibb.co/SsJwMS4/penterest-Marketing.jpg);
 }
 .ourServices .twitterMarketing{
-    background-image: url(../../media/twitterMarketing.jpg);
+    background-image: url(https://i.ibb.co/pjHnxL3/twitter-Marketing.jpg);
 }
 .ourServices .linkedInMarketing{
-    background-image: url(../../media/linkedinMarketing.png);
+    background-image: url(https://i.ibb.co/TvfXLKJ/linkedin-Marketing.png);
 }
 .ourServices .card:hover .serviceLogoTitle{
     transform: translateY(0%);

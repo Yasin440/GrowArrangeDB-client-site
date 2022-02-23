@@ -1,0 +1,13 @@
+.notFound{
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.button{
+    text-align: center;
+}
+.button h1, .button h2{
+    font-weight: bolder;
+    display: block;
+    color:tomato  
+}

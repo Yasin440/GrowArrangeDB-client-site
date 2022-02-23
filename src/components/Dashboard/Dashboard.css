@@ -23,6 +23,9 @@
     width: max-content;
     margin: 10px auto;
 }
+.lowBalance{
+    color:rgba(255, 0, 0, 0.815);
+}
 .sideBarProfile .balance{
     cursor: cell;
 }
