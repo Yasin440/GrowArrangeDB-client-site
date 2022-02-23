@@ -109,7 +109,6 @@ const useFirebase = () => {
     //***/== save user info to database ==/***//
     const saveUserDB = (email, displayName, method) => {
         const user = { email, displayName };
-        user.balance = parseFloat(0).toFixed(2);
         fetch('https://agile-coast-57726.herokuapp.com/clients', {
             method: method,
             headers: {
@@ -134,7 +133,7 @@ const useFirebase = () => {
             .then(data => {
                 setAdmin(data.admin);
             })
-    }, [user.email, loading])
+    }, [user.email])
 
     //get all order info from database
     useEffect(() => {

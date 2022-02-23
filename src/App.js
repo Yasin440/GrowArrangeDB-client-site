@@ -26,7 +26,7 @@ function App() {
       <BrowserRouter>
         <ToastContainer position='top-center' autoClose={2500} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route index element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contactUs" element={<ContactUs />} />
