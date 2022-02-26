@@ -9,7 +9,6 @@ import RegistrationNow from '../../shared/RegistrationNow/RegistrationNow';
 import Footer from '../../shared/Footer/Footer';
 import Header from '../../shared/Header/Header';
 import ContactUs from '../ContactUs/ContactUs';
-import DImg from '../../media/digitelMarketing.png';
 
 const Home = () => {
     const { user, allOrders } = useAuth();
@@ -24,7 +23,7 @@ const Home = () => {
                         <p>{10220 + parseFloat(`${allOrders?.length}`)} Orders until now!</p>
                     </Grid>
                     <Grid item md={4} xs={12}>
-                        <img width="100%" src={DImg} alt="IMG" />
+                        <img width="100%" src="https://i.ibb.co/f2QK6K5/digitel-Marketing.png" alt="IMG" />
                     </Grid>
                 </Grid>
             </Container>

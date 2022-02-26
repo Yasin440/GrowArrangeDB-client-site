@@ -5,13 +5,16 @@ import { toast } from 'react-toastify';
 import { useForm } from "react-hook-form";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useAuth from '../../../Hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const EditOrder = () => {
-    const { isLoading, setIsLoading } = useAuth();
+    const { isLoading, setIsLoading, updatedBalance } = useAuth();
     const { id } = useParams();
+    const [currentOrdererBalance, setCurrentOrdererBalance] = useState();
     const [dataForEdit, setDataForEdit] = useState({});
     const { register, handleSubmit, reset } = useForm();
     const { _id, service_id, order_id, displayName, email, category, orderQuantity, title, start_count, status, date, price, remains, average_time, payment } = dataForEdit;
+    const navigate = useNavigate();
 
     const statusOption = [
         { id: '01', status: 'pending' },
@@ -19,11 +22,19 @@ const EditOrder = () => {
         { id: '03', status: 'canceled' },
         { id: '04', status: 'completed' }
     ];
-    const paymentOption = [
-        { id: '01', payment: 'paid' },
-        { id: '02', payment: 'unpaid' },
-        { id: '03', payment: 'refund' }
-    ];
+    //user current balance who order this
+    useEffect(() => {
+        fetch(`https://agile-coast-57726.herokuapp.com/user/allUsers/${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.balance) {
+                    setCurrentOrdererBalance(data.balance);
+                    return;
+                } else {
+                    setCurrentOrdererBalance(parseFloat(0).toFixed(2));
+                }
+            });
+    }, [email]);
     //get ordered data with id
     useEffect(() => {
         fetch(`https://agile-coast-57726.herokuapp.com/order/getOrder_forEdit/${id}`)
@@ -31,13 +42,24 @@ const EditOrder = () => {
             .then(data => {
                 setDataForEdit(data);
             })
-    }, [id, isLoading])
+    }, [id, isLoading]);
     //handle update order
     const updateOrder = data => {
         data._id = _id;
-        const confirm = window.confirm("Are you sure to EDIT order !");
+        const confirm = window.confirm(`Are you sure to ${data.status === "canceled" ? 'Cancel & Refund' : `${data.status}`} this order.!`);
         if (confirm) {
-            setIsLoading(true)
+            setIsLoading(true);
+            //if cancel then refund.
+            if (data.status === "canceled") {
+
+                data.payment = 'refund';
+                //refund balance
+                const beforeRefund = parseFloat(currentOrdererBalance) + parseFloat(price);
+                const newBalance = parseFloat(beforeRefund).toFixed(2);
+                updatedBalance(newBalance, email);
+                console.log(data);
+            };
+            //update order info
             fetch('https://agile-coast-57726.herokuapp.com/order/getOrder_forEdit/update', {
                 method: 'PUT',
                 headers: {
@@ -48,11 +70,13 @@ const EditOrder = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.modifiedCount >= 1)
-                        toast.success('Order Edited Successfully..!', {
+                        toast.success(`Order Edited ${data.status === "canceled" && "& Refound"} Successfully..!`, {
                             theme: "colored"
                         });
-                    setIsLoading(false);
+
+                    navigate('/dashboard/manageOrder');
                     reset();
+                    setIsLoading(false);
                 })
         }
     }
@@ -73,7 +97,7 @@ const EditOrder = () => {
                             </div>
                             <div className="mt-2">
                                 <span>ID - Title</span>
-                                <input readOnly type="text" value={`${order_id} - ${title}`} />
+                                <input readOnly type="text" value={`${order_id} - ${title} `} />
                             </div>
                             <Grid container columnSpacing={2}>
                                 <Grid item md={6} xs={12}>
@@ -114,26 +138,19 @@ const EditOrder = () => {
                                 </Grid>
                             </Grid>
                             <div className="mt-2">
-                                <span>Status</span>
-                                <select {...register("payment")}>
-                                    <option value={payment}>{payment}</option>
-                                    {
-                                        paymentOption.map(option => option.payment !== payment &&
-                                            <option key={option.id}>{option.payment}</option>)
-                                    }
-                                </select>
-                            </div>
-                            <div className="mt-2">
                                 <span>Average Time </span>
                                 <input readOnly value={average_time} type="text" />
                             </div>
-                            <div className="mt-2">
-                                <span>Charge</span>
-                                <input readOnly value={`৳ ${price}`} type="text" />
-                            </div>
-                            <div className="mt-2" style={{ textItems: 'center' }}>
-                                <button type='submit' className='primaryBtn '>{isLoading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} disableShrink /> : "Update Order"}</button>
-                            </div>
+                            {
+                                status === "canceled" ?
+                                    <div className="mt-2" style={{ textItems: 'center' }}>
+                                        <button disabled className='primaryBtn disabledBtn'>Already Canceled Order</button>
+                                    </div>
+                                    :
+                                    <div className="mt-2" style={{ textItems: 'center' }}>
+                                        <button type='submit' className='primaryBtn '>{isLoading ? <CircularProgress style={{ width: '25px', height: '25px', color: '#fff' }} disableShrink /> : "Update Order"}</button>
+                                    </div>
+                            }
                         </form>
                     </Grid>
                     <Grid className="details" item md={4}>
@@ -149,9 +166,9 @@ const EditOrder = () => {
                             👉<span>Start Count:</span> {start_count} <br />
                             👉<span>Order Quantity:</span> {orderQuantity} <br />
                             👉<span>Remains:</span> {remains} <br />
-                            👉<span>Price:</span>&#2547;{price}<br />
-                            👉<span>Payment:</span><span className={`status ${payment}`}> {payment}</span><br />
-                            👉<span>Status:</span ><span className={`status ${status}`}> {status}</span><br />
+                            👉<span>Charge:</span> &#2547; {price}<br />
+                            👉<span>Payment:</span><span className={`status ${payment} `}> {payment}</span><br />
+                            👉<span>Status:</span ><span className={`status ${status} `}> {status}</span><br />
                         </p>
                     </Grid>
                 </Grid>

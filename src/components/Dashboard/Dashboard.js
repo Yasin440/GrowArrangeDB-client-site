@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, Outlet } from 'react-router-dom';
 import './Dashboard.css';
-import logo from '../../media/logo2.png';
-import logo1 from '../../media/logo1.png';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -175,7 +173,7 @@ export default function Dashboard() {
                 <div className="sideBarProfile">
                     {open &&
                         <div className="sideBarHeader">
-                            <img width='60%' src={logo1} alt="logo" />
+                            <img width='60%' src="https://i.ibb.co/H4VQvnY/logo1.png" alt="logo" />
                         </div>
                     }
                     <div className="sideBarUser">
@@ -183,7 +181,7 @@ export default function Dashboard() {
                             <div className='profile'>
                                 <div className='profileImg'>
                                     <Link to='/home'>
-                                        <img width='100%' src="https://cdn.mypanel.link/770smr/jsq3r7guazj336du.png" alt="profile" />
+                                        <img width='100%' src={user.photoURL ? user.photoURL : "https://i.ibb.co/2jr2TXN/jsq3r7guazj336du.png"} alt="profile" />
                                     </Link>
                                 </div>
                                 <div className="welcome">Welcome</div>
@@ -197,7 +195,7 @@ export default function Dashboard() {
                             :
                             <div className='profileImg'>
                                 <Link to='/home'>
-                                    <img width='100%' src={logo} alt="logo" />
+                                    <img width='100%' src="https://i.ibb.co/jWXcjSt/logo2.png" alt="logo" />
                                 </Link>
                             </div>
 

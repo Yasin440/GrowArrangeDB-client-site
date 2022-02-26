@@ -1,6 +1,7 @@
 .footer{
     background-color: #bfb0fb9e;
     color: black;
+    margin-top: 8rem;
 }
 .footer .subTitle::before{
     content: '';

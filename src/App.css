@@ -87,6 +87,12 @@ input:focus,select:focus,textarea:focus{
   background-color: #4747F3;
   transition: .5s all;
 }
+.disabledBtn{
+  cursor: not-allowed;
+}
+.detailsBtn:hover{
+  background-color: red;
+}
 .actionBtn{
   background-color: #4747f3;
   font-weight: bold;
@@ -213,10 +219,7 @@ color:  #ff634729;
 .processing,.unpaid{
   background-color: tomato;
 }
-.refund{
-  background-color:yellowgreen;
-}
-.completed, .paid{
+.completed, .paid, .refund{
   background-color: green;
 }
 .canceled{

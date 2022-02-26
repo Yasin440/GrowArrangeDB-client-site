@@ -18,6 +18,7 @@ const useFirebase = () => {
     const [jwtToken, setJwtToken] = useState('');
     const [allOrders, setAllOrders] = useState();
     const [clients, setClients] = useState();
+    const [currentBalance, setCurrentBalance] = useState();
 
 
 
@@ -43,7 +44,7 @@ const useFirebase = () => {
                     })
                 navigate('/home');
             })
-    }
+    };
 
     //logInWithEmailPassword
     const logInWithEmailPassword = (email, password) => {
@@ -51,7 +52,7 @@ const useFirebase = () => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
             .then(result => setUser(result.user))
-    }
+    };
 
     //logIn with google
     const googleProvider = new GoogleAuthProvider();
@@ -70,7 +71,7 @@ const useFirebase = () => {
                 setError(error.message);
             })
             .finally(() => setLoading(false))
-    }
+    };
 
     //observed User state change
     useEffect(() => {
@@ -89,7 +90,7 @@ const useFirebase = () => {
         });
         return () => unSubscribe;
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
     //***/== logOut user ==/***//
     const logOut = () => {
@@ -104,7 +105,7 @@ const useFirebase = () => {
                 setLoading(false);
             });
         ;
-    }
+    };
 
     //***/== save user info to database ==/***//
     const saveUserDB = (email, displayName, method) => {
@@ -116,7 +117,7 @@ const useFirebase = () => {
             },
             body: JSON.stringify(user)
         })
-    }
+    };
 
     const [categories, setCategories] = useState();
     //==get category
@@ -124,7 +125,7 @@ const useFirebase = () => {
         fetch('https://agile-coast-57726.herokuapp.com/getCategory')
             .then(res => res.json())
             .then(data => setCategories(data))
-    }, [])
+    }, []);
 
     //== get admin validation in true of false ==//
     useEffect(() => {
@@ -133,20 +134,46 @@ const useFirebase = () => {
             .then(data => {
                 setAdmin(data.admin);
             })
-    }, [user.email])
+    }, [user.email]);
 
     //get all order info from database
     useEffect(() => {
         fetch('https://agile-coast-57726.herokuapp.com/order/allOrder')
             .then(res => res.json())
             .then(data => setAllOrders(data))
-    }, [])
+    }, []);
     //get all Clients info from database
     useEffect(() => {
         fetch('https://agile-coast-57726.herokuapp.com/user/allUsers')
             .then(res => res.json())
             .then(data => setClients(data))
-    }, [])
+    }, []);
+    //user current balance
+    useEffect(() => {
+        fetch(`https://agile-coast-57726.herokuapp.com/user/allUsers/${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.balance) {
+                    setCurrentBalance(data.balance);
+                    return;
+                } else {
+                    setCurrentBalance(parseFloat(0).toFixed(2));
+                }
+            });
+    }, [user?.email, loading]);
+    //update balance
+    const updatedBalance = (newBalance, email) => {
+        return fetch('https://agile-coast-57726.herokuapp.com/clients/update/balance', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ balance: newBalance, email: email })
+        })
+            .then(res => res.json())
+    };
+
+
     return {
         user,
         clients,
@@ -159,6 +186,8 @@ const useFirebase = () => {
         loading,
         jwtToken,
         allOrders,
+        currentBalance,
+        updatedBalance,
         registerWithEmailPassword,
         logInWithEmailPassword,
         setLoading,

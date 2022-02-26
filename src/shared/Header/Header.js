@@ -3,7 +3,6 @@ import { NavLink, Link } from 'react-router-dom';
 import './Header.css';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import Button from '@mui/material/Button';
-import logo from '../../media/logo2.png';
 import useAuth from '../../Hooks/useAuth';
 import { toast } from 'react-toastify';
 
@@ -22,7 +21,7 @@ const Header = () => {
             <div className="nav-bar">
                 <Link to='/home'>
                     <div className="logo">
-                        <img style={{ width: '100%' }} src={logo} alt="logo" />
+                        <img style={{ width: '100%' }} src="https://i.ibb.co/jWXcjSt/logo2.png" alt="logo" />
                     </div>
                 </Link>
                 <div className={`nav-rightM ${toggle ? 'toggleBtnActive' : ''}`}>
@@ -71,7 +70,7 @@ const Header = () => {
                                     className='navItem'
                                     to='/dashboard'
                                 >
-                                    <span style={{ display: 'flex', alignItems: 'center' }}><img className='avatar' src="https://cdn.mypanel.link/770smr/jsq3r7guazj336du.png" alt="profile" />{user.displayName && user.displayName}</span>
+                                    <span style={{ display: 'flex', alignItems: 'center' }}><img className='avatar' src={user.photoURL ? user.photoURL : "https://i.ibb.co/2jr2TXN/jsq3r7guazj336du.png"} alt="profile" />{!user.photoURL && user.displayName}</span>
                                 </NavLink>
                                 <NavLink to='/home'>
                                     <button onClick={handleLogOut} className='primaryBtn logOut'>Log Out</button>

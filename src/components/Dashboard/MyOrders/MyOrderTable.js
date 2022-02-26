@@ -44,7 +44,7 @@ const MyOrderTable = () => {
     }, [user.email])
     return (
         <div>
-            <h1 className='title titleBar'>My all orders..😍</h1>
+            <h1 className='title titleBar'>Orders</h1>
             <TableContainer component={Paper}>
                 <Table className='table' sx={{ minWidth: 1250 }} aria-label="customized table">
                     <TableHead>

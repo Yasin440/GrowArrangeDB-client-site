@@ -7,6 +7,9 @@
     width: 80px;
     height: 80px;
 }
+.sideBarProfile .profileImg img{
+    border-radius: 3rem;
+}
 .sideBarProfile .sideBarUser .profile{
     position: relative;
     top: -40px;
@@ -40,7 +43,7 @@
     color: #202020;
 }
 .sideBarProfile .sideBarHeader{
-    background-image: url('../../media/profileBG.jpg');
+    background-image: url('https://i.ibb.co/g6RYZsZ/profile-BG.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

@@ -1,6 +1,5 @@
 import { Container, Grid } from '@mui/material';
 import React from 'react';
-import logo from '../../media/logo2.png';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -15,7 +14,7 @@ const Footer = () => {
             <Container style={{ padding: '60px 0' }}>
                 <Grid container justifyContent="center">
                     <Grid item md={3} sm={6} xs={12} sx={{ textAlign: 'center' }}>
-                        <img style={{ width: "150px", cursor: 'pointer' }} src={`${logo}`} alt="logo" />
+                        <img style={{ width: "150px", cursor: 'pointer' }} src="https://i.ibb.co/jWXcjSt/logo2.png" alt="logo" />
                         <p style={{ marginTop: '0' }}>Now, You can get connect with<br />GROWTH Arrange BD<br />for Grow your business.</p>
                         <div className="icon">
                             <FacebookIcon />

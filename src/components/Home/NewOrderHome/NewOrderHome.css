@@ -23,6 +23,10 @@
     background-color: #4747f3;
     border-color: #4747f3;
 }
+.editOrder .editOrderForm .disabledBtn:hover{
+    background-color: #ff0000ab;
+    border-color: #ff0000ab;
+}
 .newOrder .newOrderForm button{
     width:100%;
     border-radius: 6px;

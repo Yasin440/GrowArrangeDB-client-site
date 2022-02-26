@@ -6,25 +6,24 @@ import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import useAuth from '../../../Hooks/useAuth';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useNavigate } from 'react-router-dom';
 
 const NewOrderHome = () => {
     const { id } = useParams();
-    const { user, isLoading, setIsLoading } = useAuth();
+    const { user, isLoading, setIsLoading, currentBalance, updatedBalance } = useAuth();
     const [price, setPrice] = useState();
     const [lastOrder, setLastOrder] = useState([]);
-    const [currentBalance, setCurrentBalance] = useState();
     const [error, setError] = useState(false);
     const [quantity, setQuantity] = useState(null);
     const [service, setService] = useState({});
     //charge balance
     const beforeCharged = parseFloat(currentBalance) - parseFloat(price);
-    const updatedBalance = parseFloat(beforeCharged).toFixed(2);
+    const newBalance = parseFloat(beforeCharged).toFixed(2);
     //*******************//
-    const navigate = useNavigate();
     const { ID, title, category, details, average_time, max_order, min_order, rate_par_1k } = service || {};
     const { register, handleSubmit, reset } = useForm();
+    const navigate = useNavigate();
 
 
     //get service with id
@@ -48,24 +47,10 @@ const NewOrderHome = () => {
         setPrice(Math.ceil(needToPay));
         setQuantity(quantity);
     }
+    console.log(error, quantity, service.min_order, service.max_order);
     //order place add services to DB
     const placeOrder = data => {
-        data.service_id = ID;
-        data.order_id = lastOrder[0]?.order_id + 1 || 22001;
-        data.start_count = '';
-        data.remains = '';
-        data.email = user.email;
-        data.displayName = user.displayName;
-        data.average_time = average_time;
-        data.title = title;
-        data.category = category;
-        data.date = new Date().toLocaleString();
-        data.details = details;
-        data.price = price;
-        data.currency = 'taka';
-        data.status = 'pending';
-        data.payment = 'paid';
-        if (quantity <= service.min_order - 1 || service.max_order - 1 <= quantity) {
+        if (quantity < service.min_order || quantity > service.max_order) {
             setError(true);
             return;
         } else if (!error) {
@@ -77,6 +62,21 @@ const NewOrderHome = () => {
             }
             const confirm = window.confirm('Sure to Order this services..?');
             if (confirm) {
+                data.service_id = ID;
+                data.order_id = lastOrder[0]?.order_id + 1 || 22001;
+                data.start_count = '';
+                data.remains = '';
+                data.email = user.email;
+                data.displayName = user.displayName;
+                data.average_time = average_time;
+                data.title = title;
+                data.category = category;
+                data.date = new Date().toLocaleString();
+                data.details = details;
+                data.price = price;
+                data.currency = 'taka';
+                data.status = 'pending';
+                data.payment = 'paid';
                 setIsLoading(true);
                 fetch('https://agile-coast-57726.herokuapp.com/order/addOrder', {
                     method: 'POST',
@@ -88,42 +88,22 @@ const NewOrderHome = () => {
                     .then(res => res.json())
                     .then(event => {
                         if (event.insertedId) {
-                            fetch('https://agile-coast-57726.herokuapp.com/clients/update/balance', {
-                                method: 'POST',
-                                headers: {
-                                    'content-type': 'application/json'
-                                },
-                                body: JSON.stringify({ balance: updatedBalance, email: user.email })
-                            })
-                                .then(res => res.json())
+                            updatedBalance(newBalance, user.email)
                                 .then(event => {
                                     if (event.modifiedCount > 0) {
                                         toast.success('Order placed successfully..!', {
                                             theme: "colored"
                                         });
                                         reset();
-                                        setIsLoading(false);
                                         navigate('/dashboard/myOrders');
+                                        setIsLoading(false);
                                     }
                                 })
                         }
                     })
             }
         }
-    }
-    //user current balance
-    useEffect(() => {
-        fetch(`https://agile-coast-57726.herokuapp.com/user/allUsers/${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.balance) {
-                    setCurrentBalance(data.balance);
-                    return;
-                } else {
-                    setCurrentBalance(parseFloat(0).toFixed(2));
-                }
-            });
-    }, [user?.email])
+    };
     return (
         <div className='newOrder'>
             <Container sx={{ marginBottom: '4rem' }}>
