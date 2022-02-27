@@ -47,7 +47,6 @@ const NewOrderHome = () => {
         setPrice(Math.ceil(needToPay));
         setQuantity(quantity);
     }
-    console.log(error, quantity, service.min_order, service.max_order);
     //order place add services to DB
     const placeOrder = data => {
         if (quantity < service.min_order || quantity > service.max_order) {

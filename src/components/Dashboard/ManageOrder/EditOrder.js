@@ -57,7 +57,6 @@ const EditOrder = () => {
                 const beforeRefund = parseFloat(currentOrdererBalance) + parseFloat(price);
                 const newBalance = parseFloat(beforeRefund).toFixed(2);
                 updatedBalance(newBalance, email);
-                console.log(data);
             };
             //update order info
             fetch('https://agile-coast-57726.herokuapp.com/order/getOrder_forEdit/update', {
