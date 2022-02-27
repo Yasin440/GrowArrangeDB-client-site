@@ -1,6 +1,5 @@
 import React from 'react';
 import './AddBalance.css';
-import paymentImg from '../../../media/Payment Methods-01.png';
 
 const AddBalance = () => {
     return (
@@ -8,7 +7,7 @@ const AddBalance = () => {
             <div className="content">
                 <h1>Add Balance <span>With...</span></h1>
                 <p>আমাদের সাইট এ বিকাশ, নগদ, রকেট এর মাধ্যমে টাকা এড করতে পারবেন ।</p>
-                <img width="60%" src={paymentImg} alt="Img" />
+                <img width="60%" src='https://i.ibb.co/Dt2V47Y/Payment-Methods-01.png' alt="Img" />
                 <p><span>সবনিম্ন 100 টাকা</span> এড করতে পারবেন
                     টাকা অবশ্যই <span>সেন্ড মানি</span> করবেন
                     টাকা পাঠানোর পরে ওয়েবসাইট এর <span>Ticket</span> অপশন এ যেয়ে মেসেজ করুণ ।</p>
