@@ -69,3 +69,11 @@
     color: #362682;
     background-color: #fff;
 }
+/* material custom css */
+
+.css-o5wegg-MuiGrid-root>.MuiGrid-item {
+    padding: 0px !important;
+  }
+.css-ftmmys-MuiGrid-root{
+    padding: 25px;
+}

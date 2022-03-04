@@ -27,7 +27,7 @@ const OurServices = () => {
         <div className='ourServices' style={{ padding: '5rem 0' }}>
             <div style={{ marginBottom: '8rem' }}><h1 className="title titleBar">Our Crush Services..</h1></div>
             <Container>
-                <Grid container spacing={3} sx={{ width: '100%', marginBottom: '3rem' }}>
+                <Grid container sx={{ width: '100%' }}>
                     <Grid item xs={12} sm={6} md={4} sx={{ textAlign: 'center' }}>
                         <Card
                             sx={{ minWidth: 260, cursor: 'pointer' }}
@@ -139,23 +139,23 @@ const OurServices = () => {
                         </Card>
                     </Grid>
                 </Grid>
-                <Box data-aos="zoom-in" sx={{ m: 8 }}>
-                    <Typography
-                        sx={{ fontWeight: '800', color: '#00000090', mb: 2 }}
-                        variant="body1"
-                        gutterBottom
-                        component="div">
-                        Have any works you want to done by me?<Link to="/contactUs"><span style={{ color: '#0779E4' }}> Contact Us</span></Link>
-                    </Typography>
-                    <Typography
-                        sx={{ fontWeight: '550', color: '#00000090' }}
-                        variant="body1"
-                        gutterBottom
-                        component="div">
-                        If you have any question or suggestion for me and need more information about me and my work, then <br />--please contact me.
-                    </Typography>
-                </Box>
             </Container>
+            <Box data-aos="zoom-in" sx={{ m: 8 }}>
+                <Typography
+                    sx={{ fontWeight: '800', color: '#00000090', mb: 2 }}
+                    variant="body1"
+                    gutterBottom
+                    component="div">
+                    Have any works you want to done by me?<Link to="/contactUs"><span style={{ color: '#0779E4' }}> Contact Us</span></Link>
+                </Typography>
+                <Typography
+                    sx={{ fontWeight: '550', color: '#00000090' }}
+                    variant="body1"
+                    gutterBottom
+                    component="div">
+                    If you have any question or suggestion for me and need more information about me and my work, then <br />--please contact me.
+                </Typography>
+            </Box>
             <div style={{
                 padding: '5rem 0',
                 backgroundImage: 'url(https://i.ibb.co/w6BVs0s/bg.jpg)',

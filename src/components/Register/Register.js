@@ -45,6 +45,9 @@ const Register = () => {
         else {
             registerWithEmailPassword(loginData.email, loginData.password, loginData.name, navigate)
                 .then(result => {
+                    toast.success("Registration Successful..!", {
+                        theme: "colored"
+                    });
                     navigate(redirect_url);
                 })
                 //handle registration error
